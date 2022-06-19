@@ -1,19 +1,26 @@
 {
-  "name": "resip",
-  "version": "1.0.0",
-  "description": "Backend resip app",
-  "main": "index.js",
-  "author": "irfnd <irfandiabimanyu@gmail.com>",
-  "license": "MIT",
-  "private": false,
-  "dependencies": {
-    "cors": "^2.8.5",
-    "dotenv": "^16.0.1",
-    "express": "^4.18.1",
-    "helmet": "^5.1.0",
-    "pg": "^8.7.3"
-  },
-  "devDependencies": {
-    "nodemon": "^2.0.16"
-  }
+	"name": "resip",
+	"version": "1.0.0",
+	"description": "Backend resip app",
+	"main": "index.js",
+	"author": "irfnd <irfandiabimanyu@gmail.com>",
+	"license": "MIT",
+	"private": false,
+	"scripts": {
+		"dev": "nodemon index",
+		"start": "node index"
+	},
+	"dependencies": {
+		"cors": "^2.8.5",
+		"crypto-js": "^4.1.1",
+		"dotenv": "^16.0.1",
+		"express": "^4.18.1",
+		"express-respond": "^1.6.1",
+		"helmet": "^5.1.0",
+		"morgan": "^1.10.0",
+		"pg": "^8.7.3"
+	},
+	"devDependencies": {
+		"nodemon": "^2.0.16"
+	}
 }
