@@ -1,9 +1,9 @@
 const response = require("../../libs/responseFormat/response");
-const { usersModel } = require("../../models");
+const { recipesModel } = require("../../models");
 
 exports.insertOne = async (req, res) => {
 	try {
-		const results = await usersModel.insert.insertOneModel(req.body);
+		const results = await recipesModel.insert.insertOneModel(req.body);
 		res.status(200).json(response(true, "Successfully added data.", results));
 	} catch (err) {
 		res

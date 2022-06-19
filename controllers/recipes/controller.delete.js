@@ -1,11 +1,11 @@
 const response = require("../../libs/responseFormat/response");
-const { usersModel } = require("../../models");
+const { recipesModel } = require("../../models");
 
 exports.deleteOne = async (req, res) => {
 	const { id } = req.params;
 	try {
 		if (Number(id)) {
-			const results = await usersModel.delete.deleteOneModel(id);
+			const results = await recipesModel.delete.deleteOneModel(id);
 			res
 				.status(200)
 				.json(response(true, "Successfully deleted data.", results));
