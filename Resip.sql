@@ -22,13 +22,15 @@ CREATE TABLE "recipes" (
 CREATE TABLE "liked_recipes" (
   "id" SERIAL NOT NULL PRIMARY KEY,
   "id_user" INT NOT NULL,
-  "id_recipe" INT NOT NULL
+  "id_recipe" INT NOT NULL,
+  "liked_at" TIMESTAMPTZ NOT NULL DEFAULT (now())
 );
 
 CREATE TABLE "saved_recipes" (
   "id" SERIAL NOT NULL PRIMARY KEY,
   "id_user" INT NOT NULL,
-  "id_recipe" INT NOT NULL
+  "id_recipe" INT NOT NULL,
+  "saved_at" TIMESTAMPTZ NOT NULL DEFAULT (now())
 );
 
 CREATE TABLE "recipes_videos" (
