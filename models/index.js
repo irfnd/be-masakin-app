@@ -17,4 +17,9 @@ module.exports = {
     update: require("./comments/model.update"),
     delete: require("./comments/model.delete"),
   },
+  likedRecipesModel: {
+    insert: require("./liked_recipes/model.insert"),
+    select: require("./liked_recipes/model.select"),
+    delete: require("./liked_recipes/model.delete"),
+  },
 };
