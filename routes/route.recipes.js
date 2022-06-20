@@ -12,4 +12,6 @@ router
 	.patch(recipesController.update.updateOne)
 	.delete(recipesController.delete.deleteOne);
 
+router.route("/user/:id").get(recipesController.select.selectByOwner);
+
 module.exports = router;
