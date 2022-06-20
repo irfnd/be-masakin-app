@@ -11,4 +11,10 @@ module.exports = {
 		update: require("./recipes/model.update"),
 		delete: require("./recipes/model.delete"),
 	},
+	commentsModel: {
+		insert: require("./comments/model.insert"),
+		select: require("./comments/model.select"),
+		update: require("./comments/model.update"),
+		delete: require("./comments/model.delete"),
+	},
 };
