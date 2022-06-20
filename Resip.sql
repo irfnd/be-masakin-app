@@ -1,59 +1,3 @@
-CREATE OR REPLACE FUNCTION trigger_update_timestamp()
-RETURNS TRIGGER AS $$
-BEGIN
-  NEW.updated_at = NOW();
-  RETURN NEW;
-END;
-$$ LANGUAGE plpgsql;
-
-CREATE OR REPLACE FUNCTION trigger_add_like()
-RETURNS TRIGGER AS $$
-DECLARE
-    recipe_like_count int;
-BEGIN
-    IF (TG_OP = 'INSERT') THEN
-        recipe_like_count := (SELECT COUNT(*) FROM liked_recipes WHERE id_recipe = NEW.id_recipe);
-        IF recipe_like_count > 0 THEN
-            UPDATE recipes SET like_count = recipe_like_count WHERE id = NEW.id_recipe;
-        END IF;
-        RAISE NOTICE 'Value: %', NEW.id_recipe;
-    END IF;    
-    
-    IF (TG_OP = 'DELETE') THEN
-        recipe_like_count := (SELECT COUNT(*) FROM liked_recipes WHERE id_recipe = OLD.id_recipe);
-        IF recipe_like_count > 0 THEN
-            UPDATE recipes SET like_count = recipe_like_count WHERE id = OLD.id_recipe;
-        END IF;
-        RAISE NOTICE 'Value: %', OLD.id_recipe;
-    END IF;
-    RETURN NULL;
-END
-$$ LANGUAGE plpgsql;
-
-CREATE OR REPLACE FUNCTION trigger_add_save()
-RETURNS TRIGGER AS $$
-DECLARE
-    recipe_save_count int;
-BEGIN
-    IF (TG_OP = 'INSERT') THEN
-        recipe_save_count := (SELECT COUNT(*) FROM saved_recipes WHERE id_recipe = NEW.id_recipe);
-        IF recipe_save_count > 0 THEN
-            UPDATE recipes SET save_count = recipe_save_count WHERE id = NEW.id_recipe;
-        END IF;
-        RAISE NOTICE 'Value: %', NEW.id_recipe;
-    END IF;    
-    
-    IF (TG_OP = 'DELETE') THEN
-        recipe_save_count := (SELECT COUNT(*) FROM saved_recipes WHERE id_recipe = OLD.id_recipe);
-        IF recipe_save_count > 0 THEN
-            UPDATE recipes SET save_count = recipe_save_count WHERE id = OLD.id_recipe;
-        END IF;
-        RAISE NOTICE 'Value: %', OLD.id_recipe;
-    END IF;
-    RETURN NULL;
-END
-$$ LANGUAGE plpgsql;
-
 CREATE TABLE "users" (
   "id" SERIAL NOT NULL PRIMARY KEY,
   "name" TEXT NOT NULL,
@@ -111,6 +55,62 @@ ALTER TABLE "liked_recipes" ADD FOREIGN KEY ("id_recipe") REFERENCES "recipes" (
 ALTER TABLE "saved_recipes" ADD FOREIGN KEY ("id_user") REFERENCES "users" ("id");
 ALTER TABLE "saved_recipes" ADD FOREIGN KEY ("id_recipe") REFERENCES "recipes" ("id");
 ALTER TABLE "recipes_videos" ADD FOREIGN KEY ("id_recipe") REFERENCES "recipes" ("id");
+
+CREATE OR REPLACE FUNCTION trigger_update_timestamp()
+RETURNS TRIGGER AS $$
+BEGIN
+  NEW.updated_at = NOW();
+  RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION trigger_add_like()
+RETURNS TRIGGER AS $$
+DECLARE
+    recipe_like_count int;
+BEGIN
+    IF (TG_OP = 'INSERT') THEN
+        recipe_like_count := (SELECT COUNT(*) FROM liked_recipes WHERE id_recipe = NEW.id_recipe);
+        IF recipe_like_count > 0 THEN
+            UPDATE recipes SET like_count = recipe_like_count WHERE id = NEW.id_recipe;
+        END IF;
+        RAISE NOTICE 'Value: %', NEW.id_recipe;
+    END IF;    
+    
+    IF (TG_OP = 'DELETE') THEN
+        recipe_like_count := (SELECT COUNT(*) FROM liked_recipes WHERE id_recipe = OLD.id_recipe);
+        IF recipe_like_count > 0 THEN
+            UPDATE recipes SET like_count = recipe_like_count WHERE id = OLD.id_recipe;
+        END IF;
+        RAISE NOTICE 'Value: %', OLD.id_recipe;
+    END IF;
+    RETURN NULL;
+END
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION trigger_add_save()
+RETURNS TRIGGER AS $$
+DECLARE
+    recipe_save_count int;
+BEGIN
+    IF (TG_OP = 'INSERT') THEN
+        recipe_save_count := (SELECT COUNT(*) FROM saved_recipes WHERE id_recipe = NEW.id_recipe);
+        IF recipe_save_count > 0 THEN
+            UPDATE recipes SET save_count = recipe_save_count WHERE id = NEW.id_recipe;
+        END IF;
+        RAISE NOTICE 'Value: %', NEW.id_recipe;
+    END IF;    
+    
+    IF (TG_OP = 'DELETE') THEN
+        recipe_save_count := (SELECT COUNT(*) FROM saved_recipes WHERE id_recipe = OLD.id_recipe);
+        IF recipe_save_count > 0 THEN
+            UPDATE recipes SET save_count = recipe_save_count WHERE id = OLD.id_recipe;
+        END IF;
+        RAISE NOTICE 'Value: %', OLD.id_recipe;
+    END IF;
+    RETURN NULL;
+END
+$$ LANGUAGE plpgsql;
 
 CREATE TRIGGER update_timestamp
 BEFORE UPDATE ON recipes
