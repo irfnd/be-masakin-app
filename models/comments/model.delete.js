@@ -1,17 +1,18 @@
 const db = require("../connection");
 
+const table = "comments";
 const sql = {
-	deleteOne: "DELETE FROM comments WHERE id = $1 RETURNING *",
+  deleteOne: `DELETE FROM ${table} WHERE id = $1 RETURNING *`,
 };
 
 exports.deleteOneModel = (id) => {
-	return new Promise((resolve, reject) => {
-		db.query(sql.deleteOne, [id], (err, result) => {
-			if (err) {
-				reject(err);
-			} else {
-				resolve({ request: result.rows });
-			}
-		});
-	});
+  return new Promise((resolve, reject) => {
+    db.query(sql.deleteOne, [id], (err, result) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve({ request: result.rows });
+      }
+    });
+  });
 };

@@ -1,9 +1,10 @@
 const db = require("../connection");
 
+const table = "comments";
 const sql = {
-  selectAll: "SELECT * FROM comments",
-  selectById: "SELECT * FROM comments WHERE id = $1",
-  selectByRecipe: "SELECT * FROM comments WHERE id_recipe = $1",
+  selectAll: `SELECT * FROM ${table}`,
+  selectById: `SELECT * FROM ${table} WHERE id = $1`,
+  selectByRecipe: `SELECT * FROM ${table} WHERE id_recipe = $1`,
 };
 
 exports.selectAllModel = () => {
