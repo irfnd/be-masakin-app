@@ -1,7 +1,7 @@
 const db = require("../connection");
 
 const sql = {
-	deleteOne: "DELETE FROM users WHERE id = $1",
+	deleteOne: "DELETE FROM recipes WHERE id = $1",
 };
 
 exports.deleteOneModel = (id) => {

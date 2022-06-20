@@ -2,21 +2,25 @@ const db = require("../connection");
 const { encryptPassword } = require("../../libs/hashing/hashPassword");
 
 const sql = {
-	updateOne:
-		"UPDATE users SET name = $1, email = $2, phone_number = $3, password = $4 WHERE id = $5",
+	updateOne: (data) => {
+		let dataValues = Object.keys(data).map((el, idx) => `${el}=$${idx + 1}`);
+		let lengthData = Object.keys(data).length + 1;
+		return `UPDATE users SET ${dataValues} WHERE id = $${lengthData} RETURNING *`;
+	},
 };
 
 exports.updateOneModel = (data, id) => {
 	let hashedPassword = encryptPassword(data.password);
+	let dataBody = { ...data, password: hashedPassword };
 	return new Promise((resolve, reject) => {
 		db.query(
-			sql.updateOne,
-			[data.name, data.email, data.phone_number, hashedPassword, id],
+			sql.updateOne(dataBody),
+			[...Object.values(dataBody), id],
 			(error, result) => {
 				if (error) {
 					reject(error);
 				} else {
-					resolve({ request: { id, ...data } });
+					resolve({ request: result.rows });
 				}
 			}
 		);

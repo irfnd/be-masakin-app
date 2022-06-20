@@ -1,15 +1,15 @@
 const router = require("express").Router();
-const { usersController } = require("../controllers");
+const { recipesController } = require("../controllers");
 
 router
 	.route("/")
-	.get(usersController.select.selectAll)
-	.post(usersController.insert.insertOne);
+	.get(recipesController.select.selectAll)
+	.post(recipesController.insert.insertOne);
 
 router
 	.route("/:id")
-	.get(usersController.select.selectById)
-	.patch(usersController.update.updateOne)
-	.delete(usersController.delete.deleteOne);
+	.get(recipesController.select.selectById)
+	.patch(recipesController.update.updateOne)
+	.delete(recipesController.delete.deleteOne);
 
 module.exports = router;

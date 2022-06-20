@@ -1,8 +1,8 @@
 const db = require("../connection");
 
 const sql = {
-	selectAll: "SELECT * FROM users",
-	selectById: "SELECT * FROM users WHERE id = $1",
+	selectAll: "SELECT * FROM recipes",
+	selectById: "SELECT * FROM recipes WHERE id = $1",
 };
 
 exports.selectAllModel = () => {
