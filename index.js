@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
@@ -14,10 +15,8 @@ app.use(express.static("public"));
 
 require("./routes")(app);
 
-// eslint-disable-next-line no-undef
 app.listen(process.env.SERVER_PORT, () => {
   console.log(
-    // eslint-disable-next-line no-undef
     `> Server running on http://${process.env.SERVER_HOST}:${process.env.SERVER_PORT}`
   );
 });
