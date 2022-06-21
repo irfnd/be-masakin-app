@@ -28,7 +28,7 @@ exports.updateOneModel = (data, id) => {
           if (result.rowCount === 0) {
             reject({
               code: 400,
-              message: "Failed to update, user not found!",
+              message: "Failed to update, data not found!",
             });
           }
           resolve({ request: result.rows });

@@ -7,7 +7,6 @@ const { usersModel } = require("../../models");
 exports.selectAll = async (req, res) => {
   try {
     const results = await usersModel.select.selectAllModel();
-    if (results.length === 0) throw { code: 404, message: "Data not found!" };
     res
       .status(200)
       .json(responseSuccess("Successfully retrieved data.", results));
@@ -21,7 +20,6 @@ exports.selectById = async (req, res) => {
   try {
     if (Number(id)) {
       const results = await usersModel.select.selectByIdModel(id);
-      if (results.length === 0) throw { code: 404, message: "Data not found!" };
       res
         .status(200)
         .json(responseSuccess("Successfully retrieved data.", results));

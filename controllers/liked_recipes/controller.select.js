@@ -9,7 +9,6 @@ exports.selectByUser = async (req, res) => {
   try {
     if (Number(id)) {
       const results = await likedRecipesModel.select.selectByUserModel(id);
-      if (results.length === 0) throw { code: 404, message: "Data not found!" };
       res
         .status(200)
         .json(responseSuccess("Successfully retrieved data.", results));
@@ -26,7 +25,6 @@ exports.selectByRecipe = async (req, res) => {
   try {
     if (Number(id)) {
       const results = await likedRecipesModel.select.selectByRecipeModel(id);
-      if (results.length === 0) throw { code: 404, message: "Data not found!" };
       res
         .status(200)
         .json(responseSuccess("Successfully retrieved data.", results));

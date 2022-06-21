@@ -14,7 +14,7 @@ exports.deleteOneModel = (id) => {
         if (result.rowCount === 0) {
           reject({
             code: 400,
-            message: "Failed to delete, user not found!",
+            message: "Failed to delete, data not found!",
           });
         }
         resolve({ request: result.rows });

@@ -7,7 +7,6 @@ const { recipesModel } = require("../../models");
 exports.selectAll = async (req, res) => {
   try {
     const results = await recipesModel.select.selectAllModel();
-    if (results.length === 0) throw { code: 404, message: "Data not found!" };
     res
       .status(200)
       .json(responseSuccess("Successfully retrieved data.", results));
@@ -21,7 +20,6 @@ exports.selectById = async (req, res) => {
   try {
     if (Number(id)) {
       const results = await recipesModel.select.selectByIdModel(id);
-      if (results.length === 0) throw { code: 404, message: "Data not found!" };
       res
         .status(200)
         .json(responseSuccess("Successfully retrieved data.", results));
@@ -38,7 +36,6 @@ exports.selectByOwner = async (req, res) => {
   try {
     if (Number(id)) {
       const results = await recipesModel.select.selectByOwnerModel(id);
-      if (results.length === 0) throw { code: 404, message: "Data not found!" };
       res
         .status(200)
         .json(responseSuccess("Successfully retrieved data.", results));

@@ -1,7 +1,7 @@
 const db = require("../connection");
 const { encryptPassword } = require("../../libs/hashing/hashPassword");
 
-const table = "users";
+const table = "userss";
 const sql = {
   insertOne: (data) => {
     let dataKeys = Object.keys(data).map((el) => el);
@@ -18,8 +18,11 @@ exports.insertOneModel = (data) => {
       sql.insertOne(dataBody),
       Object.values(dataBody),
       (err, result) => {
-        if (err) reject({ code: 500, message: err.message });
-        resolve({ request: result.rows });
+        if (err) {
+          reject({ code: 500, message: err.message });
+        } else {
+          resolve({ request: result.rows });
+        }
       }
     );
   });
