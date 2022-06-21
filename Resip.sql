@@ -100,7 +100,7 @@ BEGIN
     IF (TG_OP = 'INSERT') THEN
         recipe_save_count := (SELECT COUNT(*) FROM saved_recipes WHERE id_recipe = NEW.id_recipe);
         IF recipe_save_count > 0 THEN
-            UPDATE recipes SET save_count = recipe_save_count WHERE id = NEW.id_recipe;
+            UPDATE recipes SET saved_count = recipe_save_count WHERE id = NEW.id_recipe;
         END IF;
         RAISE NOTICE 'Value: %', NEW.id_recipe;
     END IF;    
@@ -108,7 +108,7 @@ BEGIN
     IF (TG_OP = 'DELETE') THEN
         recipe_save_count := (SELECT COUNT(*) FROM saved_recipes WHERE id_recipe = OLD.id_recipe);
         IF recipe_save_count > 0 THEN
-            UPDATE recipes SET save_count = recipe_save_count WHERE id = OLD.id_recipe;
+            UPDATE recipes SET saved_count = recipe_save_count WHERE id = OLD.id_recipe;
         END IF;
         RAISE NOTICE 'Value: %', OLD.id_recipe;
     END IF;

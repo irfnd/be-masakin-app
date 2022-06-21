@@ -26,7 +26,7 @@ exports.selectByIdModel = (id) => {
 
 exports.selectByRecipeModel = (id_recipe) => {
   return new Promise((resolve, reject) => {
-    db.query(sql.selectById, [id_recipe], (err, result) => {
+    db.query(sql.selectByRecipe, [id_recipe], (err, result) => {
       if (err) {
         reject({ code: 500, message: err.message });
       } else {

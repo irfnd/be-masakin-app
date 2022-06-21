@@ -10,7 +10,9 @@ exports.deleteOne = async (req, res) => {
   try {
     if (Number(id)) {
       const results = await usersModel.delete.deleteOneModel(id);
-      await deleteFile("users", results.request[0].photo_profile);
+      if (results.request[0].photo_profile !== null) {
+        await deleteFile("users", results.request[0].photo_profile);
+      }
       res
         .status(200)
         .json(responseSuccess("Successfully deleted data.", results));

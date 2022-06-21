@@ -2,12 +2,12 @@ const db = require("../connection");
 
 const table = "liked_recipes";
 const sql = {
-  deleteOne: `DELETE FROM ${table} WHERE id_user = $1 AND id_recipe = $2 RETURNING *`,
+  deleteOne: `DELETE FROM ${table} WHERE id = $1 RETURNING *`,
 };
 
-exports.deleteOneModel = (data) => {
+exports.deleteOneModel = (id) => {
   return new Promise((resolve, reject) => {
-    db.query(sql.deleteOne, [data], (err, result) => {
+    db.query(sql.deleteOne, [id], (err, result) => {
       if (err) {
         reject({ code: 500, message: err.message });
       } else {
