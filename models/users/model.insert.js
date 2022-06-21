@@ -18,11 +18,8 @@ exports.insertOneModel = (data) => {
       sql.insertOne(dataBody),
       Object.values(dataBody),
       (err, result) => {
-        if (err) {
-          reject(err);
-        } else {
-          resolve({ request: result.rows });
-        }
+        if (err) reject({ code: 500, message: err.message });
+        resolve({ request: result.rows });
       }
     );
   });

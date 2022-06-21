@@ -8,11 +8,8 @@ const sql = {
 exports.deleteOneModel = (data) => {
   return new Promise((resolve, reject) => {
     db.query(sql.deleteOne, [data], (err, result) => {
-      if (err) {
-        reject(err);
-      } else {
-        resolve({ request: result.rows });
-      }
+      if (err) reject({ code: 500, message: err.message });
+      resolve(result.rows);
     });
   });
 };

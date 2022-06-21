@@ -17,10 +17,16 @@ exports.updateOneModel = (data, id) => {
     db.query(
       sql.updateOne(dataBody),
       [...Object.values(dataBody), id],
-      (error, result) => {
-        if (error) {
-          reject(error);
+      (err, result) => {
+        if (err) {
+          reject({ code: 500, message: err.message });
         } else {
+          if (result.rowCount === 0) {
+            reject({
+              code: 400,
+              message: "Failed to update, user not found!",
+            });
+          }
           resolve({ request: result.rows });
         }
       }

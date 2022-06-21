@@ -1,10 +1,18 @@
-const response = (isSuccess, message, results, error = null) => {
-	return {
-		success: isSuccess,
-		message: message,
-		results: results,
-		errors: error,
-	};
+const responseSuccess = (message, results) => {
+  return {
+    success: true,
+    message: message,
+    results: results,
+  };
 };
 
-module.exports = response;
+const responseError = (error) => {
+  return {
+    success: false,
+    message: "Something Wrong!",
+    results: null,
+    errors: error,
+  };
+};
+
+module.exports = { responseSuccess, responseError };

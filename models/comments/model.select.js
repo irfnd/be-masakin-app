@@ -10,11 +10,8 @@ const sql = {
 exports.selectAllModel = () => {
   return new Promise((resolve, reject) => {
     db.query(sql.selectAll, (err, result) => {
-      if (err) {
-        reject(err);
-      } else {
-        resolve(result.rows);
-      }
+      if (err) reject({ code: 500, message: err.message });
+      resolve(result.rows);
     });
   });
 };
@@ -22,11 +19,8 @@ exports.selectAllModel = () => {
 exports.selectByIdModel = (id) => {
   return new Promise((resolve, reject) => {
     db.query(sql.selectById, [id], (err, result) => {
-      if (err) {
-        reject(err);
-      } else {
-        resolve(result.rows);
-      }
+      if (err) reject({ code: 500, message: err.message });
+      resolve(result.rows);
     });
   });
 };
@@ -34,11 +28,8 @@ exports.selectByIdModel = (id) => {
 exports.selectByRecipeModel = (id_recipe) => {
   return new Promise((resolve, reject) => {
     db.query(sql.selectByRecipe, [id_recipe], (err, result) => {
-      if (err) {
-        reject(err);
-      } else {
-        resolve(result.rows);
-      }
+      if (err) reject({ code: 500, message: err.message });
+      resolve(result.rows);
     });
   });
 };

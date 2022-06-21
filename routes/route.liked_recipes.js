@@ -6,8 +6,8 @@ router
   .post(likedRecipesController.insert.insertOne)
   .delete(likedRecipesController.delete.deleteOne);
 
-router.route("/user").get(likedRecipesController.select.selectByUser);
+router.route("/user/:id").get(likedRecipesController.select.selectByUser);
 
-router.route("/recipe").get(likedRecipesController.select.selectByRecipe);
+router.route("/recipe/:id").get(likedRecipesController.select.selectByRecipe);
 
 module.exports = router;

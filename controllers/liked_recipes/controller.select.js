@@ -1,42 +1,39 @@
-const response = require("../../libs/responseFormat/response");
+const {
+  responseSuccess,
+  responseError,
+} = require("../../libs/responseFormat/response");
 const { likedRecipesModel } = require("../../models");
 
 exports.selectByUser = async (req, res) => {
-  const { id_user } = req.params;
+  const { id } = req.params;
   try {
-    if (Number(id_user)) {
-      const results = await likedRecipesModel.select.selectByUserModel(id_user);
-      if (results.length === 0) throw new Error("Data not found!");
+    if (Number(id)) {
+      const results = await likedRecipesModel.select.selectByUserModel(id);
+      if (results.length === 0) throw { code: 404, message: "Data not found!" };
       res
         .status(200)
-        .json(response(true, "Successfully retrieved data.", results));
+        .json(responseSuccess("Successfully retrieved data.", results));
     } else {
-      throw new Error("Parameter must be a number!");
+      throw { code: 400, message: "Parameter must be a number!" };
     }
   } catch (err) {
-    res
-      .status(400)
-      .json(response(false, "Something wrong!", null, err.message));
+    res.status(err.code).json(responseError(err.message));
   }
 };
 
 exports.selectByRecipe = async (req, res) => {
-  const { id_recipe } = req.params;
+  const { id } = req.params;
   try {
-    if (Number(id_recipe)) {
-      const results = await likedRecipesModel.select.selectByRecipeModel(
-        id_recipe
-      );
-      if (results.length === 0) throw new Error("Data not found!");
+    if (Number(id)) {
+      const results = await likedRecipesModel.select.selectByRecipeModel(id);
+      if (results.length === 0) throw { code: 404, message: "Data not found!" };
       res
         .status(200)
-        .json(response(true, "Successfully retrieved data.", results));
+        .json(responseSuccess("Successfully retrieved data.", results));
     } else {
-      throw new Error("Parameter must be a number!");
+      throw { code: 400, message: "Parameter must be a number!" };
     }
   } catch (err) {
-    res
-      .status(400)
-      .json(response(false, "Something wrong!", null, err.message));
+    res.status(err.code).json(responseError(err.message));
   }
 };

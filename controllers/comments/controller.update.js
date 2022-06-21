@@ -1,14 +1,21 @@
-const response = require("../../libs/responseFormat/response");
+const {
+  responseSuccess,
+  responseError,
+} = require("../../libs/responseFormat/response");
 const { commentsModel } = require("../../models");
 
 exports.updateOne = async (req, res) => {
-	const { id } = req.params;
-	try {
-		const results = await commentsModel.update.updateOneModel(req.body, id);
-		res.status(200).json(response(true, "Successfully updated data.", results));
-	} catch (err) {
-		res
-			.status(400)
-			.json(response(false, "Something wrong!", null, err.message));
-	}
+  const { id } = req.params;
+  try {
+    if (Number(id)) {
+      const results = await commentsModel.update.updateOneModel(req.body, id);
+      res
+        .status(200)
+        .json(responseSuccess("Successfully updated data.", results));
+    } else {
+      throw { code: 400, message: "Parameter must be a number!" };
+    }
+  } catch (err) {
+    res.status(err.code).json(responseError(err.message));
+  }
 };
