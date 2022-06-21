@@ -59,3 +59,14 @@ exports.selectByName = async (req, res) => {
     res.status(err.code).json(responseError(err.message));
   }
 };
+
+exports.selectLatest = async (req, res) => {
+  try {
+    const results = await recipesModel.select.selectLatestModel();
+    res
+      .status(200)
+      .json(responseSuccess("Successfully retrieved data.", results));
+  } catch (err) {
+    res.status(err.code).json(responseError(err.message));
+  }
+};

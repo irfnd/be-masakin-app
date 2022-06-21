@@ -6,6 +6,7 @@ const sql = {
   selectById: `SELECT * FROM ${table} WHERE id = $1`,
   selectByOwner: `SELECT * FROM ${table} WHERE id_owner = $1`,
   selectByName: `SELECT * FROM ${table} WHERE LOWER(title) LIKE $1`,
+  selectLatest: `SELECT * FROM ${table} ORDER BY updated_at LIMIT $1`,
 };
 
 exports.selectAllModel = (page, size) => {
@@ -65,6 +66,24 @@ exports.selectByOwnerModel = (id_owner) => {
 exports.selectByNameModel = (query) => {
   return new Promise((resolve, reject) => {
     db.query(sql.selectByName, [`%${query.toLowerCase()}%`], (err, result) => {
+      if (err) {
+        reject({ code: 500, message: err.message });
+      } else {
+        if (result.rowCount === 0) {
+          reject({
+            code: 404,
+            message: "Data not found!",
+          });
+        }
+        resolve(result.rows);
+      }
+    });
+  });
+};
+
+exports.selectLatestModel = () => {
+  return new Promise((resolve, reject) => {
+    db.query(sql.selectLatest, [5], (err, result) => {
       if (err) {
         reject({ code: 500, message: err.message });
       } else {

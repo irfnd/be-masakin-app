@@ -45,7 +45,7 @@ const progress = [
     task: "Pagination",
     subTask: [],
     isOptional: true,
-    isDone: null,
+    isDone: "✅",
   },
   {
     task: "Linter",
