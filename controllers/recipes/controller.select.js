@@ -5,8 +5,9 @@ const {
 const { recipesModel } = require("../../models");
 
 exports.selectAll = async (req, res) => {
+  const { page, size } = req.query;
   try {
-    const results = await recipesModel.select.selectAllModel();
+    const results = await recipesModel.select.selectAllModel(page, size);
     res
       .status(200)
       .json(responseSuccess("Successfully retrieved data.", results));

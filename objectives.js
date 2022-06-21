@@ -33,7 +33,7 @@ const progress = [
     task: "Pencarian Resep berdasarkan nama",
     subTask: [],
     isOptional: false,
-    isDone: null,
+    isDone: "✅",
   },
   {
     task: "Resep terbaru maksimal 5",

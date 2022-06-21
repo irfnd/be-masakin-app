@@ -2,15 +2,15 @@ const db = require("../connection");
 
 const table = "recipes";
 const sql = {
-  selectAll: `SELECT * FROM ${table}`,
+  selectAll: `SELECT * FROM ${table} ORDER BY updated_at LIMIT $2 OFFSET (($1 - 1) * $2)`,
   selectById: `SELECT * FROM ${table} WHERE id = $1`,
   selectByOwner: `SELECT * FROM ${table} WHERE id_owner = $1`,
   selectByName: `SELECT * FROM ${table} WHERE LOWER(title) LIKE $1`,
 };
 
-exports.selectAllModel = () => {
+exports.selectAllModel = (page, size) => {
   return new Promise((resolve, reject) => {
-    db.query(sql.selectAll, (err, result) => {
+    db.query(sql.selectAll, [page, size], (err, result) => {
       if (err) {
         reject({ code: 500, message: err.message });
       } else {
