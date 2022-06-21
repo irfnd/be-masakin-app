@@ -22,4 +22,9 @@ module.exports = {
     select: require("./liked_recipes/model.select"),
     delete: require("./liked_recipes/model.delete"),
   },
+  savedRecipesModel: {
+    insert: require("./saved_recipes/model.insert"),
+    select: require("./saved_recipes/model.select"),
+    delete: require("./saved_recipes/model.delete"),
+  },
 };

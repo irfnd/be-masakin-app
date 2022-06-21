@@ -22,4 +22,9 @@ module.exports = {
     select: require("./liked_recipes/controller.select"),
     delete: require("./liked_recipes/controller.delete"),
   },
+  savedRecipesController: {
+    insert: require("./saved_recipes/controller.insert"),
+    select: require("./saved_recipes/controller.select"),
+    delete: require("./saved_recipes/controller.delete"),
+  },
 };
