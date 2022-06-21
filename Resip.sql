@@ -39,6 +39,7 @@ CREATE TABLE "recipes_videos" (
   "title" TEXT NOT NULL,
   "description" TEXT,
   "id_recipe" INT NOT NULL,
+  "recipe_video" TEXT,
   "uploaded_at" TIMESTAMPTZ NOT NULL DEFAULT (now())
 );
 
