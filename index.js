@@ -10,11 +10,14 @@ app.use(helmet());
 app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(express.static("public"));
 
 require("./routes")(app);
 
+// eslint-disable-next-line no-undef
 app.listen(process.env.SERVER_PORT, () => {
-	console.log(
-		`> Server running on http://${process.env.SERVER_HOST}:${process.env.SERVER_PORT}`
-	);
+  console.log(
+    // eslint-disable-next-line no-undef
+    `> Server running on http://${process.env.SERVER_HOST}:${process.env.SERVER_PORT}`
+  );
 });

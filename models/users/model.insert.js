@@ -1,7 +1,7 @@
 const db = require("../connection");
 const { encryptPassword } = require("../../libs/hashing/hashPassword");
 
-const table = "userss";
+const table = "users";
 const sql = {
   insertOne: (data) => {
     let dataKeys = Object.keys(data).map((el) => el);
