@@ -16,6 +16,10 @@ exports.updateOneModel = (data, id) => {
       data.ingredients !== null
         ? `{${data.ingredients.split("\n").map((el) => `"${el}"`)}}`
         : null,
+    steps:
+      data.steps !== null
+        ? `{${data.steps.split("\n").map((el) => `"${el}"`)}}`
+        : null,
   };
   return new Promise((resolve, reject) => {
     db.query(

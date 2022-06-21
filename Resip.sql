@@ -9,9 +9,10 @@ CREATE TABLE "users" (
 
 CREATE TABLE "recipes" (
   "id" SERIAL NOT NULL PRIMARY KEY,
+  "photo_recipe" TEXT,
   "title" TEXT NOT NULL,
   "ingredients" TEXT [],
-  "photo_recipe" TEXT,
+  "steps" TEXT [],
   "id_owner" INT NOT NULL,
   "created_at" TIMESTAMPTZ NOT NULL DEFAULT (now()),
   "updated_at" TIMESTAMPTZ NOT NULL DEFAULT (now()),
