@@ -1,7 +1,7 @@
 CREATE TABLE "users" (
   "id" SERIAL NOT NULL PRIMARY KEY,
   "name" TEXT NOT NULL,
-  "email" TEXT NOT NULL,
+  "email" TEXT NOT NULL UNIQUE,
   "phone_number" TEXT NOT NULL,
   "password" TEXT NOT NULL,
   "photo_profile" TEXT

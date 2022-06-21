@@ -39,7 +39,7 @@ const progress = [
     task: "Resep terbaru maksimal 5",
     subTask: [],
     isOptional: false,
-    isDone: null,
+    isDone: "✅",
   },
   {
     task: "Pagination",
