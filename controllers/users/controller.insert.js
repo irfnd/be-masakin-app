@@ -3,9 +3,9 @@ const {
   responseError,
 } = require("../../libs/responseFormat/response");
 const { usersModel } = require("../../models");
-const { uploadImage } = require("../../middlewares/multer");
+const { uploadPhotoProfile } = require("../../middlewares/multer");
 
-const upload = uploadImage.single("photo_profile");
+const upload = uploadPhotoProfile.single("photo_profile");
 
 exports.insertOne = (req, res) => {
   upload(req, res, async (err) => {

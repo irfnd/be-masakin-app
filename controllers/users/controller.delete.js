@@ -3,12 +3,14 @@ const {
   responseError,
 } = require("../../libs/responseFormat/response");
 const { usersModel } = require("../../models");
+const { deleteFile } = require("../../libs/deleteFile/deleteFile");
 
 exports.deleteOne = async (req, res) => {
   const { id } = req.params;
   try {
     if (Number(id)) {
       const results = await usersModel.delete.deleteOneModel(id);
+      await deleteFile("users", results.request[0].photo_profile);
       res
         .status(200)
         .json(responseSuccess("Successfully deleted data.", results));

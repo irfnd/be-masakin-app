@@ -18,7 +18,7 @@ exports.selectByUserModel = (id_user) => {
             message: "Data not found!",
           });
         }
-        resolve({ request: result.rows });
+        resolve(result.rows);
       }
     });
   });
@@ -36,7 +36,7 @@ exports.selectByRecipeModel = (id_recipe) => {
             message: "Data not found!",
           });
         }
-        resolve({ request: result.rows });
+        resolve(result.rows);
       }
     });
   });
