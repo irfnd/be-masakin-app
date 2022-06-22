@@ -3,7 +3,7 @@ const progress = [
     task: "Flowchart Aplikasi",
     subTask: [],
     isOptional: false,
-    isDone: null,
+    isDone: "✅",
   },
   {
     task: "Table",
@@ -87,7 +87,7 @@ const progress = [
     task: "Upload/push tugas kamu ke GitHub dan gunakan nama yang profesional",
     subTask: [],
     isOptional: false,
-    isDone: null,
+    isDone: "✅",
   },
   {
     task: "Dapat didemokan menggunakan postman",
@@ -99,20 +99,20 @@ const progress = [
     task: "Presentasikan apa yang telah Anda lakukan dalam minggu ini",
     subTask: [],
     isOptional: false,
-    isDone: null,
+    isDone: "✅",
   },
   {
     task: "Jelaskan dengan bahasa kalian sendiri apa itu dan konsep tentang:",
     subTask: ["Node JS", "Express", "postgreSQL", "REST API"],
     isOptional: false,
-    isDone: null,
+    isDone: "✅",
   },
 
   {
     task: "Ceritakan dan Demokan tentang proyek ini",
     subTask: [],
     isOptional: false,
-    isDone: null,
+    isDone: "✅",
   },
 ];
 
