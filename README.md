@@ -1,4 +1,4 @@
-# 🍳 Resip! App - Recipes Inspritation Portal!
+# 🍳 Resip! App - Recipes Inspiration Portal!
 
 A place to find inspiration for cooking recipes anywhere and anytime.
 
