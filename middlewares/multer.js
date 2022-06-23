@@ -10,6 +10,7 @@ const storagePhotoProfile = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, dirPhotoProfile);
   },
+  limits: { fileSize: 5 * 1024 * 1024 },
   filename: (req, file, cb) => {
     const fileName =
       req.body.email + "-photo-profile" + path.extname(file.originalname);
@@ -45,6 +46,7 @@ const storageVideosRecipe = multer.diskStorage({
 
 exports.uploadPhotoProfile = multer({
   storage: storagePhotoProfile,
+  limits: { fileSize: 5 * 1024 * 1024 },
   fileFilter: (req, file, cb) => {
     if (
       file.mimetype == "image/png" ||
@@ -61,6 +63,7 @@ exports.uploadPhotoProfile = multer({
 
 exports.uploadPhotoRecipe = multer({
   storage: storagePhotoRecipe,
+  limits: { fileSize: 5 * 1024 * 1024 },
   fileFilter: (req, file, cb) => {
     if (
       file.mimetype == "image/png" ||
@@ -77,6 +80,7 @@ exports.uploadPhotoRecipe = multer({
 
 exports.uploadVideosRecipe = multer({
   storage: storageVideosRecipe,
+  limits: { fileSize: 100 * 1024 * 1024 },
   fileFilter: (req, file, cb) => {
     if (
       file.mimetype == "video/mp4" ||
