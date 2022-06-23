@@ -1,5 +1,6 @@
+/* eslint-disable no-undef */
 const cryptojs = require("crypto-js");
-const secret = "resipsecret123";
+const secret = process.env.HASHING_SECRET;
 
 exports.encryptPassword = (password) => {
 	return cryptojs.AES.encrypt(password, secret).toString();
