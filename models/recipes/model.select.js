@@ -2,11 +2,11 @@ const db = require("../connection");
 
 const table = "recipes";
 const sql = {
-  selectAll: `SELECT * FROM ${table} ORDER BY updated_at LIMIT $2 OFFSET (($1 - 1) * $2)`,
+  selectAll: `SELECT * FROM ${table} ORDER BY updated_at DESC LIMIT $2 OFFSET (($1 - 1) * $2)`,
   selectById: `SELECT * FROM ${table} WHERE id = $1`,
   selectByOwner: `SELECT * FROM ${table} WHERE id_owner = $1`,
   selectByName: `SELECT * FROM ${table} WHERE LOWER(title) LIKE $1`,
-  selectLatest: `SELECT * FROM ${table} ORDER BY updated_at LIMIT $1`,
+  selectLatest: `SELECT * FROM ${table} ORDER BY updated_at DESC LIMIT $1`,
 };
 
 exports.selectAllModel = (page, size) => {

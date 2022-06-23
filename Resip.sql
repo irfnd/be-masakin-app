@@ -16,7 +16,7 @@ CREATE TABLE "recipes" (
   "id_owner" INT NOT NULL,
   "created_at" TIMESTAMPTZ NOT NULL DEFAULT (now()),
   "updated_at" TIMESTAMPTZ NOT NULL DEFAULT (now()),
-  "like_count" INT DEFAULT 0,
+  "liked_count" INT DEFAULT 0,
   "saved_count" INT DEFAULT 0
 );
 
@@ -75,17 +75,15 @@ DECLARE
 BEGIN
     IF (TG_OP = 'INSERT') THEN
         recipe_like_count := (SELECT COUNT(*) FROM liked_recipes WHERE id_recipe = NEW.id_recipe);
-        IF recipe_like_count > 0 THEN
-            UPDATE recipes SET like_count = recipe_like_count WHERE id = NEW.id_recipe;
+        IF recipe_like_count >= 0 THEN
+            UPDATE recipes SET liked_count = recipe_like_count WHERE id = NEW.id_recipe;
         END IF;
         RAISE NOTICE 'Value: %', NEW.id_recipe;
     END IF;    
     
     IF (TG_OP = 'DELETE') THEN
         recipe_like_count := (SELECT COUNT(*) FROM liked_recipes WHERE id_recipe = OLD.id_recipe);
-        IF recipe_like_count > 0 THEN
-            UPDATE recipes SET like_count = recipe_like_count WHERE id = OLD.id_recipe;
-        END IF;
+        UPDATE recipes SET liked_count = recipe_like_count WHERE id = OLD.id_recipe;
         RAISE NOTICE 'Value: %', OLD.id_recipe;
     END IF;
     RETURN NULL;
@@ -107,9 +105,7 @@ BEGIN
     
     IF (TG_OP = 'DELETE') THEN
         recipe_save_count := (SELECT COUNT(*) FROM saved_recipes WHERE id_recipe = OLD.id_recipe);
-        IF recipe_save_count > 0 THEN
-            UPDATE recipes SET saved_count = recipe_save_count WHERE id = OLD.id_recipe;
-        END IF;
+        UPDATE recipes SET saved_count = recipe_save_count WHERE id = OLD.id_recipe;
         RAISE NOTICE 'Value: %', OLD.id_recipe;
     END IF;
     RETURN NULL;
