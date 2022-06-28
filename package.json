@@ -6,6 +6,9 @@
 	"author": "irfnd <irfandiabimanyu@gmail.com>",
 	"license": "MIT",
 	"private": false,
+	"engines": {
+		"node": ">=10"
+	},
 	"scripts": {
 		"format:check": "prettier --check .",
 		"format:write": "prettier --write .",
@@ -31,14 +34,7 @@
 		"eslint-config-prettier": "^8.5.0",
 		"eslint-plugin-import": "^2.25.2",
 		"eslint-plugin-prettier": "^4.1.0",
-		"nodemon": "^2.0.18",
+		"nodemon": "^2.0.17",
 		"prettier": "^2.7.1"
-	},
-	"resolutions": {
-		"nodemon": "^2.0.18",
-		"update-notifier": "^6.0.2",
-		"latest-version": "^7.0.0",
-		"package-json": "^8.1.0",
-		"got": "^12.1.0"
 	}
 }
