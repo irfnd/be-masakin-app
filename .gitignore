@@ -1,2 +1,12 @@
+# Default ignore
 node_modules
 .env
+
+# Ignore public folder
+public/recipes/images/*
+public/recipes/videos/*
+public/users/images/*
+
+!public/recipes/images/.gitkeep
+!public/recipes/videos/.gitkeep
+!public/users/images/.gitkeep
