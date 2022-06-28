@@ -20,12 +20,7 @@ exports.updateOneModel = (data, id) => {
 			} else {
 				if (result.rowCount === 0) {
 					reject(
-						new Error(
-							JSON.stringify({
-								code: 400,
-								message: "Failed to update, data not found!",
-							})
-						)
+						new Error(JSON.stringify({ code: 400, message: "Failed to update, data not found!" }))
 					);
 				}
 				resolve({ request: result.rows });

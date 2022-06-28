@@ -13,7 +13,7 @@ exports.updateOne = (req, res) => {
 			} else {
 				const data = {
 					...req.body,
-					photo_recipe: req.file ? `/${req.file.path.split("\\").slice(-2).join("/")}` : null,
+					photo_recipe: req.file ? `/${req.file.path.split("\\").slice(-3).join("/")}` : null,
 				};
 				if (Number(id)) {
 					const results = await recipesModel.update.updateOneModel(data, id);

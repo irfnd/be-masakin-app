@@ -1,5 +1,10 @@
 const multer = require("multer");
+const { v4: uuidv4 } = require("uuid");
 const path = require("path");
+
+const setFileName = ({ identifier, type, uuid, extension }) => {
+	return `${identifier}-${type}-${uuid}${extension}`;
+};
 
 const dirPhotoProfile = path.join(__dirname, "../public/users/images");
 const dirPhotoRecipe = path.join(__dirname, "../public/recipes/images");
@@ -10,7 +15,12 @@ const storagePhotoProfile = multer.diskStorage({
 		cb(null, dirPhotoProfile);
 	},
 	filename: (req, file, cb) => {
-		const fileName = `${req.body.email}-photo-profile${path.extname(file.originalname)}`;
+		const fileName = setFileName({
+			identifier: req.body.email,
+			type: "photo-profile",
+			uuid: uuidv4().toString(),
+			extension: path.extname(file.originalname),
+		});
 		cb(null, fileName);
 	},
 });
@@ -20,10 +30,12 @@ const storagePhotoRecipe = multer.diskStorage({
 		cb(null, dirPhotoRecipe);
 	},
 	filename: (req, file, cb) => {
-		const fileName = `${req.body.title
-			.toLowerCase()
-			.split(" ")
-			.join("-")}-photo-recipe${path.extname(file.originalname)}`;
+		const fileName = setFileName({
+			identifier: req.body.title.toLowerCase().split(" ").join("-"),
+			type: "photo-recipe",
+			uuid: uuidv4(),
+			extension: path.extname(file.originalname),
+		});
 		cb(null, fileName);
 	},
 });

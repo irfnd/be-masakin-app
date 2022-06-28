@@ -15,7 +15,7 @@ exports.insertOneModel = (data) => {
 			if (err) {
 				reject(new Error(JSON.stringify({ code: 500, message: err.message })));
 			} else {
-				resolve(new Error(JSON.stringify({ request: result.rows })));
+				resolve({ request: result.rows });
 			}
 		});
 	});

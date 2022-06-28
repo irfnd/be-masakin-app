@@ -2,7 +2,7 @@ CREATE TABLE "users" (
   "id" SERIAL NOT NULL PRIMARY KEY,
   "name" TEXT NOT NULL,
   "email" TEXT NOT NULL UNIQUE,
-  "phone_number" TEXT NOT NULL,
+  "phone_number" TEXT NOT NULL UNIQUE,
   "password" TEXT NOT NULL,
   "photo_profile" TEXT
 );
@@ -13,7 +13,7 @@ CREATE TABLE "recipes" (
   "title" TEXT NOT NULL,
   "ingredients" TEXT [],
   "steps" TEXT [],
-  "id_owner" INT NOT NULL,
+  "id_owner" INT,
   "created_at" TIMESTAMPTZ NOT NULL DEFAULT (now()),
   "updated_at" TIMESTAMPTZ NOT NULL DEFAULT (now()),
   "liked_count" INT DEFAULT 0,
@@ -45,20 +45,20 @@ CREATE TABLE "recipes_videos" (
 
 CREATE TABLE "comments" (
   "id" SERIAL NOT NULL PRIMARY KEY,
-  "id_user" INT NOT NULL,
+  "id_user" INT,
   "id_recipe" INT NOT NULL,
   "comment" TEXT,
   "posted_at" TIMESTAMPTZ NOT NULL DEFAULT (now())
 );
 
-ALTER TABLE "recipes" ADD FOREIGN KEY ("id_owner") REFERENCES "users" ("id");
-ALTER TABLE "comments" ADD FOREIGN KEY ("id_user") REFERENCES "users" ("id");
-ALTER TABLE "comments" ADD FOREIGN KEY ("id_recipe") REFERENCES "recipes" ("id");
-ALTER TABLE "liked_recipes" ADD FOREIGN KEY ("id_user") REFERENCES "users" ("id");
-ALTER TABLE "liked_recipes" ADD FOREIGN KEY ("id_recipe") REFERENCES "recipes" ("id");
-ALTER TABLE "saved_recipes" ADD FOREIGN KEY ("id_user") REFERENCES "users" ("id");
-ALTER TABLE "saved_recipes" ADD FOREIGN KEY ("id_recipe") REFERENCES "recipes" ("id");
-ALTER TABLE "recipes_videos" ADD FOREIGN KEY ("id_recipe") REFERENCES "recipes" ("id");
+ALTER TABLE "recipes" ADD FOREIGN KEY ("id_owner") REFERENCES "users" ("id") ON DELETE SET NULL;
+ALTER TABLE "comments" ADD FOREIGN KEY ("id_user") REFERENCES "users" ("id") ON DELETE SET NULL;
+ALTER TABLE "comments" ADD FOREIGN KEY ("id_recipe") REFERENCES "recipes" ("id") ON DELETE CASCADE;
+ALTER TABLE "liked_recipes" ADD FOREIGN KEY ("id_user") REFERENCES "users" ("id") ON DELETE CASCADE;
+ALTER TABLE "liked_recipes" ADD FOREIGN KEY ("id_recipe") REFERENCES "recipes" ("id") ON DELETE CASCADE;
+ALTER TABLE "saved_recipes" ADD FOREIGN KEY ("id_user") REFERENCES "users" ("id") ON DELETE CASCADE;
+ALTER TABLE "saved_recipes" ADD FOREIGN KEY ("id_recipe") REFERENCES "recipes" ("id") ON DELETE CASCADE;
+ALTER TABLE "recipes_videos" ADD FOREIGN KEY ("id_recipe") REFERENCES "recipes" ("id") ON DELETE CASCADE;
 
 CREATE OR REPLACE FUNCTION trigger_update_timestamp()
 RETURNS TRIGGER AS $$

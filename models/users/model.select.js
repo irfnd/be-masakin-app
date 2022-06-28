@@ -28,14 +28,7 @@ exports.selectByIdModel = (id) => {
 				reject(new Error(JSON.stringify({ code: 500, message: err.message })));
 			} else {
 				if (result.rowCount === 0) {
-					reject(
-						new Error(
-							JSON.stringify({
-								code: 404,
-								message: "Data not found!",
-							})
-						)
-					);
+					reject(new Error(JSON.stringify({ code: 404, message: "Data not found!" })));
 				}
 				resolve(result.rows);
 			}

@@ -8,7 +8,7 @@ exports.deleteOne = async (req, res) => {
 		if (Number(id)) {
 			const results = await recipesVideosModel.delete.deleteOneModel(id);
 			if (results.request[0].recipe_video !== null) {
-				await deleteFile("recipes", results.request[0].recipe_video);
+				await deleteFile(results.request[0].recipe_video);
 			}
 			res.status(200).json(responseSuccess("Successfully deleted data.", results));
 		} else {

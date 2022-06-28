@@ -12,7 +12,7 @@ exports.insertOne = (req, res) => {
 			} else {
 				const data = {
 					...req.body,
-					recipe_video: req.file ? `/${req.file.path.split("\\").slice(-2).join("/")}` : null,
+					recipe_video: req.file ? `/${req.file.path.split("\\").slice(-3).join("/")}` : null,
 				};
 				const results = await recipesVideosModel.insert.insertOneModel(data);
 				res.status(200).json(responseSuccess("Successfully added data.", results));
