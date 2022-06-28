@@ -1,12 +1,20 @@
 {
-  "env": {
-    "browser": true,
-    "commonjs": true,
-    "es2021": true
-  },
-  "extends": ["eslint:recommended", "prettier"],
-  "parserOptions": {
-    "ecmaVersion": "latest"
-  },
-  "rules": {}
+	"env": {
+		"commonjs": true,
+		"es2021": true,
+		"node": true
+	},
+	"extends": ["eslint:recommended", "airbnb-base", "plugin:prettier/recommended"],
+	"parserOptions": {
+		"ecmaVersion": "latest"
+	},
+	"rules": {
+		"no-console": "off",
+		"no-unused-vars": "off",
+		"global-require": "off",
+		"camelcase": "off",
+		"consistent-return": "off",
+		"import/newline-after-import": "off",
+		"no-shadow": "off"
+	}
 }

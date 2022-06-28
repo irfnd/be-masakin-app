@@ -1,17 +1,13 @@
-const {
-  responseSuccess,
-  responseError,
-} = require("../../libs/responseFormat/response");
+const { responseSuccess, responseError } = require("../../libs/responseFormat/response");
 const { likedRecipesModel } = require("../../models");
 
 exports.deleteOne = async (req, res) => {
-  const { id } = req.params;
-  try {
-    const results = await likedRecipesModel.delete.deleteOneModel(id);
-    res
-      .status(200)
-      .json(responseSuccess("Successfully deleted data.", results));
-  } catch (err) {
-    res.status(err.code).json(responseError(err.message));
-  }
+	const { id } = req.params;
+	try {
+		const results = await likedRecipesModel.delete.deleteOneModel(id);
+		res.status(200).json(responseSuccess("Successfully deleted data.", results));
+	} catch (err) {
+		const error = JSON.parse(err.message);
+		res.status(error.code).json(responseError(error.message));
+	}
 };

@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 require("dotenv").config();
 const { Pool } = require("pg");
 
@@ -19,8 +18,8 @@ db.connect((err) => {
 	try {
 		if (err) throw err;
 		console.log("> Connected to database.\n");
-	} catch (err) {
-		console.error("> Failed to connect to database.\n", err);
+	} catch (error) {
+		console.error("> Failed to connect to database.\n", error);
 		process.exit(-1);
 	}
 });
