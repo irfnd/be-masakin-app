@@ -8,6 +8,13 @@ CREATE TABLE "users" (
   "role" TEXT DEFAULT 'user'
 );
 
+CREATE TABLE "tokens" (
+  "id" SERIAL NOT NULL PRIMARY KEY,
+  "id_user" INT,
+  "type" TEXT NOT NULL,
+  "refresh_token" TEXT NOT NULL 
+);
+
 CREATE TABLE "recipes" (
   "id" SERIAL NOT NULL PRIMARY KEY,
   "photo_recipe" TEXT,
@@ -52,6 +59,7 @@ CREATE TABLE "comments" (
   "posted_at" TIMESTAMPTZ NOT NULL DEFAULT (now())
 );
 
+ALTER TABLE "tokens" ADD FOREIGN KEY ("id_user") REFERENCES "users" ("id") ON DELETE CASCADE;
 ALTER TABLE "recipes" ADD FOREIGN KEY ("id_owner") REFERENCES "users" ("id") ON DELETE SET NULL;
 ALTER TABLE "comments" ADD FOREIGN KEY ("id_user") REFERENCES "users" ("id") ON DELETE SET NULL;
 ALTER TABLE "comments" ADD FOREIGN KEY ("id_recipe") REFERENCES "recipes" ("id") ON DELETE CASCADE;

@@ -5,6 +5,10 @@ module.exports = {
 		update: require("./users/model.update"),
 		delete: require("./users/model.delete"),
 	},
+	tokensModel: {
+		insert: require("./tokens/model.insert"),
+		select: require("./tokens/model.select"),
+	},
 	recipesModel: {
 		insert: require("./recipes/model.insert"),
 		select: require("./recipes/model.select"),

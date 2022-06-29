@@ -1,14 +1,20 @@
 const { compareSync } = require("bcrypt");
-const { generateAccessToken, generateRefreshToken, checkToken } = require("../libs/handleJwt");
+const {
+	generateAccessToken,
+	generateRefreshToken,
+	checkToken,
+	checkRefreshToken,
+} = require("../libs/handleJwt");
 const { responseError } = require("../libs/response");
+const { tokensModel } = require("../models");
 const { usersModel } = require("../models");
 
-exports.verifyToken = (req, res, next) => {
+exports.verifyTokenAsAdmin = async (req, res, next) => {
 	const authHeader = req.headers.authorization;
 	const token = authHeader && authHeader.split(" ")[1];
 	try {
 		if (!token) throw new Error(JSON.stringify({ code: 403, message: "Token required!" }));
-		const decoded = checkToken(token);
+		const decoded = await checkToken(token);
 		if (decoded.role !== "admin")
 			throw new Error(JSON.stringify({ code: 403, message: "Only admin can access!" }));
 		next();
@@ -24,16 +30,57 @@ exports.userLogin = async (req, res, next) => {
 		if (user.length > 0) {
 			const validPassword = compareSync(req.body.password, user[0].password);
 			if (validPassword) {
-				const payload = { email: user[0].email, name: user[0].name, role: user[0].role };
+				const payload = {
+					id: user[0].id,
+					email: user[0].email,
+					name: user[0].name,
+					role: user[0].role,
+				};
 				const accessToken = generateAccessToken(payload);
 				const refreshToken = generateRefreshToken(payload);
-				req.body = { ...req.body, ...payload };
+				req.body = { id: payload.id, name: payload.name, email: payload.email, role: payload.role };
 				req.token = { access_token: accessToken, refresh_token: refreshToken };
+				await tokensModel.insert.insertOneModel({
+					id_user: payload.id,
+					type: "refresh",
+					refresh_token: refreshToken,
+				});
 				return next();
 			}
 			throw new Error(JSON.stringify({ code: 400, message: "Invalid password!" }));
 		}
 		throw new Error(JSON.stringify({ code: 404, message: "User not found!" }));
+	} catch (err) {
+		const error = JSON.parse(err.message);
+		res.status(error.code).json(responseError(error.message));
+	}
+};
+
+exports.tokenRefresh = async (req, res, next) => {
+	const { refresh_token } = req.body;
+	try {
+		if (!refresh_token) throw new Error(JSON.stringify({ code: 403, message: "Token required!" }));
+		const dataToken = await tokensModel.select.selectByTokenModel(refresh_token);
+		if (dataToken.length > 0) {
+			const decoded = await checkRefreshToken(refresh_token);
+			const payload = {
+				id: decoded.id,
+				email: decoded.email,
+				name: decoded.name,
+				role: decoded.role,
+			};
+			const accessToken = generateAccessToken(payload);
+			const refreshToken = generateRefreshToken(payload);
+			req.body = { id: payload.id, name: payload.name, email: payload.email, role: payload.role };
+			req.token = { access_token: accessToken, refresh_token: refreshToken };
+			await tokensModel.insert.insertOneModel({
+				id_user: payload.id,
+				type: "refresh",
+				refresh_token: refreshToken,
+			});
+			return next();
+		}
+		throw new Error(JSON.stringify({ code: 401, message: "Invalid token!" }));
 	} catch (err) {
 		const error = JSON.parse(err.message);
 		res.status(error.code).json(responseError(error.message));

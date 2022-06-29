@@ -1,17 +1,15 @@
 const router = require("express").Router();
-const { verifyToken } = require("../middlewares/auth");
+const { verifyTokenAsAdmin } = require("../middlewares/auth");
 const { usersController } = require("../controllers");
 
 router
 	.route("/")
-	.get(verifyToken, usersController.select.selectAll)
-	.post(usersController.insert.insertOne);
+	.get(verifyTokenAsAdmin, usersController.select.selectAll)
+	.post(verifyTokenAsAdmin, usersController.insert.insertOne);
 router
 	.route("/:id")
-	.get(usersController.select.selectById)
-	.patch(usersController.update.updateOne)
-	.delete(usersController.delete.deleteOne);
-
-router.route("/email/:email").get(usersController.select.selectByEmail);
+	.get(verifyTokenAsAdmin, usersController.select.selectById)
+	.patch(verifyTokenAsAdmin, usersController.update.updateOne)
+	.delete(verifyTokenAsAdmin, usersController.delete.deleteOne);
 
 module.exports = router;
