@@ -15,7 +15,7 @@ exports.insertOne = (req, res) => {
 					photo_profile: req.file ? `/${req.file.path.split("\\").slice(-3).join("/")}` : null,
 				};
 				const results = await usersModel.insert.insertOneModel(data);
-				res.status(200).json(responseSuccess("Successfully added data.", results));
+				res.status(200).json(responseSuccess("added", results));
 			}
 		} catch (err) {
 			const error = JSON.parse(err.message);

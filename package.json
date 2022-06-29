@@ -6,16 +6,13 @@
 	"author": "irfnd <irfandiabimanyu@gmail.com>",
 	"license": "MIT",
 	"private": false,
-	"engines": {
-		"node": ">=10"
-	},
 	"scripts": {
 		"format:check": "prettier --check .",
 		"format:write": "prettier --write .",
 		"lint:check": "eslint .",
 		"lint:fix": "eslint --fix .",
-		"dev": "nodemon index && prettier --write . && eslint --fix .",
-		"start": "node index && prettier --write . && eslint --fix ."
+		"dev": "prettier --write . && eslint --fix . && nodemon index",
+		"start": "prettier --write . && eslint --fix . node index"
 	},
 	"dependencies": {
 		"cors": "^2.8.5",

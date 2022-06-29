@@ -1,7 +1,7 @@
 const responseSuccess = (message, results) => {
 	return {
 		success: true,
-		message,
+		message: `Data ${message} successfully.`,
 		results,
 	};
 };
@@ -9,7 +9,7 @@ const responseSuccess = (message, results) => {
 const responseError = (error) => {
 	return {
 		success: false,
-		message: "Something Wrong!",
+		message: "Something went wrong!",
 		errors: error,
 	};
 };

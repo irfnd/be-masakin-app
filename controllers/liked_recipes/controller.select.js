@@ -6,7 +6,7 @@ exports.selectByUser = async (req, res) => {
 	try {
 		if (Number(id)) {
 			const results = await likedRecipesModel.select.selectByUserModel(id);
-			res.status(200).json(responseSuccess("Successfully retrieved data.", results));
+			res.status(200).json(responseSuccess("retrieved", results));
 		} else {
 			throw new Error(JSON.stringify({ code: 400, message: "Parameter must be a number!" }));
 		}
@@ -21,7 +21,7 @@ exports.selectByRecipe = async (req, res) => {
 	try {
 		if (Number(id)) {
 			const results = await likedRecipesModel.select.selectByRecipeModel(id);
-			res.status(200).json(responseSuccess("Successfully retrieved data.", results));
+			res.status(200).json(responseSuccess("retrieved", results));
 		} else {
 			throw new Error(JSON.stringify({ code: 400, message: "Parameter must be a number!" }));
 		}

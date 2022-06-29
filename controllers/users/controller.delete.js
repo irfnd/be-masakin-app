@@ -10,7 +10,7 @@ exports.deleteOne = async (req, res) => {
 			if (results.request[0].photo_profile !== null) {
 				await deleteFile(results.request[0].photo_profile);
 			}
-			res.status(200).json(responseSuccess("Successfully deleted data.", results));
+			res.status(200).json(responseSuccess("deleted", results));
 		} else {
 			throw new Error(JSON.stringify({ code: 400, message: "Parameter must be a number!" }));
 		}

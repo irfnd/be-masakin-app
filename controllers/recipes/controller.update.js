@@ -17,7 +17,7 @@ exports.updateOne = (req, res) => {
 				};
 				if (Number(id)) {
 					const results = await recipesModel.update.updateOneModel(data, id);
-					res.status(200).json(responseSuccess("Successfully updated data.", results));
+					res.status(200).json(responseSuccess("updated", results));
 				} else {
 					throw new Error(JSON.stringify({ code: 400, message: "Parameter must be a number!" }));
 				}
