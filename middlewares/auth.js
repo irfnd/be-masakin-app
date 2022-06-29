@@ -1,7 +1,22 @@
 const { compareSync } = require("bcrypt");
-const { generateAccessToken, generateRefreshToken } = require("../libs/generateToken");
+const { generateAccessToken, generateRefreshToken, checkToken } = require("../libs/handleJwt");
 const { responseError } = require("../libs/response");
 const { usersModel } = require("../models");
+
+exports.verifyToken = (req, res, next) => {
+	const authHeader = req.headers.authorization;
+	const token = authHeader && authHeader.split(" ")[1];
+	try {
+		if (!token) throw new Error(JSON.stringify({ code: 403, message: "Token required!" }));
+		const decoded = checkToken(token);
+		if (decoded.role !== "admin")
+			throw new Error(JSON.stringify({ code: 403, message: "Only admin can access!" }));
+		next();
+	} catch (err) {
+		const error = JSON.parse(err.message);
+		res.status(error.code).json(responseError(error.message));
+	}
+};
 
 exports.userLogin = async (req, res, next) => {
 	try {
