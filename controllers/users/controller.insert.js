@@ -1,4 +1,4 @@
-const { responseSuccess, responseError } = require("../../libs/responseFormat/response");
+const { responseSuccess, responseError } = require("../../libs/response");
 const { usersModel } = require("../../models");
 const { uploadPhotoProfile } = require("../../middlewares/multer");
 
@@ -9,14 +9,13 @@ exports.insertOne = (req, res) => {
 		try {
 			if (error) {
 				throw new Error(JSON.stringify({ code: 400, message: error.message }));
-			} else {
-				const data = {
-					...req.body,
-					photo_profile: req.file ? `/${req.file.path.split("\\").slice(-3).join("/")}` : null,
-				};
-				const results = await usersModel.insert.insertOneModel(data);
-				res.status(200).json(responseSuccess("added", results));
 			}
+			const data = {
+				...req.body,
+				photo_profile: req.file ? `/${req.file.path.split("\\").slice(-3).join("/")}` : null,
+			};
+			const results = await usersModel.insert.insertOneModel(data);
+			res.status(200).json(responseSuccess("added", results));
 		} catch (err) {
 			const error = JSON.parse(err.message);
 			res.status(error.code).json(responseError(error.message));

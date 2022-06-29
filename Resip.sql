@@ -4,7 +4,8 @@ CREATE TABLE "users" (
   "email" TEXT NOT NULL UNIQUE,
   "phone_number" TEXT NOT NULL UNIQUE,
   "password" TEXT NOT NULL,
-  "photo_profile" TEXT
+  "photo_profile" TEXT,
+  "role" TEXT DEFAULT 'user'
 );
 
 CREATE TABLE "recipes" (

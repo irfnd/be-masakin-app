@@ -8,4 +8,6 @@ router
 	.patch(usersController.update.updateOne)
 	.delete(usersController.delete.deleteOne);
 
+router.route("/email/:email").get(usersController.select.selectByEmail);
+
 module.exports = router;

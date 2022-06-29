@@ -1,4 +1,4 @@
-const { responseSuccess, responseError } = require("../../libs/responseFormat/response");
+const { responseSuccess, responseError } = require("../../libs/response");
 const { commentsModel } = require("../../models");
 
 exports.deleteOne = async (req, res) => {

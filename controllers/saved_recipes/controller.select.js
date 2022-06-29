@@ -1,4 +1,4 @@
-const { responseSuccess, responseError } = require("../../libs/responseFormat/response");
+const { responseSuccess, responseError } = require("../../libs/response");
 const { savedRecipesModel } = require("../../models");
 
 exports.selectByUser = async (req, res) => {

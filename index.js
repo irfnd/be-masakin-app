@@ -1,5 +1,6 @@
-/* eslint-disable no-undef */
 require("dotenv").config();
+const { SERVER_HOST, SERVER_PORT } = process.env;
+
 const express = require("express");
 const cors = require("cors");
 const helmet = require("helmet");
@@ -16,6 +17,6 @@ app.use(express.static("public"));
 
 require("./routes")(app);
 
-app.listen(process.env.SERVER_PORT, () => {
-	console.log(`> Server running on http://${process.env.SERVER_HOST}:${process.env.SERVER_PORT}`);
+app.listen(SERVER_PORT, () => {
+	console.log(`> Server running on http://${SERVER_HOST}:${SERVER_PORT}`);
 });

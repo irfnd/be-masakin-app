@@ -1,5 +1,5 @@
+const { hashSync } = require("bcrypt");
 const db = require("../connection");
-const { encryptPassword } = require("../../libs/hashing/hashPassword");
 
 const table = "users";
 const sql = {
@@ -11,8 +11,7 @@ const sql = {
 };
 
 exports.updateOneModel = (data, id) => {
-	const hashedPassword = encryptPassword(data.password);
-	const dataBody = { ...data, password: hashedPassword };
+	const dataBody = { ...data, password: hashSync(data.password) };
 	return new Promise((resolve, reject) => {
 		db.query(sql.updateOne(dataBody), [...Object.values(dataBody), id], (err, result) => {
 			if (err) {

@@ -1,6 +1,6 @@
-const { responseSuccess, responseError } = require("../../libs/responseFormat/response");
+const { responseSuccess, responseError } = require("../../libs/response");
 const { recipesVideosModel } = require("../../models");
-const { deleteFile } = require("../../libs/deleteFile/deleteFile");
+const { deleteFile } = require("../../libs/deleteFile");
 
 exports.deleteOne = async (req, res) => {
 	const { id } = req.params;

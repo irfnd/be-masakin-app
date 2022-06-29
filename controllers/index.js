@@ -33,4 +33,8 @@ module.exports = {
 		select: require("./saved_recipes/controller.select"),
 		delete: require("./saved_recipes/controller.delete"),
 	},
+	authController: {
+		login: require("./auth/controller.login"),
+		refresh: require("./auth/controller.refresh"),
+	},
 };
