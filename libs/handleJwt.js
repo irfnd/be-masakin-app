@@ -4,11 +4,11 @@ const { SECRET_ACCESS_TOKEN, SECRET_REFRESH_TOKEN } = process.env;
 const jwt = require("jsonwebtoken");
 
 exports.generateAccessToken = (data) => {
-	return jwt.sign(data, SECRET_ACCESS_TOKEN, { expiresIn: "1m" });
+	return jwt.sign(data, SECRET_ACCESS_TOKEN, { expiresIn: "1d" });
 };
 
 exports.generateRefreshToken = (data) => {
-	return jwt.sign(data, SECRET_REFRESH_TOKEN, { expiresIn: "2m" });
+	return jwt.sign(data, SECRET_REFRESH_TOKEN, { expiresIn: "30d" });
 };
 
 exports.checkToken = (token) => {

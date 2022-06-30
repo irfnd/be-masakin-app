@@ -12,9 +12,17 @@ exports.selectAll = async (req, res) => {
 };
 
 exports.selectById = async (req, res) => {
+	const { id: bodyId, role } = req.decoded;
 	const { id } = req.params;
 	try {
 		if (Number(id)) {
+			if (role !== "admin") {
+				if (Number(id) !== Number(bodyId)) {
+					throw new Error(
+						JSON.stringify({ code: 403, message: `Only User with id (${id}) can access!` })
+					);
+				}
+			}
 			const results = await usersModel.select.selectByIdModel(id);
 			res.status(200).json(responseSuccess("retrieved", results));
 		} else {

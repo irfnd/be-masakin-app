@@ -4,8 +4,21 @@ const { recipesModel } = require("../../models");
 exports.selectAll = async (req, res) => {
 	const { page, size } = req.query;
 	try {
-		const results = await recipesModel.select.selectAllModel(page, size);
-		res.status(200).json(responseSuccess("retrieved", results));
+		if (page && size) {
+			const totalRecipes = await recipesModel.select.selectTotalModel();
+			const recipes = await recipesModel.select.selectAllPaginationModel(page, size);
+			const results = {
+				recipes,
+				total_recipes: parseInt(totalRecipes[0].count, 10),
+				total_page: Math.ceil(totalRecipes[0].count / size),
+				current_page: parseInt(page, 10),
+				current_size: parseInt(size, 10),
+			};
+			res.status(200).json(responseSuccess("retrieved", results));
+		} else {
+			const results = await recipesModel.select.selectAllModel();
+			res.status(200).json(responseSuccess("retrieved", results));
+		}
 	} catch (err) {
 		const error = JSON.parse(err.message);
 		res.status(error.code).json(responseError(error.message));
