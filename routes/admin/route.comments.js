@@ -1,6 +1,6 @@
 const router = require("express").Router();
-const { auth } = require("../middlewares");
-const { commentsController } = require("../controllers");
+const { auth } = require("../../middlewares");
+const { commentsController } = require("../../controllers");
 
 router
 	.route("/")

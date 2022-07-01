@@ -1,6 +1,6 @@
 const router = require("express").Router();
-const { auth } = require("../middlewares");
-const { likedRecipesController } = require("../controllers");
+const { auth } = require("../../middlewares");
+const { likedRecipesController } = require("../../controllers");
 
 router
 	.route("/")

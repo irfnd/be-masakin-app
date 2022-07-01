@@ -1,6 +1,6 @@
 const router = require("express").Router();
-const { auth } = require("../middlewares");
-const { usersController } = require("../controllers");
+const { auth } = require("../../middlewares");
+const { usersController } = require("../../controllers");
 
 const adminRole = [auth.verifyToken, auth.isAdmin];
 

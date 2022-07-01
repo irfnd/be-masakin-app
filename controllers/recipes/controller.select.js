@@ -55,6 +55,16 @@ exports.selectByOwner = async (req, res, next) => {
 	}
 };
 
+exports.selectByOwnerUser = async (req, res, next) => {
+	const { id } = req.decoded;
+	try {
+		const results = await recipesModel.select.selectByOwnerModel(id);
+		res.status(200).json(responseSuccess("retrieved", results));
+	} catch (err) {
+		next(err);
+	}
+};
+
 exports.selectByName = async (req, res, next) => {
 	const { search } = req.body;
 	try {
