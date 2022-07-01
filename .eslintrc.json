@@ -4,11 +4,13 @@
 		"es2021": true,
 		"node": true
 	},
-	"extends": ["eslint:recommended", "airbnb-base", "plugin:prettier/recommended"],
+	"extends": ["standard", "prettier"],
+	"plugins": ["prettier"],
 	"parserOptions": {
 		"ecmaVersion": "latest"
 	},
 	"rules": {
+		"prettier/prettier": "error",
 		"no-console": "off",
 		"no-unused-vars": "off",
 		"global-require": "off",
