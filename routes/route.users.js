@@ -4,7 +4,10 @@ const { usersController } = require("../controllers");
 
 const adminRole = [auth.verifyToken, auth.isAdmin];
 
-router.route("/").get(adminRole, usersController.select.selectAll).post(adminRole, usersController.insert.insertOne);
+router
+	.route("/")
+	.get(adminRole, usersController.select.selectAll)
+	.post(adminRole, usersController.insert.insertOne);
 router
 	.route("/:id")
 	.get(adminRole, usersController.select.selectById)

@@ -2,7 +2,10 @@ const router = require("express").Router();
 const { auth } = require("../middlewares");
 const { recipesController } = require("../controllers");
 
-router.route("/").get(recipesController.select.selectAll).post(auth.verifyToken, recipesController.insert.insertOne);
+router
+	.route("/")
+	.get(recipesController.select.selectAll)
+	.post(auth.verifyToken, recipesController.insert.insertOne);
 router.route("/search").get(recipesController.select.selectByName);
 router.route("/latest").get(recipesController.select.selectLatest);
 router
