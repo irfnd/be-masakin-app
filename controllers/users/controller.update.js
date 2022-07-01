@@ -14,6 +14,8 @@ exports.updateOne = (req, res) => {
 			}
 			const data = {
 				...req.body,
+				email: req.body.email.toLowerCase().trim(),
+				phone_number: req.body.phone_number.trim(),
 				photo_profile: req.file ? `/${req.file.path.split("\\").slice(-3).join("/")}` : null,
 			};
 			if (Number(id)) {
