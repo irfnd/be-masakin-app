@@ -2,9 +2,9 @@ const db = require("../connection");
 
 const table = "comments";
 const sql = {
-	selectAll: `SELECT * FROM ${table}`,
+	selectAll: `SELECT * FROM ${table} ORDER BY posted_at ASC`,
 	selectById: `SELECT * FROM ${table} WHERE id = $1`,
-	selectByRecipe: `SELECT * FROM ${table} WHERE id_recipe = $1`,
+	selectByRecipe: `SELECT * FROM ${table} WHERE id_recipe = $1 ORDER BY posted_at ASC`,
 };
 
 exports.selectAllModel = () => {
@@ -43,9 +43,6 @@ exports.selectByRecipeModel = (id_recipe) => {
 			if (err) {
 				reject(new Error(JSON.stringify({ code: 500, message: err.message })));
 			} else {
-				if (result.rowCount === 0) {
-					reject(new Error(JSON.stringify({ code: 404, message: "Data not found!" })));
-				}
 				resolve(result.rows);
 			}
 		});

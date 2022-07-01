@@ -1,5 +1,5 @@
 const { responseSuccess } = require("../../libs/response");
-const { recipesModel } = require("../../models");
+const { recipesModel, commentsModel, recipesVideosModel } = require("../../models");
 
 exports.selectAll = async (req, res, next) => {
 	const { page, size } = req.query;
@@ -28,7 +28,10 @@ exports.selectById = async (req, res, next) => {
 	const { id } = req.params;
 	try {
 		if (Number(id)) {
-			const results = await recipesModel.select.selectByIdModel(id);
+			const recipe = await recipesModel.select.selectByIdModel(id);
+			const comments = await commentsModel.select.selectByRecipeModel(id);
+			const videos = await recipesVideosModel.select.selectByRecipeModel(id);
+			const results = { recipe: recipe[0], videos, comments };
 			res.status(200).json(responseSuccess("retrieved", results));
 		} else {
 			throw new Error(JSON.stringify({ code: 400, message: "Parameter must be a number!" }));
