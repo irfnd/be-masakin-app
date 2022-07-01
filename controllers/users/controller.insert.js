@@ -1,3 +1,4 @@
+const multer = require("multer");
 const { responseSuccess } = require("../../libs/response");
 const { usersModel } = require("../../models");
 const { uploadPhotoProfile } = require("../../middlewares/multer");
@@ -7,7 +8,10 @@ const upload = uploadPhotoProfile.single("photo_profile");
 exports.insertOne = (req, res, next) => {
 	upload(req, res, async (error) => {
 		try {
-			if (error) {
+			if (error || error instanceof multer.MulterError) {
+				if (error.code === "LIMIT_FILE_SIZE") {
+					throw new Error(JSON.stringify({ code: 400, message: "File size must less than 1MB" }));
+				}
 				throw new Error(JSON.stringify({ code: 400, message: error.message }));
 			}
 			const data = {
