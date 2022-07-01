@@ -1,15 +1,16 @@
 const router = require("express").Router();
+const { verifyToken } = require("../middlewares/auth");
 const { commentsController } = require("../controllers");
 
 router
 	.route("/")
-	.get(commentsController.select.selectAll)
-	.post(commentsController.insert.insertOne);
+	.get(verifyToken, commentsController.select.selectAll)
+	.post(verifyToken, commentsController.insert.insertOne);
 router
 	.route("/:id")
-	.get(commentsController.select.selectById)
-	.patch(commentsController.update.updateOne)
-	.delete(commentsController.delete.deleteOne);
-router.route("/recipe/:id").get(commentsController.select.selectByRecipe);
+	.get(verifyToken, commentsController.select.selectById)
+	.patch(verifyToken, commentsController.update.updateOne)
+	.delete(verifyToken, commentsController.delete.deleteOne);
+router.route("/recipe/:id").get(verifyToken, commentsController.select.selectByRecipe);
 
 module.exports = router;
