@@ -44,4 +44,4 @@ Buatlah API dari desain aplikasi berikut ini:
 - [x] Presentasikan apa yang telah Anda lakukan dalam minggu ini
 - [x] Jelaskan dengan bahasa kalian sendiri apa itu dan konsep tentang [Node JS, Express, postgreSQL, REST API]
 - [x] Ceritakan dan Demokan tentang proyek ini
-- [ ] User Authentication
+- [x] User Authentication
