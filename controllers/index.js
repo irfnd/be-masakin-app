@@ -37,4 +37,9 @@ module.exports = {
 		login: require("./auth/controller.login"),
 		refresh: require("./auth/controller.refresh"),
 	},
+	profileController: {
+		select: require("./profile/controller.select"),
+		update: require("./profile/controller.update"),
+		delete: require("./profile/controller.delete"),
+	},
 };

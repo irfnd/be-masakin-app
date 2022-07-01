@@ -7,7 +7,7 @@ const upload = uploadPhotoProfile.single("photo_profile");
 exports.updateOne = (req, res) => {
 	upload(req, res, async (error) => {
 		try {
-			const { id } = req.params;
+			const { id } = req.decoded;
 			if (error) {
 				throw new Error(JSON.stringify({ code: 400, message: error.message }));
 			}

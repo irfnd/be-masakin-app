@@ -3,7 +3,7 @@ const { usersModel } = require("../../models");
 const { deleteFile } = require("../../libs/deleteFile");
 
 exports.deleteOne = async (req, res) => {
-	const { id } = req.params;
+	const { id } = req.decoded;
 	try {
 		if (Number(id)) {
 			const results = await usersModel.delete.deleteOneModel(id);

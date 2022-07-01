@@ -8,8 +8,8 @@ router
 	.post([verifyToken, isAdmin], usersController.insert.insertOne);
 router
 	.route("/:id")
-	.get(verifyToken, usersController.select.selectById)
-	.patch(verifyToken, usersController.update.updateOne)
-	.delete(verifyToken, usersController.delete.deleteOne);
+	.get([verifyToken, isAdmin], usersController.select.selectById)
+	.patch([verifyToken, isAdmin], usersController.update.updateOne)
+	.delete([verifyToken, isAdmin], usersController.delete.deleteOne);
 
 module.exports = router;
