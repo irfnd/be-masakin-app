@@ -12,9 +12,7 @@ exports.deleteOneModel = (data) => {
 				reject(new Error(JSON.stringify({ code: 500, message: err.message })));
 			} else {
 				if (result.rowCount === 0) {
-					reject(
-						new Error(JSON.stringify({ code: 400, message: "Failed to delete, data not found!" }))
-					);
+					reject(new Error(JSON.stringify({ code: 400, message: "Failed to delete, data not found!" })));
 				}
 				resolve({ request: result.rows });
 			}

@@ -1,12 +1,12 @@
 const router = require("express").Router();
-const { verifyToken } = require("../middlewares/auth");
+const { auth } = require("../middlewares");
 const { likedRecipesController } = require("../controllers");
 
 router
 	.route("/")
-	.post(verifyToken, likedRecipesController.insert.insertOne)
-	.delete(verifyToken, likedRecipesController.delete.deleteOne);
-router.route("/user/:id").get(verifyToken, likedRecipesController.select.selectByUser);
-router.route("/recipe/:id").get(verifyToken, likedRecipesController.select.selectByRecipe);
+	.post(auth.verifyToken, likedRecipesController.insert.insertOne)
+	.delete(auth.verifyToken, likedRecipesController.delete.deleteOne);
+router.route("/user/:id").get(auth.verifyToken, likedRecipesController.select.selectByUser);
+router.route("/recipe/:id").get(auth.verifyToken, likedRecipesController.select.selectByRecipe);
 
 module.exports = router;

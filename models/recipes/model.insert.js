@@ -12,9 +12,7 @@ const sql = {
 exports.insertOneModel = (data) => {
 	const dataBody = {
 		...data,
-		ingredients: data.ingredients
-			? `{${data.ingredients.split("\n").map((el) => `"${el}"`)}}`
-			: null,
+		ingredients: data.ingredients ? `{${data.ingredients.split("\n").map((el) => `"${el}"`)}}` : null,
 		steps: data.steps ? `{${data.steps.split("\n").map((el) => `"${el}"`)}}` : null,
 	};
 	return new Promise((resolve, reject) => {

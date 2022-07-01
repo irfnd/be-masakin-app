@@ -1,6 +1,5 @@
 require("dotenv").config();
-const { SECRET_ACCESS_TOKEN, SECRET_REFRESH_TOKEN, EXPIRES_ACCESS_TOKEN, EXPIRES_REFRESH_TOKEN } =
-	process.env;
+const { SECRET_ACCESS_TOKEN, SECRET_REFRESH_TOKEN, EXPIRES_ACCESS_TOKEN, EXPIRES_REFRESH_TOKEN } = process.env;
 
 const jwt = require("jsonwebtoken");
 

@@ -1,11 +1,11 @@
 const router = require("express").Router();
-const { verifyToken } = require("../middlewares/auth");
+const { auth } = require("../middlewares");
 const { profileController } = require("../controllers");
 
 router
 	.route("/")
-	.get(verifyToken, profileController.select.selectById)
-	.patch(verifyToken, profileController.update.updateOne)
-	.delete(verifyToken, profileController.delete.deleteOne);
+	.get(auth.verifyToken, profileController.select.selectById)
+	.patch(auth.verifyToken, profileController.update.updateOne)
+	.delete(auth.verifyToken, profileController.delete.deleteOne);
 
 module.exports = router;

@@ -1,10 +1,5 @@
 const { compareSync } = require("bcrypt");
-const {
-	generateAccessToken,
-	generateRefreshToken,
-	checkToken,
-	checkRefreshToken,
-} = require("../libs/handleJwt");
+const { generateAccessToken, generateRefreshToken, checkToken, checkRefreshToken } = require("../libs/handleJwt");
 const { responseError } = require("../libs/response");
 const { tokensModel } = require("../models");
 const { usersModel } = require("../models");
@@ -99,8 +94,7 @@ exports.verifyToken = async (req, res, next) => {
 exports.isAdmin = async (req, res, next) => {
 	const { role } = req.decoded;
 	try {
-		if (role !== "admin")
-			throw new Error(JSON.stringify({ code: 403, message: "Only Admin can access!" }));
+		if (role !== "admin") throw new Error(JSON.stringify({ code: 403, message: "Only Admin can access!" }));
 		next();
 	} catch (err) {
 		const error = JSON.parse(err.message);

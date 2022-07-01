@@ -33,7 +33,7 @@ const storagePhotoRecipe = multer.diskStorage({
 		const fileName = setFileName({
 			identifier: req.body.title.toLowerCase().split(" ").join("-"),
 			type: "photo-recipe",
-			uuid: uuidv4(),
+			uuid: uuidv4().toString(),
 			extension: path.extname(file.originalname),
 		});
 		cb(null, fileName);
@@ -45,10 +45,12 @@ const storageVideosRecipe = multer.diskStorage({
 		cb(null, dirVideosRecipe);
 	},
 	filename: (req, file, cb) => {
-		const fileName = `${req.body.title
-			.toLowerCase()
-			.split(" ")
-			.join("-")}-videos-recipe${path.extname(file.originalname)}`;
+		const fileName = setFileName({
+			identifier: req.body.title.toLowerCase().split(" ").join("-"),
+			type: "videos-recipe",
+			uuid: uuidv4().toString(),
+			extension: path.extname(file.originalname),
+		});
 		cb(null, fileName);
 	},
 });
@@ -57,11 +59,7 @@ exports.uploadPhotoProfile = multer({
 	storage: storagePhotoProfile,
 	limits: { fileSize: 5 * 1024 * 1024 },
 	fileFilter: (req, file, cb) => {
-		if (
-			file.mimetype === "image/png" ||
-			file.mimetype === "image/jpg" ||
-			file.mimetype === "image/jpeg"
-		) {
+		if (file.mimetype === "image/png" || file.mimetype === "image/jpg" || file.mimetype === "image/jpeg") {
 			cb(null, true);
 		} else {
 			cb(null, false);
@@ -74,11 +72,7 @@ exports.uploadPhotoRecipe = multer({
 	storage: storagePhotoRecipe,
 	limits: { fileSize: 5 * 1024 * 1024 },
 	fileFilter: (req, file, cb) => {
-		if (
-			file.mimetype === "image/png" ||
-			file.mimetype === "image/jpg" ||
-			file.mimetype === "image/jpeg"
-		) {
+		if (file.mimetype === "image/png" || file.mimetype === "image/jpg" || file.mimetype === "image/jpeg") {
 			cb(null, true);
 		} else {
 			cb(null, false);

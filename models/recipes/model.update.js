@@ -12,8 +12,7 @@ const sql = {
 exports.updateOneModel = (data, id) => {
 	const dataBody = {
 		...data,
-		ingredients:
-			data.ingredients !== null ? `{${data.ingredients.split("\n").map((el) => `"${el}"`)}}` : null,
+		ingredients: data.ingredients !== null ? `{${data.ingredients.split("\n").map((el) => `"${el}"`)}}` : null,
 		steps: data.steps !== null ? `{${data.steps.split("\n").map((el) => `"${el}"`)}}` : null,
 	};
 
@@ -23,9 +22,7 @@ exports.updateOneModel = (data, id) => {
 				reject(new Error(JSON.stringify({ code: 500, message: err.message })));
 			} else {
 				if (result.rowCount === 0) {
-					reject(
-						new Error(JSON.stringify({ code: 400, message: "Failed to update, data not found!" }))
-					);
+					reject(new Error(JSON.stringify({ code: 400, message: "Failed to update, data not found!" })));
 				}
 				resolve({ request: result.rows });
 			}
