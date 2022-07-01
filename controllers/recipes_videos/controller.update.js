@@ -1,10 +1,10 @@
-const { responseSuccess, responseError } = require("../../libs/response");
+const { responseSuccess } = require("../../libs/response");
 const { recipesVideosModel } = require("../../models");
 const { uploadVideosRecipe } = require("../../middlewares/multer");
 
 const upload = uploadVideosRecipe.single("recipe_video");
 
-exports.updateOne = (req, res) => {
+exports.updateOne = (req, res, next) => {
 	upload(req, res, async (error) => {
 		try {
 			const { id } = req.params;
@@ -22,8 +22,7 @@ exports.updateOne = (req, res) => {
 				throw new Error(JSON.stringify({ code: 400, message: "Parameter must be a number!" }));
 			}
 		} catch (err) {
-			const error = JSON.parse(err.message);
-			res.status(error.code).json(responseError(error.message));
+			next(err);
 		}
 	});
 };

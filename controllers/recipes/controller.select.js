@@ -1,7 +1,7 @@
-const { responseSuccess, responseError } = require("../../libs/response");
+const { responseSuccess } = require("../../libs/response");
 const { recipesModel } = require("../../models");
 
-exports.selectAll = async (req, res) => {
+exports.selectAll = async (req, res, next) => {
 	const { page, size } = req.query;
 	try {
 		if (page && size) {
@@ -20,12 +20,11 @@ exports.selectAll = async (req, res) => {
 			res.status(200).json(responseSuccess("retrieved", results));
 		}
 	} catch (err) {
-		const error = JSON.parse(err.message);
-		res.status(error.code).json(responseError(error.message));
+		next(err);
 	}
 };
 
-exports.selectById = async (req, res) => {
+exports.selectById = async (req, res, next) => {
 	const { id } = req.params;
 	try {
 		if (Number(id)) {
@@ -35,12 +34,11 @@ exports.selectById = async (req, res) => {
 			throw new Error(JSON.stringify({ code: 400, message: "Parameter must be a number!" }));
 		}
 	} catch (err) {
-		const error = JSON.parse(err.message);
-		res.status(error.code).json(responseError(error.message));
+		next(err);
 	}
 };
 
-exports.selectByOwner = async (req, res) => {
+exports.selectByOwner = async (req, res, next) => {
 	const { id } = req.params;
 	try {
 		if (Number(id)) {
@@ -50,28 +48,25 @@ exports.selectByOwner = async (req, res) => {
 			throw new Error(JSON.stringify({ code: 400, message: "Parameter must be a number!" }));
 		}
 	} catch (err) {
-		const error = JSON.parse(err.message);
-		res.status(error.code).json(responseError(error.message));
+		next(err);
 	}
 };
 
-exports.selectByName = async (req, res) => {
+exports.selectByName = async (req, res, next) => {
 	const { search } = req.body;
 	try {
 		const results = await recipesModel.select.selectByNameModel(search);
 		res.status(200).json(responseSuccess("retrieved", results));
 	} catch (err) {
-		const error = JSON.parse(err.message);
-		res.status(error.code).json(responseError(error.message));
+		next(err);
 	}
 };
 
-exports.selectLatest = async (req, res) => {
+exports.selectLatest = async (req, res, next) => {
 	try {
 		const results = await recipesModel.select.selectLatestModel();
 		res.status(200).json(responseSuccess("retrieved", results));
 	} catch (err) {
-		const error = JSON.parse(err.message);
-		res.status(error.code).json(responseError(error.message));
+		next(err);
 	}
 };

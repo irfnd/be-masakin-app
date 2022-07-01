@@ -1,8 +1,8 @@
-const { responseSuccess, responseError } = require("../../libs/response");
+const { responseSuccess } = require("../../libs/response");
 const { recipesModel } = require("../../models");
 const { deleteFile } = require("../../libs/deleteFile");
 
-exports.deleteOne = async (req, res) => {
+exports.deleteOne = async (req, res, next) => {
 	const { id } = req.params;
 	try {
 		if (Number(id)) {
@@ -15,7 +15,6 @@ exports.deleteOne = async (req, res) => {
 			throw new Error(JSON.stringify({ code: 400, message: "Parameter must be a number!" }));
 		}
 	} catch (err) {
-		const error = JSON.parse(err.message);
-		res.status(error.code).json(responseError(error.message));
+		next(err);
 	}
 };

@@ -1,10 +1,10 @@
-const { responseSuccess, responseError } = require("../../libs/response");
+const { responseSuccess } = require("../../libs/response");
 const { recipesModel } = require("../../models");
 const { uploadPhotoRecipe } = require("../../middlewares/multer");
 
 const upload = uploadPhotoRecipe.single("photo_recipe");
 
-exports.insertOne = (req, res) => {
+exports.insertOne = (req, res, next) => {
 	upload(req, res, async (error) => {
 		try {
 			if (error) {
@@ -18,8 +18,7 @@ exports.insertOne = (req, res) => {
 			const results = await recipesModel.insert.insertOneModel(data);
 			res.status(200).json(responseSuccess("added", results));
 		} catch (err) {
-			const error = JSON.parse(err.message);
-			res.status(error.code).json(responseError(error.message));
+			next(err);
 		}
 	});
 };

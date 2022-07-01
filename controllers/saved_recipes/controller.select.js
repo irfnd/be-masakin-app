@@ -1,7 +1,7 @@
-const { responseSuccess, responseError } = require("../../libs/response");
+const { responseSuccess } = require("../../libs/response");
 const { savedRecipesModel } = require("../../models");
 
-exports.selectByUser = async (req, res) => {
+exports.selectByUser = async (req, res, next) => {
 	const { id } = req.params;
 	try {
 		if (Number(id)) {
@@ -11,12 +11,11 @@ exports.selectByUser = async (req, res) => {
 			throw new Error(JSON.stringify({ code: 400, message: "Parameter must be a number!" }));
 		}
 	} catch (err) {
-		const error = JSON.parse(err.message);
-		res.status(error.code).json(responseError(error.message));
+		next(err);
 	}
 };
 
-exports.selectByRecipe = async (req, res) => {
+exports.selectByRecipe = async (req, res, next) => {
 	const { id } = req.params;
 	try {
 		if (Number(id)) {
@@ -26,7 +25,6 @@ exports.selectByRecipe = async (req, res) => {
 			throw new Error(JSON.stringify({ code: 400, message: "Parameter must be a number!" }));
 		}
 	} catch (err) {
-		const error = JSON.parse(err.message);
-		res.status(error.code).json(responseError(error.message));
+		next(err);
 	}
 };

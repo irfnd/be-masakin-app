@@ -5,6 +5,7 @@ const express = require("express");
 const cors = require("cors");
 const helmet = require("helmet");
 const morgan = require("morgan");
+const { handlingError } = require("./middlewares");
 
 const app = express();
 
@@ -16,6 +17,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
 require("./routes")(app);
+app.use(handlingError);
 
 app.listen(SERVER_PORT, () => {
 	console.log(`> Server running on http://${SERVER_HOST}:${SERVER_PORT}`);
