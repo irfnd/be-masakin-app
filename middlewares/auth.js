@@ -97,7 +97,7 @@ exports.verifyToken = async (req, res, next) => {
 };
 
 exports.isAdmin = async (req, res, next) => {
-	const { role } = req.body;
+	const { role } = req.decoded;
 	try {
 		if (role !== "admin")
 			throw new Error(JSON.stringify({ code: 403, message: "Only Admin can access!" }));

@@ -3,7 +3,6 @@ const { verifyToken } = require("../middlewares/auth");
 const { recipesVideosController } = require("../controllers");
 
 router.route("/").post(verifyToken, recipesVideosController.insert.insertOne);
-
 router
 	.route("/:id")
 	.get(verifyToken, recipesVideosController.select.selectById)
