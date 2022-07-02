@@ -29,17 +29,21 @@ CREATE TABLE "recipes" (
 );
 
 CREATE TABLE "liked_recipes" (
-  "id" SERIAL NOT NULL PRIMARY KEY,
   "id_user" INT NOT NULL,
   "id_recipe" INT NOT NULL,
-  "liked_at" TIMESTAMPTZ NOT NULL DEFAULT (now())
+  "liked_at" TIMESTAMPTZ NOT NULL DEFAULT (now()),
+  PRIMARY KEY(id_user, id_recipe),
+  FOREIGN KEY (id_user) REFERENCES users(id) ON DELETE CASCADE,
+  FOREIGN KEY (id_recipe) REFERENCES recipes(id) ON DELETE CASCADE
 );
 
 CREATE TABLE "saved_recipes" (
-  "id" SERIAL NOT NULL PRIMARY KEY,
-  "id_user" INT NOT NULL,
+  "id_user" INT REFERENCES users(id) NOT NULL ,
   "id_recipe" INT NOT NULL,
-  "saved_at" TIMESTAMPTZ NOT NULL DEFAULT (now())
+  "saved_at" TIMESTAMPTZ NOT NULL DEFAULT (now()),
+  PRIMARY KEY(id_user, id_recipe),
+  FOREIGN KEY (id_user) REFERENCES users(id) ON DELETE CASCADE,
+  FOREIGN KEY (id_recipe) REFERENCES recipes(id) ON DELETE CASCADE
 );
 
 CREATE TABLE "recipes_videos" (
@@ -63,10 +67,6 @@ ALTER TABLE "tokens" ADD FOREIGN KEY ("id_user") REFERENCES "users" ("id") ON DE
 ALTER TABLE "recipes" ADD FOREIGN KEY ("id_owner") REFERENCES "users" ("id") ON DELETE SET NULL;
 ALTER TABLE "comments" ADD FOREIGN KEY ("id_user") REFERENCES "users" ("id") ON DELETE SET NULL;
 ALTER TABLE "comments" ADD FOREIGN KEY ("id_recipe") REFERENCES "recipes" ("id") ON DELETE CASCADE;
-ALTER TABLE "liked_recipes" ADD FOREIGN KEY ("id_user") REFERENCES "users" ("id") ON DELETE CASCADE;
-ALTER TABLE "liked_recipes" ADD FOREIGN KEY ("id_recipe") REFERENCES "recipes" ("id") ON DELETE CASCADE;
-ALTER TABLE "saved_recipes" ADD FOREIGN KEY ("id_user") REFERENCES "users" ("id") ON DELETE CASCADE;
-ALTER TABLE "saved_recipes" ADD FOREIGN KEY ("id_recipe") REFERENCES "recipes" ("id") ON DELETE CASCADE;
 ALTER TABLE "recipes_videos" ADD FOREIGN KEY ("id_recipe") REFERENCES "recipes" ("id") ON DELETE CASCADE;
 
 CREATE OR REPLACE FUNCTION trigger_update_timestamp()
