@@ -10,13 +10,12 @@ const sql = {
 exports.selectAllModel = () => {
 	return new Promise((resolve, reject) => {
 		db.query(sql.selectAll, (err, result) => {
-			if (err) {
-				reject(new Error(JSON.stringify({ code: 500, message: err.message })));
-			} else {
-				if (result.rowCount === 0) {
-					reject(new Error(JSON.stringify({ code: 404, message: "Data not found!" })));
-				}
+			try {
+				if (err) throw new Error(JSON.stringify({ code: 500, message: err.message }));
+				if (result.rowCount === 0) throw new Error(JSON.stringify({ code: 404, message: "Data not found!" }));
 				resolve(result.rows);
+			} catch (error) {
+				reject(error.message);
 			}
 		});
 	});
@@ -25,13 +24,12 @@ exports.selectAllModel = () => {
 exports.selectByIdModel = (id) => {
 	return new Promise((resolve, reject) => {
 		db.query(sql.selectById, [id], (err, result) => {
-			if (err) {
-				reject(new Error(JSON.stringify({ code: 500, message: err.message })));
-			} else {
-				if (result.rowCount === 0) {
-					reject(new Error(JSON.stringify({ code: 404, message: "Data not found!" })));
-				}
+			try {
+				if (err) throw new Error(JSON.stringify({ code: 500, message: err.message }));
+				if (result.rowCount === 0) throw new Error(JSON.stringify({ code: 404, message: "Data not found!" }));
 				resolve(result.rows);
+			} catch (error) {
+				reject(error.message);
 			}
 		});
 	});
@@ -40,10 +38,11 @@ exports.selectByIdModel = (id) => {
 exports.selectByRecipeModel = (id_recipe) => {
 	return new Promise((resolve, reject) => {
 		db.query(sql.selectByRecipe, [id_recipe], (err, result) => {
-			if (err) {
-				reject(new Error(JSON.stringify({ code: 500, message: err.message })));
-			} else {
+			try {
+				if (err) throw new Error(JSON.stringify({ code: 500, message: err.message }));
 				resolve(result.rows);
+			} catch (error) {
+				reject(error.message);
 			}
 		});
 	});
