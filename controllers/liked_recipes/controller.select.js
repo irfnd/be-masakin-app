@@ -2,14 +2,10 @@ const { responseSuccess } = require("../../libs/response");
 const { likedRecipesModel } = require("../../models");
 
 exports.selectByUser = async (req, res, next) => {
-	const { id } = req.params;
+	const { id } = req.decoded;
 	try {
-		if (Number(id)) {
-			const results = await likedRecipesModel.select.selectByUserModel(id);
-			res.status(200).json(responseSuccess("retrieved", results));
-		} else {
-			throw new Error(JSON.stringify({ code: 400, message: "Parameter must be a number!" }));
-		}
+		const results = await likedRecipesModel.select.selectByUserModel(id);
+		res.status(200).json(responseSuccess("retrieved", results));
 	} catch (err) {
 		next(err);
 	}

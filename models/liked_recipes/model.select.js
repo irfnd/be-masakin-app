@@ -2,8 +2,18 @@ const db = require("../connection");
 
 const table = "liked_recipes";
 const sql = {
-	selectByUser: `SELECT * FROM ${table} WHERE id_user = $1`,
-	selectByRecipe: `SELECT * FROM ${table} WHERE id_recipe = $1`,
+	selectByUser: `
+		SELECT * FROM ${table}
+		INNER JOIN recipes
+		ON ${table}.id_recipe = recipes.id
+		WHERE ${table}.id_user = $1
+	`,
+	selectByRecipe: `
+		SELECT * FROM ${table}
+		INNER JOIN users
+		ON ${table}.id_user = users.id	
+		WHERE ${table}.id_recipe = $1
+	`,
 };
 
 exports.selectByUserModel = (id_user) => {
