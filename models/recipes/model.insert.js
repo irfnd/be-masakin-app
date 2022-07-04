@@ -17,10 +17,11 @@ exports.insertOneModel = (data) => {
 	};
 	return new Promise((resolve, reject) => {
 		db.query(sql.insertOne(dataBody), Object.values(dataBody), (err, result) => {
-			if (err) {
-				reject(new Error(JSON.stringify({ code: 500, message: err.message })));
-			} else {
+			try {
+				if (err) throw new Error(JSON.stringify({ code: 500, message: err.message }));
 				resolve({ request: result.rows });
+			} catch (error) {
+				reject(error.message);
 			}
 		});
 	});

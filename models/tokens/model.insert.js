@@ -12,10 +12,11 @@ const sql = {
 exports.insertOneModel = (data) => {
 	return new Promise((resolve, reject) => {
 		db.query(sql.insertOne(data), Object.values(data), (err, result) => {
-			if (err) {
-				reject(new Error(JSON.stringify({ code: 500, message: err.message })));
-			} else {
+			try {
+				if (err) throw new Error(JSON.stringify({ code: 500, message: err.message }));
 				resolve(result.rows);
+			} catch (error) {
+				reject(error.message);
 			}
 		});
 	});

@@ -18,13 +18,13 @@ exports.updateOneModel = (data, id) => {
 
 	return new Promise((resolve, reject) => {
 		db.query(sql.updateOne(dataBody), [...Object.values(dataBody), id], (err, result) => {
-			if (err) {
-				reject(new Error(JSON.stringify({ code: 500, message: err.message })));
-			} else {
-				if (result.rowCount === 0) {
-					reject(new Error(JSON.stringify({ code: 400, message: "Failed to update, data not found!" })));
-				}
+			try {
+				if (err) throw new Error(JSON.stringify({ code: 500, message: err.message }));
+				if (result.rowCount === 0)
+					throw new Error(JSON.stringify({ code: 400, message: "Failed to update, data not found!" }));
 				resolve({ request: result.rows });
+			} catch (error) {
+				reject(error.message);
 			}
 		});
 	});

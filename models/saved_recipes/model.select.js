@@ -2,20 +2,29 @@ const db = require("../connection");
 
 const table = "saved_recipes";
 const sql = {
-	selectByUser: `SELECT * FROM ${table} WHERE id_user = $1`,
-	selectByRecipe: `SELECT * FROM ${table} WHERE id_recipe = $1`,
+	selectByUser: `
+		SELECT * FROM ${table}
+		INNER JOIN recipes
+		ON ${table}.id_recipe = recipes.id
+		WHERE ${table}.id_user = $1
+	`,
+	selectByRecipe: `
+		SELECT * FROM ${table}
+		INNER JOIN users
+		ON ${table}.id_user = users.id	
+		WHERE ${table}.id_recipe = $1
+	`,
 };
 
 exports.selectByUserModel = (id_user) => {
 	return new Promise((resolve, reject) => {
 		db.query(sql.selectByUser, [id_user], (err, result) => {
-			if (err) {
-				reject(new Error(JSON.stringify({ code: 500, message: err.message })));
-			} else {
-				if (result.rowCount === 0) {
-					reject(new Error(JSON.stringify({ code: 404, message: "Data not found!" })));
-				}
+			try {
+				if (err) throw new Error(JSON.stringify({ code: 500, message: err.message }));
+				if (result.rowCount === 0) throw new Error(JSON.stringify({ code: 404, message: "Data not found!" }));
 				resolve(result.rows);
+			} catch (error) {
+				reject(error.message);
 			}
 		});
 	});
@@ -24,13 +33,12 @@ exports.selectByUserModel = (id_user) => {
 exports.selectByRecipeModel = (id_recipe) => {
 	return new Promise((resolve, reject) => {
 		db.query(sql.selectByRecipe, [id_recipe], (err, result) => {
-			if (err) {
-				reject(new Error(JSON.stringify({ code: 500, message: err.message })));
-			} else {
-				if (result.rowCount === 0) {
-					reject(new Error(JSON.stringify({ code: 404, message: "Data not found!" })));
-				}
+			try {
+				if (err) throw new Error(JSON.stringify({ code: 500, message: err.message }));
+				if (result.rowCount === 0) throw new Error(JSON.stringify({ code: 404, message: "Data not found!" }));
 				resolve(result.rows);
+			} catch (error) {
+				reject(error.message);
 			}
 		});
 	});
