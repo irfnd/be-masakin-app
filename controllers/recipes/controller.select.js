@@ -27,15 +27,12 @@ exports.selectAll = async (req, res, next) => {
 exports.selectById = async (req, res, next) => {
 	const { id } = req.params;
 	try {
-		if (Number(id)) {
-			const recipe = await recipesModel.select.selectByIdModel(id);
-			const comments = await commentsModel.select.selectByRecipeModel(id);
-			const videos = await recipesVideosModel.select.selectByRecipeModel(id);
-			const results = { recipe: recipe[0], videos, comments };
-			res.status(200).json(responseSuccess("retrieved", results));
-		} else {
-			throw new Error(JSON.stringify({ code: 400, message: "Parameter must be a number!" }));
-		}
+		if (!Number(id)) throw new Error(JSON.stringify({ code: 400, message: "Parameter must be a number!" }));
+		const recipe = await recipesModel.select.selectByIdModel(id);
+		const comments = await commentsModel.select.selectByRecipeModel(id);
+		const videos = await recipesVideosModel.select.selectByRecipeModel(id);
+		const results = { recipe: recipe[0], videos, comments };
+		res.status(200).json(responseSuccess("retrieved", results));
 	} catch (err) {
 		next(err);
 	}
@@ -44,12 +41,9 @@ exports.selectById = async (req, res, next) => {
 exports.selectByOwner = async (req, res, next) => {
 	const { id } = req.params;
 	try {
-		if (Number(id)) {
-			const results = await recipesModel.select.selectByOwnerModel(id);
-			res.status(200).json(responseSuccess("retrieved", results));
-		} else {
-			throw new Error(JSON.stringify({ code: 400, message: "Parameter must be a number!" }));
-		}
+		if (!Number(id)) throw new Error(JSON.stringify({ code: 400, message: "Parameter must be a number!" }));
+		const results = await recipesModel.select.selectByOwnerModel(id);
+		res.status(200).json(responseSuccess("retrieved", results));
 	} catch (err) {
 		next(err);
 	}
@@ -66,7 +60,7 @@ exports.selectByOwnerUser = async (req, res, next) => {
 };
 
 exports.selectByName = async (req, res, next) => {
-	const { search } = req.body;
+	const { search } = req.query;
 	try {
 		const results = await recipesModel.select.selectByNameModel(search);
 		res.status(200).json(responseSuccess("retrieved", results));

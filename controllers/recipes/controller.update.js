@@ -19,12 +19,9 @@ exports.updateOne = (req, res, next) => {
 				...req.body,
 				photo_recipe: req.file ? `/${req.file.path.split("\\").slice(-3).join("/")}` : null,
 			};
-			if (Number(id)) {
-				const results = await recipesModel.update.updateOneModel(data, id);
-				res.status(200).json(responseSuccess("updated", results));
-			} else {
-				throw new Error(JSON.stringify({ code: 400, message: "Parameter must be a number!" }));
-			}
+			if (!Number(id)) throw new Error(JSON.stringify({ code: 400, message: "Parameter must be a number!" }));
+			const results = await recipesModel.update.updateOneModel(data, id);
+			res.status(200).json(responseSuccess("updated", results));
 		} catch (err) {
 			next(err);
 		}

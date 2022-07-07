@@ -14,10 +14,11 @@ const sql = {
 exports.selectTotalModel = () => {
 	return new Promise((resolve, reject) => {
 		db.query(sql.selectTotal, (err, result) => {
-			if (err) {
-				reject(new Error(JSON.stringify({ code: 500, message: err.message })));
-			} else {
+			try {
+				if (err) throw new Error(JSON.stringify({ code: 500, message: err.message }));
 				resolve(result.rows);
+			} catch (error) {
+				reject(error.message);
 			}
 		});
 	});
@@ -26,10 +27,11 @@ exports.selectTotalModel = () => {
 exports.selectAllModel = () => {
 	return new Promise((resolve, reject) => {
 		db.query(sql.selectAll, (err, result) => {
-			if (err) {
-				reject(new Error(JSON.stringify({ code: 500, message: err.message })));
-			} else {
+			try {
+				if (err) throw new Error(JSON.stringify({ code: 500, message: err.message }));
 				resolve(result.rows);
+			} catch (error) {
+				reject(error.message);
 			}
 		});
 	});
@@ -39,13 +41,12 @@ exports.selectAllPaginationModel = (page, size) => {
 	return new Promise((resolve, reject) => {
 		if (page && size) {
 			db.query(sql.selectAllPagination, [page, size], (err, result) => {
-				if (err) {
-					reject(new Error(JSON.stringify({ code: 500, message: err.message })));
-				} else {
-					if (result.rowCount === 0) {
-						reject(new Error(JSON.stringify({ code: 404, message: "Data not found!" })));
-					}
+				try {
+					if (err) throw new Error(JSON.stringify({ code: 500, message: err.message }));
+					if (result.rowCount === 0) throw new Error(JSON.stringify({ code: 404, message: "Data not found!" }));
 					resolve(result.rows);
+				} catch (error) {
+					reject(error.message);
 				}
 			});
 		}
@@ -55,13 +56,12 @@ exports.selectAllPaginationModel = (page, size) => {
 exports.selectByIdModel = (id) => {
 	return new Promise((resolve, reject) => {
 		db.query(sql.selectById, [id], (err, result) => {
-			if (err) {
-				reject(new Error(JSON.stringify({ code: 500, message: err.message })));
-			} else {
-				if (result.rowCount === 0) {
-					reject(new Error(JSON.stringify({ code: 404, message: "Data not found!" })));
-				}
+			try {
+				if (err) throw new Error(JSON.stringify({ code: 500, message: err.message }));
+				if (result.rowCount === 0) throw new Error(JSON.stringify({ code: 404, message: "Data not found!" }));
 				resolve(result.rows);
+			} catch (error) {
+				reject(error.message);
 			}
 		});
 	});
@@ -70,13 +70,12 @@ exports.selectByIdModel = (id) => {
 exports.selectByOwnerModel = (id_owner) => {
 	return new Promise((resolve, reject) => {
 		db.query(sql.selectByOwner, [id_owner], (err, result) => {
-			if (err) {
-				reject(new Error(JSON.stringify({ code: 500, message: err.message })));
-			} else {
-				if (result.rowCount === 0) {
-					reject(new Error(JSON.stringify({ code: 404, message: "Data not found!" })));
-				}
+			try {
+				if (err) throw new Error(JSON.stringify({ code: 500, message: err.message }));
+				if (result.rowCount === 0) throw new Error(JSON.stringify({ code: 404, message: "Data not found!" }));
 				resolve(result.rows);
+			} catch (error) {
+				reject(error.message);
 			}
 		});
 	});
@@ -85,13 +84,12 @@ exports.selectByOwnerModel = (id_owner) => {
 exports.selectByNameModel = (query) => {
 	return new Promise((resolve, reject) => {
 		db.query(sql.selectByName, [`%${query.toLowerCase()}%`], (err, result) => {
-			if (err) {
-				reject(new Error(JSON.stringify({ code: 500, message: err.message })));
-			} else {
-				if (result.rowCount === 0) {
-					reject(new Error(JSON.stringify({ code: 404, message: "Data not found!" })));
-				}
+			try {
+				if (err) throw new Error(JSON.stringify({ code: 500, message: err.message }));
+				if (result.rowCount === 0) throw new Error(JSON.stringify({ code: 404, message: "Data not found!" }));
 				resolve(result.rows);
+			} catch (error) {
+				reject(error.message);
 			}
 		});
 	});
@@ -100,13 +98,12 @@ exports.selectByNameModel = (query) => {
 exports.selectLatestModel = () => {
 	return new Promise((resolve, reject) => {
 		db.query(sql.selectLatest, [5], (err, result) => {
-			if (err) {
-				reject(new Error(JSON.stringify({ code: 500, message: err.message })));
-			} else {
-				if (result.rowCount === 0) {
-					reject(new Error(JSON.stringify({ code: 404, message: "Data not found!" })));
-				}
+			try {
+				if (err) throw new Error(JSON.stringify({ code: 500, message: err.message }));
+				if (result.rowCount === 0) throw new Error(JSON.stringify({ code: 404, message: "Data not found!" }));
 				resolve(result.rows);
+			} catch (error) {
+				reject(error.message);
 			}
 		});
 	});

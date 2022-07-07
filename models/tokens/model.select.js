@@ -8,10 +8,11 @@ const sql = {
 exports.selectByTokenModel = (refreshToken) => {
 	return new Promise((resolve, reject) => {
 		db.query(sql.selectByToken, [refreshToken], (err, result) => {
-			if (err) {
-				reject(new Error(JSON.stringify({ code: 500, message: err.message })));
-			} else {
+			try {
+				if (err) throw new Error(JSON.stringify({ code: 500, message: err.message }));
 				resolve(result.rows);
+			} catch (error) {
+				reject(error.message);
 			}
 		});
 	});

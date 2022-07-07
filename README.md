@@ -1,4 +1,4 @@
-# 🍳 Resip! App - Recipes Inspiration Portal!
+# 🍳 (Backend) Resip! App - Recipes Inspiration Portal!
 
 A place to find inspiration for cooking recipes anywhere and anytime.
 
@@ -8,16 +8,22 @@ Projek ini merupakan tugas studi kasus food recipe _beginner backend_ **Pijar Ca
 
 ## 📚 Stack and Packages
 
+### Dependencies
+- [bcrypt](https://github.com/kelektiv/node.bcrypt.js)
 - [cors](https://github.com/expressjs/cors)
-- [crypto-js](https://github.com/brix/crypto-js)
 - [dotenv](https://github.com/motdotla/dotenv)
 - [express](https://github.com/expressjs/express)
 - [helmet](https://github.com/helmetjs/helmet)
+- [joi](https://github.com/sideway/joi)
+- [jsonwebtoken](https://github.com/auth0/node-jsonwebtoken)
 - [morgan](https://github.com/expressjs/morgan)
 - [multer](https://github.com/expressjs/multer)
 - [pg](https://github.com/brianc/node-postgres)
-- [nodemon](https://github.com/remy/nodemon)
+- [uuid](https://github.com/uuidjs/uuid)
+
+### Dev. Dependencies
 - [eslint](https://github.com/eslint/eslint)
+- [nodemon](https://github.com/remy/nodemon)
 - [prettier](https://github.com/prettier/prettier)
 
 ## 🎯 Task Requirements
