@@ -1,5 +1,5 @@
 {
-	"name": "resip-app",
+	"name": "resip-app-backend",
 	"version": "1.0.0",
 	"description": "Backend resip app",
 	"main": "index.js",
