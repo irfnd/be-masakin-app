@@ -1,14 +1,19 @@
 require("dotenv").config();
-const { DATABASE_URL } = process.env;
+const { DATABASE_URL, DATABASE_URL_LOCAL, MODE } = process.env;
 
-const { Pool } = require("pg");
+const { Pool, Client } = require("pg");
+let db;
 
-const db = new Pool({
-	connectionString: DATABASE_URL,
-	ssl: {
-		rejectUnauthorized: false,
-	},
-});
+if (MODE === "production") {
+	db = new Client({
+		connectionString: DATABASE_URL,
+		ssl: { rejectUnauthorized: false },
+	});
+} else {
+	db = new Pool({
+		connectionString: DATABASE_URL_LOCAL,
+	});
+}
 
 db.on("error", (err) => {
 	console.error("> Unexpected error on idle client!\n", err);
