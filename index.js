@@ -9,7 +9,7 @@ const { handlingError } = require("./middlewares");
 
 const app = express();
 
-app.use(cors({ origin: "http://localhost:3000" }));
+app.use(cors({ origin: "http://resip-app.herokuapp.com" }));
 app.use(helmet({ crossOriginResourcePolicy: { policy: "cross-origin" } }));
 app.use(morgan("dev"));
 app.use(express.json());
