@@ -1,14 +1,6 @@
 const { responseError } = require("../libs/response");
 
 module.exports = (app) => {
-	// Base URL
-	app.use("/", (req, res) =>
-		res.status(200).json({
-			success: true,
-			message: "Welcome to resip-app api",
-		})
-	);
-
 	// Authentications routes
 	app.use("/auth", require("./auth/route.auth"));
 
