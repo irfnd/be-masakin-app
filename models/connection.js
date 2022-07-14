@@ -3,7 +3,12 @@ const { DATABASE_URL } = process.env;
 
 const { Pool } = require("pg");
 
-const db = new Pool({ DATABASE_URL });
+const db = new Pool({
+	connectionString: DATABASE_URL,
+	ssl: {
+		rejectUnauthorized: false,
+	},
+});
 
 db.on("error", (err) => {
 	console.error("> Unexpected error on idle client!\n", err);
