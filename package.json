@@ -6,6 +6,9 @@
 	"author": "irfnd <irfandiabimanyu@gmail.com>",
 	"license": "MIT",
 	"private": false,
+	"engines": {
+		"node": "16.x"
+	},
 	"scripts": {
 		"format": "prettier --write . && eslint .",
 		"dev": "nodemon index",
