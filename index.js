@@ -9,8 +9,8 @@ const { handlingError } = require("./middlewares");
 
 const app = express();
 
-app.use(cors({ origin: "https://www.youtube.com" }));
-app.use(helmet());
+app.use(cors({ origin: "http://localhost:3000" }));
+app.use(helmet({ crossOriginResourcePolicy: { policy: "cross-origin" } }));
 app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

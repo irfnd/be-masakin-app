@@ -11,7 +11,11 @@ const sql = {
 };
 
 exports.updateOneModel = (data, id) => {
-	const dataBody = { ...data, password: hashSync(data.password, 10) };
+	let dataBody = {};
+	if (data.password) {
+		dataBody = { ...data, password: hashSync(data.password, 10) };
+	}
+	dataBody = { ...data };
 	return new Promise((resolve, reject) => {
 		db.query(sql.updateOne(dataBody), [...Object.values(dataBody), id], (err, result) => {
 			try {

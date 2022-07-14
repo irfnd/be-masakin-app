@@ -2,8 +2,8 @@ const multer = require("multer");
 const { v4: uuidv4 } = require("uuid");
 const path = require("path");
 
-const setFileName = ({ identifier, type, uuid, extension }) => {
-	return `${identifier}-${type}-${uuid}${extension}`;
+const setFileName = ({ type, uuid, extension }) => {
+	return `${type}-${uuid}${extension}`;
 };
 
 const dirPhotoProfile = path.join(__dirname, "../public/users/images");
@@ -16,7 +16,6 @@ const storagePhotoProfile = multer.diskStorage({
 	},
 	filename: (req, file, cb) => {
 		const fileName = setFileName({
-			identifier: req.body.email,
 			type: "photo-profile",
 			uuid: uuidv4().toString(),
 			extension: path.extname(file.originalname),
@@ -31,7 +30,6 @@ const storagePhotoRecipe = multer.diskStorage({
 	},
 	filename: (req, file, cb) => {
 		const fileName = setFileName({
-			identifier: req.body.title.toLowerCase().split(" ").join("-"),
 			type: "photo-recipe",
 			uuid: uuidv4().toString(),
 			extension: path.extname(file.originalname),
@@ -46,7 +44,6 @@ const storageVideosRecipe = multer.diskStorage({
 	},
 	filename: (req, file, cb) => {
 		const fileName = setFileName({
-			identifier: req.body.title.toLowerCase().split(" ").join("-"),
 			type: "videos-recipe",
 			uuid: uuidv4().toString(),
 			extension: path.extname(file.originalname),

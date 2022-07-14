@@ -14,6 +14,7 @@ exports.userLogin = async (req, res, next) => {
 					id: user[0].id,
 					email: user[0].email,
 					name: user[0].name,
+					photo_profile: user[0].photo_profile,
 					role: user[0].role,
 				};
 				const accessToken = generateAccessToken(payload);
@@ -22,6 +23,7 @@ exports.userLogin = async (req, res, next) => {
 					id: payload.id,
 					name: payload.name,
 					email: payload.email,
+					photo_profile: payload.photo_profile,
 					role: payload.role,
 				};
 				req.token = { access_token: accessToken, refresh_token: refreshToken };
@@ -52,6 +54,7 @@ exports.tokenRefresh = async (req, res, next) => {
 				id: decoded.id,
 				email: decoded.email,
 				name: decoded.name,
+				photo_profile: decoded.photo_profile,
 				role: decoded.role,
 			};
 			const accessToken = generateAccessToken(payload);
@@ -60,6 +63,7 @@ exports.tokenRefresh = async (req, res, next) => {
 				id: payload.id,
 				name: payload.name,
 				email: payload.email,
+				photo_profile: payload.photo_profile,
 				role: payload.role,
 			};
 			req.token = { access_token: accessToken, refresh_token: refreshToken };
