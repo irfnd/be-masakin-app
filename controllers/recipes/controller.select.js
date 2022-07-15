@@ -28,10 +28,7 @@ exports.selectById = async (req, res, next) => {
 	const { id } = req.params;
 	try {
 		if (!Number(id)) throw new Error(JSON.stringify({ code: 400, message: "Parameter must be a number!" }));
-		const recipe = await recipesModel.select.selectByIdModel(id);
-		const comments = await commentsModel.select.selectByRecipeModel(id);
-		const videos = await recipesVideosModel.select.selectByRecipeModel(id);
-		const results = { recipe: recipe[0], videos, comments };
+		const results = await recipesModel.select.selectByIdModel(id);
 		res.status(200).json(responseSuccess("retrieved", results));
 	} catch (err) {
 		next(err);
