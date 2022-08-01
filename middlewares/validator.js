@@ -1,14 +1,15 @@
+const status = require("http-status");
 const validator = require("../libs/validator");
-const { responseError } = require("../libs/response");
 
 module.exports = (schema) => {
 	return async (req, res, next) => {
 		try {
-			const validated = await validator[schema].validateAsync(req.body);
+			const validated = await validator[schema].validate(req.body);
 			req.body = validated;
 			next();
 		} catch (err) {
-			res.status(400).json(responseError(err.message));
+			const errors = new Error(err.message, { cause: { code: status.BAD_REQUEST } });
+			next(errors);
 		}
 	};
 };

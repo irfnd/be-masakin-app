@@ -1,4 +1,5 @@
 module.exports = {
-	login: require("./validator.login"),
-	register: require("./validator.register"),
+	register: require("./schema/schema.register"),
+	login: require("./schema/schema.login"),
+	refresh: require("./schema/schema.refresh"),
 };
