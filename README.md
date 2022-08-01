@@ -9,6 +9,7 @@ Projek ini merupakan tugas studi kasus food recipe _beginner backend_ **Pijar Ca
 ## 📚 Stack and Packages
 
 ### Dependencies
+
 - [bcrypt](https://github.com/kelektiv/node.bcrypt.js)
 - [cors](https://github.com/expressjs/cors)
 - [dotenv](https://github.com/motdotla/dotenv)
@@ -22,6 +23,7 @@ Projek ini merupakan tugas studi kasus food recipe _beginner backend_ **Pijar Ca
 - [uuid](https://github.com/uuidjs/uuid)
 
 ### Dev. Dependencies
+
 - [eslint](https://github.com/eslint/eslint)
 - [nodemon](https://github.com/remy/nodemon)
 - [prettier](https://github.com/prettier/prettier)
