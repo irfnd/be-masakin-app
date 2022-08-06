@@ -14,7 +14,15 @@ const getPagingData = (data, page, limit) => {
 };
 
 const getSortOrder = (sort, order) => {
-	return sort ? [[sort, order]] : null;
+	if (!sort) return null;
+	switch (sort) {
+		case "likedCount":
+			return [[sequelize.literal('"likedCount"'), order]];
+		case "savedCount":
+			return [[sequelize.literal('"savedCount"'), order]];
+		default:
+			return [[sort, order]];
+	}
 };
 
 module.exports = { getPagination, getPagingData, getSortOrder };

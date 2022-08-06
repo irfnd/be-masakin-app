@@ -14,7 +14,7 @@ const client = ENV === "production" ? CLIENT_HOST : CLIENT_HOST_LOCAL;
 const dbSync = false;
 
 app.use(cors({ origin: client }));
-app.use(helmet({ crossOriginResourcePolicy: { policy: "cross-origin" } }));
+app.use(helmet());
 app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

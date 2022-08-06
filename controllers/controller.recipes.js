@@ -1,6 +1,6 @@
 const status = require("http-status");
 const { Op } = require("sequelize");
-const { Recipes, LikedRecipes, SavedRecipes, Comments, sequelize } = require("../models");
+const { Users, Recipes, LikedRecipes, SavedRecipes, Comments, Videos, sequelize } = require("../models");
 const { queryLiked, querySaved } = require("../models/helpers/subQuery");
 const { responseSuccess } = require("../libs/response");
 const { getPagination, getPagingData, getSortOrder } = require("../libs/searchPagination");
@@ -18,12 +18,52 @@ const createOne = async (req, res, next) => {
 };
 
 const findAll = async (req, res, next) => {
+	try {
+		const results = await Recipes.findAll({
+			attributes: { include: [queryLiked, querySaved] },
+			include: [
+				{ model: Users, attributes: ["id", "name", "photo"] },
+				{ model: Comments, include: [{ model: Users, attributes: ["id", "name", "photo"] }] },
+				Videos,
+			],
+		});
+		res.json(responseSuccess("retrieved", results));
+	} catch (err) {
+		next(err);
+	}
+};
+
+const findAllPopular = async (req, res, next) => {
+	try {
+		const results = await Recipes.findAll({
+			attributes: { include: [queryLiked, querySaved] },
+			include: [
+				{ model: Users, attributes: ["id", "name", "photo"] },
+				{ model: Comments, include: [{ model: Users, attributes: ["id", "name", "photo"] }] },
+				Videos,
+			],
+			order: [
+				[sequelize.literal('"likedCount"'), "desc"],
+				[sequelize.literal('"savedCount"'), "desc"],
+			],
+		});
+		res.json(responseSuccess("retrieved", results));
+	} catch (err) {
+		next(err);
+	}
+};
+
+const findAllPagination = async (req, res, next) => {
 	const { page, size, search, sort, order } = req.query;
 	const { limit, offset } = getPagination(page, size);
 	const handleSort = getSortOrder(sort, order || "ASC");
 	try {
 		const getRecipes = await Recipes.findAndCountAll({
 			attributes: { include: [queryLiked, querySaved] },
+			include: [
+				{ model: Users, attributes: ["id", "name", "photo"] },
+				{ model: Comments, include: [{ model: Users, attributes: ["id", "name", "photo"] }] },
+			],
 			where: search ? { name: { [Op.iLike]: `%${search}%` } } : null,
 			limit,
 			offset,
@@ -42,7 +82,11 @@ const findOne = async (req, res, next) => {
 		if (!Number(id)) throw new Error("Parameter id must be a number!", { cause: { code: status.BAD_REQUEST } });
 		const results = await Recipes.findByPk(id, {
 			attributes: { include: [queryLiked, querySaved] },
-			include: [Comments],
+			include: [
+				{ model: Users, attributes: ["id", "name", "photo"] },
+				{ model: Comments, include: [{ model: Users, attributes: ["id", "name", "photo"] }] },
+				Videos,
+			],
 		});
 		if (!results) throw new Error("Recipe not found!", { cause: { code: status.NOT_FOUND } });
 		res.json(responseSuccess("retrieved", results));
@@ -76,7 +120,25 @@ const deleteOne = async (req, res, next) => {
 };
 
 // * User Privilages
-const findAllFromUser = async (req, res, next) => {
+const findAllMyRecipes = async (req, res, next) => {
+	const { id: userId } = req.decoded;
+	try {
+		const results = await Recipes.findAll({
+			attributes: { include: [queryLiked, querySaved] },
+			include: [
+				{ model: Users, attributes: ["id", "name", "photo"] },
+				{ model: Comments, include: [{ model: Users, attributes: ["id", "name", "photo"] }] },
+				Videos,
+			],
+			where: { userId },
+		});
+		res.json(responseSuccess("retrieved", results));
+	} catch (err) {
+		next(err);
+	}
+};
+
+const findAllMyRecipesPagination = async (req, res, next) => {
 	const { id: userId } = req.decoded;
 	const { page, size, search, sort, order } = req.query;
 	const { limit, offset } = getPagination(page, size);
@@ -115,10 +177,13 @@ const deleteFromUser = async (req, res, next) => {};
 module.exports = {
 	createOne,
 	findAll,
+	findAllPopular,
+	findAllPagination,
 	findOne,
 	updateOne,
 	deleteOne,
-	findAllFromUser,
+	findAllMyRecipes,
+	findAllMyRecipesPagination,
 	createFromUser,
 	updateFromUser,
 	deleteFromUser,

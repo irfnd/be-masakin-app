@@ -1,6 +1,6 @@
 const status = require("http-status");
 const { responseSuccess } = require("../libs/response");
-const { Users, Recipes, SavedRecipes } = require("../models");
+const { Users, Recipes, Comments, Videos, SavedRecipes } = require("../models");
 const { queryLiked, querySaved } = require("../models/helpers/subQuery");
 
 // * Admin Privilages
@@ -73,6 +73,11 @@ const findAllFromUser = async (req, res, next) => {
 				model: Recipes,
 				attributes: { include: [queryLiked, querySaved] },
 				through: { model: SavedRecipes, attributes: [] },
+				include: [
+					{ model: Users, attributes: ["id", "name", "photo"] },
+					{ model: Comments, include: [{ model: Users, attributes: ["id", "name", "photo"] }] },
+					Videos,
+				],
 			},
 		});
 		res.json(responseSuccess("retrieved", results.recipes));
