@@ -26,7 +26,7 @@ const login = async (req, res, next) => {
 		const accessToken = generateAccessToken(payload);
 		const refreshToken = generateRefreshToken(payload);
 		await Tokens.create({ token: refreshToken, userId: getUser.id });
-		res.json(responseSuccess("retrieved", { ...payload, accessToken, refreshToken }));
+		res.json(responseSuccess("retrieved", { ...payload, photo: getUser.photo, accessToken, refreshToken }));
 	} catch (err) {
 		next(err);
 	}

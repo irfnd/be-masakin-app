@@ -6,6 +6,8 @@ router.route("/").get(Recipes.findAllPagination).post(handlingAuth.isLogin, Reci
 
 router.route("/all").get(Recipes.findAll);
 
+router.route("/popular").get(Recipes.findAllPopular);
+
 router.route("/liked").get(handlingAuth.isLogin, LikedRecipes.findAllFromUser);
 
 router
