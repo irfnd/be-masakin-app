@@ -120,6 +120,25 @@ const deleteOne = async (req, res, next) => {
 };
 
 // * User Privilages
+const createFromUser = async (req, res, next) => {
+	const { id: userId } = req.decoded;
+	try {
+		const newRecipe = {
+			...req.body,
+			ingredients: req.body.ingredients.split("\n"),
+			steps: req.body.steps.split("\n"),
+			photo: req?.file?.publicUrl || null,
+			photoName: req?.file?.fileRef?.metadata?.name || null,
+			userId,
+		};
+		const results = await Recipes.create(newRecipe);
+		res.json(responseSuccess("added", results));
+	} catch (err) {
+		console.log(err);
+		next(err);
+	}
+};
+
 const findAllMyRecipes = async (req, res, next) => {
 	const { id: userId } = req.decoded;
 	try {
@@ -154,18 +173,6 @@ const findAllMyRecipesPagination = async (req, res, next) => {
 		const results = getPagingData(getRecipes, page, limit);
 		res.json(responseSuccess("retrieved", results));
 	} catch (err) {
-		next(err);
-	}
-};
-
-const createFromUser = async (req, res, next) => {
-	const { id: userId } = req.decoded;
-	try {
-		const newRecipe = { ...req.body, ingredients: req.body.ingredients.split("\n"), steps: req.body.steps.split("\n"), userId };
-		const results = await Recipes.create(newRecipe);
-		res.json(responseSuccess("added", results));
-	} catch (err) {
-		console.log(err);
 		next(err);
 	}
 };
