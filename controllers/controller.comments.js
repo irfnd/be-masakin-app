@@ -1,6 +1,6 @@
 const status = require("http-status");
 const { responseSuccess } = require("../libs/response");
-const { Comments } = require("../models");
+const { Users, Comments } = require("../models");
 
 // * Admin Privilages
 const createOne = async (req, res, next) => {
@@ -57,10 +57,24 @@ const deleteOne = async (req, res, next) => {
 	}
 };
 
+// * User Privilages
+const createFromUser = async (req, res, next) => {
+	const { id: userId } = req.decoded;
+	try {
+		const checkUser = await Users.findByPk(userId);
+		if (!checkUser) throw new Error("User not found!", { cause: { code: status.NOT_FOUND } });
+		const results = await Comments.create({ userId, recipeId: req.body.recipeId, comment: req.body.comment });
+		res.json(responseSuccess("added", results));
+	} catch (err) {
+		next(err);
+	}
+};
+
 module.exports = {
 	createOne,
 	findAll,
 	findOne,
 	updateOne,
 	deleteOne,
+	createFromUser,
 };

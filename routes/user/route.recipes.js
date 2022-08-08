@@ -8,6 +8,7 @@ router
 	.get(Recipes.findAllPagination)
 	.post(handlingAuth.isLogin, upload("recipe_photo_", "photo-recipe", "photo"), Recipes.createFromUser);
 router.route("/all").get(Recipes.findAll);
+router.route("/new").get(Recipes.findAllPagination);
 router.route("/popular").get(Recipes.findAllPopular);
 router.route("/liked").get(handlingAuth.isLogin, LikedRecipes.findAllFromUser);
 router

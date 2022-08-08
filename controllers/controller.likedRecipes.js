@@ -56,7 +56,7 @@ const createFromUser = async (req, res, next) => {
 		const checkRecipe = await Recipes.findByPk(recipeId);
 		if (!checkRecipe) throw new Error("Recipe not found!", { cause: { code: status.NOT_FOUND } });
 		const results = await LikedRecipes.create({ userId, recipeId: checkRecipe.id });
-		res.json(results);
+		res.json(responseSuccess("created", results));
 	} catch (err) {
 		next(err);
 	}
