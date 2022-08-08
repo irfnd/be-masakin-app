@@ -3891,6 +3891,11 @@ tmp@^0.2.1:
   dependencies:
     rimraf "^3.0.0"
 
+to-bool@^0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/to-bool/-/to-bool-0.0.1.tgz#367c686599bb1539cfe4af9faf02669a16f174e8"
+  integrity sha512-KraNaGlGu56sulfEJ1UJlqreRtKuQkpWMOICKu5R64CfdlIwBOdheT1H6g1Kw3CcALgqwT0sOnHOYXWS/R4vEQ==
+
 to-regex-range@^5.0.1:
   version "5.0.1"
   resolved "https://registry.yarnpkg.com/to-regex-range/-/to-regex-range-5.0.1.tgz#1648c44aae7c8d988a326018ed72f5b4dd0392e4"
@@ -4208,6 +4213,11 @@ yargs@^16.2.0:
     string-width "^4.2.0"
     y18n "^5.0.5"
     yargs-parser "^20.2.2"
+
+yn@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/yn/-/yn-5.0.0.tgz#63fc2e2e0056cf294397eed6ad4a3fbdf707f26f"
+  integrity sha512-+l37+9TyGEsyxGLaTg6QgYy5KnOp74ZZl4dPFLQpBWSkO99uBC5jnS0pOGwXFViPbiaEtWbParH2KrgWWF2duQ==
 
 yocto-queue@^0.1.0:
   version "0.1.0"

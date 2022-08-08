@@ -1,6 +1,7 @@
 require("dotenv").config();
-const { ENV, CLIENT_HOST, CLIENT_HOST_LOCAL, DB_SYNC } = process.env;
+const { ENV, CLIENT_HOST, CLIENT_HOST_LOCAL, DATABASE_SYNC } = process.env;
 
+const toBool = require("to-bool");
 const express = require("express");
 const cors = require("cors");
 const helmet = require("helmet");
@@ -12,7 +13,7 @@ const port = process.env.PORT || 8000;
 const app = express();
 const client = ENV === "production" ? CLIENT_HOST : CLIENT_HOST_LOCAL;
 
-app.use(cors());
+app.use(cors({ origin: client }));
 app.use(helmet());
 app.use(morgan("dev"));
 app.use(express.json());
@@ -25,7 +26,7 @@ app.use(handlingError);
 app.listen(port, () => {
 	console.log(`> Server running successfully`);
 	db.sequelize
-		.sync({ force: false })
+		.sync({ force: toBool(DATABASE_SYNC) })
 		.then(() => console.log("> Connected to database\n"))
 		.catch((err) => {
 			console.log("> Something went wrong!", err.message);
