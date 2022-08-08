@@ -25,7 +25,7 @@ app.use(handlingError);
 app.listen(port, () => {
 	console.log(`> Server running successfully`);
 	db.sequelize
-		.sync({ force: DB_SYNC })
+		.sync({ force: false })
 		.then(() => console.log("> Connected to database\n"))
 		.catch((err) => {
 			console.log("> Something went wrong!", err.message);

@@ -7,4 +7,5 @@ module.exports = {
 	Videos: require("./controller.videos"),
 	LikedRecipes: require("./controller.likedRecipes"),
 	SavedRecipes: require("./controller.savedRecipes"),
+	CheckRecipes: require("./controller.checkRecipes"),
 };

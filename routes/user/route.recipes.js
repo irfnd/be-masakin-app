@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const { handlingAuth } = require("../../middlewares");
 const { upload } = require("../../middlewares/multer");
-const { Recipes, LikedRecipes, SavedRecipes } = require("../../controllers");
+const { Recipes, LikedRecipes, SavedRecipes, CheckRecipes } = require("../../controllers");
 
 router
 	.route("/")
@@ -20,6 +20,7 @@ router
 	.post(handlingAuth.isLogin, SavedRecipes.createFromUser)
 	.delete(handlingAuth.isLogin, SavedRecipes.deleteFromUser);
 router.route("/mine").get(handlingAuth.isLogin, Recipes.findAllMyRecipes);
+router.route("/check/:id").get(handlingAuth.isLogin, CheckRecipes.check);
 router.route("/:id").get(Recipes.findOne);
 
 module.exports = router;
