@@ -13,7 +13,7 @@ const app = express();
 const client = ENV === "production" ? CLIENT_HOST : CLIENT_HOST_LOCAL;
 const dbSync = false;
 
-app.use(cors({ origin: client }));
+app.use(cors());
 app.use(helmet());
 app.use(morgan("dev"));
 app.use(express.json());
