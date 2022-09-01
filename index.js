@@ -24,7 +24,7 @@ require("./routes")(app);
 app.use(handlingError);
 
 app.listen(port, () => {
-	console.log(`> [Express]\t- Server running successfully`);
+	console.log(`\n> [Express]\t- Server running successfully`);
 	db.sequelize
 		.sync({ force: toBool(DATABASE_SYNC) })
 		.then(() => console.log("> [Postgres]\t- Connected to database"))

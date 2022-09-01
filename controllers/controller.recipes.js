@@ -192,9 +192,41 @@ const findAllMyRecipesPagination = async (req, res, next) => {
 	}
 };
 
-const updateFromUser = async (req, res, next) => {};
+const updateFromUser = async (req, res, next) => {
+	const { id: userId } = req.decoded;
+	const { id } = req.params;
+	try {
+		if (!Number(id)) throw new Error("Parameter id must be a number!", { cause: { code: status.BAD_REQUEST } });
+		const checkRecipe = await Recipes.findByPk(id);
+		if (!checkRecipe) throw new Error(`Recipe with id ${id} not found!`, { cause: { code: status.NOT_FOUND } });
+		const newRecipe = {
+			...req.body,
+			ingredients: req.body.ingredients.split("\n"),
+			steps: req.body.steps.split("\n"),
+			photo: req?.file?.publicUrl || checkRecipe.photo,
+			photoName: req?.file?.fileRef?.metadata?.name || checkRecipe.photoName,
+			userId,
+		};
+		const results = await Recipes.update(newRecipe, { where: { id }, returning: true });
+		if (results[0] < 1) throw new Error(`Recipe with id ${id} not found!`, { cause: { code: status.NOT_FOUND } });
+		res.json(responseSuccess("updated", results[1][0]));
+	} catch (err) {
+		next(err);
+	}
+};
 
-const deleteFromUser = async (req, res, next) => {};
+const deleteFromUser = async (req, res, next) => {
+	const { id: userId } = req.decoded;
+	const { id } = req.params;
+	try {
+		if (!Number(id)) throw new Error("Parameter id must be a number!", { cause: { code: status.BAD_REQUEST } });
+		const results = await Recipes.destroy({ where: { id, userId } });
+		if (results < 1) throw new Error(`Recipe with id ${id} not found!`, { cause: { code: status.NOT_FOUND } });
+		res.json(responseSuccess("deleted", id));
+	} catch (err) {
+		next(err);
+	}
+};
 
 module.exports = {
 	createOne,

@@ -21,6 +21,10 @@ router
 	.post(handlingAuth.isLogin, SavedRecipes.createFromUser)
 	.delete(handlingAuth.isLogin, SavedRecipes.deleteFromUser);
 router.route("/mine").get(handlingAuth.isLogin, cacheData.byUser("recipeMine"), Recipes.findAllMyRecipes);
+router
+	.route("/mine/:id")
+	.patch(handlingAuth.isLogin, upload("recipe_photo_", "photo-recipe", "photo"), Recipes.updateFromUser)
+	.delete(handlingAuth.isLogin, Recipes.deleteFromUser);
 router.route("/check/:id").get(handlingAuth.isLogin, cacheData.byUser("checkRecipe"), CheckRecipes.check);
 router.route("/:id").get(cacheData.byId("recipe"), Recipes.findOne);
 
