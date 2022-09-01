@@ -1,11 +1,11 @@
 const router = require("express").Router();
-const { handlingAuth } = require("../../middlewares");
+const { handlingAuth, cacheData } = require("../../middlewares");
 const { upload } = require("../../middlewares/multer");
 const { Users, PhotoProfile } = require("../../controllers");
 
 router
 	.route("/")
-	.get(handlingAuth.isLogin, Users.findFromUser)
+	.get(handlingAuth.isLogin, cacheData.byUser("profile"), Users.findFromUser)
 	.patch(handlingAuth.isLogin, Users.updateFromUser)
 	.delete(handlingAuth.isLogin, Users.deleteFromUser);
 router

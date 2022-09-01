@@ -1,7 +1,7 @@
 const status = require("http-status");
 const { hashSync } = require("bcrypt");
 const { responseSuccess } = require("../libs/response");
-const { Users } = require("../models");
+const { Users, redis } = require("../models");
 
 // * Admin Privilages
 const createOne = async (req, res, next) => {
@@ -64,11 +64,13 @@ const deleteOne = async (req, res, next) => {
 // * User Privilages
 const findFromUser = async (req, res, next) => {
 	const { id } = req.decoded;
+	let results;
 	try {
 		if (!Number(id)) throw new Error("Parameter id must be a number!", { cause: { code: status.BAD_REQUEST } });
-		const results = await Users.findByPk(id);
+		results = await Users.findByPk(id);
 		if (!results) throw new Error("User not found!", { cause: { code: status.NOT_FOUND } });
-		res.json(responseSuccess("retrieved", results));
+		await redis.set(`profile-${id}`, JSON.stringify(results), { EX: 30, NX: true });
+		res.json(responseSuccess("retrieved", { fromCache: false, data: results }));
 	} catch (err) {
 		next(err);
 	}

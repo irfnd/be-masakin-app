@@ -5,7 +5,7 @@ module.exports = (app) => {
 	app.use("/auth", require("./auth/route.auth"));
 
 	// Superadmin special routes
-	app.use("/admin", require("./admin"));
+	// app.use("/admin", require("./admin"));
 
 	// Users routes
 	app.use("/profile", require("./user/route.profile"));

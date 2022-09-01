@@ -1,6 +1,6 @@
 const status = require("http-status");
 const { Op } = require("sequelize");
-const { Users, Recipes, LikedRecipes, SavedRecipes, Comments, Videos, sequelize } = require("../models");
+const { Users, Recipes, LikedRecipes, SavedRecipes, Comments, Videos, sequelize, redis } = require("../models");
 const { queryLiked, querySaved } = require("../models/helpers/subQuery");
 const { responseSuccess } = require("../libs/response");
 const { getPagination, getPagingData, getSortOrder } = require("../libs/searchPagination");
@@ -18,8 +18,9 @@ const createOne = async (req, res, next) => {
 };
 
 const findAll = async (req, res, next) => {
+	let results;
 	try {
-		const results = await Recipes.findAll({
+		results = await Recipes.findAll({
 			attributes: { include: [queryLiked, querySaved] },
 			include: [
 				{ model: Users, attributes: ["id", "name", "photo"] },
@@ -27,15 +28,17 @@ const findAll = async (req, res, next) => {
 				Videos,
 			],
 		});
-		res.json(responseSuccess("retrieved", results));
+		await redis.set("recipeAll", JSON.stringify(results), { EX: 30, NX: true });
+		res.json(responseSuccess("retrieved", { fromCache: false, data: results }));
 	} catch (err) {
 		next(err);
 	}
 };
 
 const findAllPopular = async (req, res, next) => {
+	let results;
 	try {
-		const results = await Recipes.findAll({
+		results = await Recipes.findAll({
 			attributes: { include: [queryLiked, querySaved] },
 			include: [
 				{ model: Users, attributes: ["id", "name", "photo"] },
@@ -47,7 +50,8 @@ const findAllPopular = async (req, res, next) => {
 				[sequelize.literal('"savedCount"'), "desc"],
 			],
 		});
-		res.json(responseSuccess("retrieved", results));
+		await redis.set("recipeAllPopular", JSON.stringify(results), { EX: 30, NX: true });
+		res.json(responseSuccess("retrieved", { fromCache: false, data: results }));
 	} catch (err) {
 		next(err);
 	}
@@ -57,6 +61,8 @@ const findAllPagination = async (req, res, next) => {
 	const { page, size, search, sort, order } = req.query;
 	const { limit, offset } = getPagination(page, size);
 	const handleSort = getSortOrder(sort, order || "ASC");
+	const uniqueName = Object.values(req.query).join("-");
+	let results;
 	try {
 		const getRecipes = await Recipes.findAndCountAll({
 			attributes: { include: [queryLiked, querySaved] },
@@ -69,8 +75,9 @@ const findAllPagination = async (req, res, next) => {
 			offset,
 			order: handleSort,
 		});
-		const results = getPagingData(getRecipes, page, limit);
-		res.json(responseSuccess("retrieved", results));
+		results = getPagingData(getRecipes, page, limit);
+		await redis.set(`recipeAllPagination-${uniqueName}`, JSON.stringify(results), { EX: 30, NX: true });
+		res.json(responseSuccess("retrieved", { fromCache: false, data: results }));
 	} catch (err) {
 		next(err);
 	}
@@ -78,9 +85,10 @@ const findAllPagination = async (req, res, next) => {
 
 const findOne = async (req, res, next) => {
 	const { id } = req.params;
+	let results;
 	try {
 		if (!Number(id)) throw new Error("Parameter id must be a number!", { cause: { code: status.BAD_REQUEST } });
-		const results = await Recipes.findByPk(id, {
+		results = await Recipes.findByPk(id, {
 			attributes: { include: [queryLiked, querySaved] },
 			include: [
 				{ model: Users, attributes: ["id", "name", "photo"] },
@@ -89,7 +97,8 @@ const findOne = async (req, res, next) => {
 			],
 		});
 		if (!results) throw new Error("Recipe not found!", { cause: { code: status.NOT_FOUND } });
-		res.json(responseSuccess("retrieved", results));
+		await redis.set(`recipe-${id}`, JSON.stringify(results), { EX: 30, NX: true });
+		res.json(responseSuccess("retrieved", { fromCache: false, data: results }));
 	} catch (err) {
 		next(err);
 	}
@@ -141,8 +150,9 @@ const createFromUser = async (req, res, next) => {
 
 const findAllMyRecipes = async (req, res, next) => {
 	const { id: userId } = req.decoded;
+	let results;
 	try {
-		const results = await Recipes.findAll({
+		results = await Recipes.findAll({
 			attributes: { include: [queryLiked, querySaved] },
 			include: [
 				{ model: Users, attributes: ["id", "name", "photo"] },
@@ -151,7 +161,8 @@ const findAllMyRecipes = async (req, res, next) => {
 			],
 			where: { userId },
 		});
-		res.json(responseSuccess("retrieved", results));
+		await redis.set(`recipeMine-${userId}`, JSON.stringify(results), { EX: 30, NX: true });
+		res.json(responseSuccess("retrieved", { fromCache: false, data: results }));
 	} catch (err) {
 		next(err);
 	}
@@ -162,6 +173,9 @@ const findAllMyRecipesPagination = async (req, res, next) => {
 	const { page, size, search, sort, order } = req.query;
 	const { limit, offset } = getPagination(page, size);
 	const handleSort = getSortOrder(sort, order || "ASC");
+	const uniqueName = Object.values(req.query).join("-").concat(userId);
+	console.log(uniqueName);
+	let results;
 	try {
 		const getRecipes = await Recipes.findAndCountAll({
 			attributes: { include: [queryLiked, querySaved] },
@@ -170,8 +184,9 @@ const findAllMyRecipesPagination = async (req, res, next) => {
 			offset,
 			order: handleSort,
 		});
-		const results = getPagingData(getRecipes, page, limit);
-		res.json(responseSuccess("retrieved", results));
+		results = getPagingData(getRecipes, page, limit);
+		await redis.set(`myRecipePagination-${uniqueName}`, JSON.stringify(results), { EX: 30, NX: true });
+		res.json(responseSuccess("retrieved", { fromCache: false, data: results }));
 	} catch (err) {
 		next(err);
 	}

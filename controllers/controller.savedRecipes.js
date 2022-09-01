@@ -1,6 +1,6 @@
 const status = require("http-status");
 const { responseSuccess } = require("../libs/response");
-const { Users, Recipes, Comments, Videos, SavedRecipes } = require("../models");
+const { Users, Recipes, Comments, Videos, SavedRecipes, redis } = require("../models");
 const { queryLiked, querySaved } = require("../models/helpers/subQuery");
 
 // * Admin Privilages
@@ -15,20 +15,25 @@ const createOne = async (req, res, next) => {
 
 const findAll = async (req, res, next) => {
 	const { by, id } = req.query;
+	const uniqueName = Object.values(req.query).join("-");
+	let results;
 	try {
 		if (by === "user") {
 			if (!id) throw new Error("Query id required!", { cause: { code: status.BAD_REQUEST } });
 			if (!Number(id)) throw new Error("Query id must be a number!", { cause: { code: status.BAD_REQUEST } });
-			const results = await SavedRecipes.findAll({ where: { userId: id } });
-			res.json(responseSuccess("retrieved", results));
+			results = await SavedRecipes.findAll({ where: { userId: id } });
+			await redis.set(`savedRecipeAll-${uniqueName}`, JSON.stringify(results), { EX: 30, NX: true });
+			res.json(responseSuccess("retrieved", { fromCache: false, results }));
 		} else if (by === "recipe") {
 			if (!id) throw new Error("Query id required!", { cause: { code: status.BAD_REQUEST } });
 			if (!Number(id)) throw new Error("Query id must be a number!", { cause: { code: status.BAD_REQUEST } });
-			const results = await SavedRecipes.findAll({ where: { recipeId: id } });
-			res.json(responseSuccess("retrieved", results));
+			results = await SavedRecipes.findAll({ where: { recipeId: id } });
+			await redis.set(`likedRecipeAll-${uniqueName}`, JSON.stringify(results), { EX: 30, NX: true });
+			res.json(responseSuccess("retrieved", { fromCache: false, results }));
 		} else {
-			const results = await SavedRecipes.findAll();
-			res.json(responseSuccess("retrieved", results));
+			results = await SavedRecipes.findAll();
+			await redis.set(`likedRecipeAll-${uniqueName}`, JSON.stringify(results), { EX: 30, NX: true });
+			res.json(responseSuccess("retrieved", { fromCache: false, results }));
 		}
 	} catch (err) {
 		next(err);
@@ -64,10 +69,11 @@ const createFromUser = async (req, res, next) => {
 
 const findAllFromUser = async (req, res, next) => {
 	const { id } = req.decoded;
+	let results;
 	try {
 		const checkUser = await Users.findByPk(id);
 		if (!checkUser) throw new Error("User not found!", { cause: { code: status.NOT_FOUND } });
-		const results = await Users.findByPk(id, {
+		results = await Users.findByPk(id, {
 			attributes: [],
 			include: {
 				model: Recipes,
@@ -80,7 +86,8 @@ const findAllFromUser = async (req, res, next) => {
 				],
 			},
 		});
-		res.json(responseSuccess("retrieved", results.recipes));
+		await redis.set(`savedRecipeAll-${id}`, JSON.stringify(results.recipes), { EX: 30, NX: true });
+		res.json(responseSuccess("retrieved", { fromCache: false, data: results.recipes }));
 	} catch (err) {
 		next(err);
 	}
