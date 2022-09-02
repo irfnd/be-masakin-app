@@ -35,7 +35,7 @@ app.listen(port, () => {
 		});
 	db.redis
 		.connect()
-		.then(() => console.log("> [Redis]\t- Connected to redis\n"))
+		.then(() => console.log("> [Redis]\t- Connected to redis"))
 		.catch((err) => {
 			console.log("> [Redis]\t- Something went wrong!\n");
 			console.log("!", err.message);
