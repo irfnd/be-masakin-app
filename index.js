@@ -24,20 +24,20 @@ require("./routes")(app);
 app.use(handlingError);
 
 app.listen(port, () => {
-	console.log(`\n> [Express]\t- Server running successfully`);
+	console.log(`\n> [Express]\t\t- Server running successfully`);
 	db.sequelize
 		.sync({ force: toBool(DATABASE_SYNC) })
-		.then(() => console.log("> [Postgres]\t- Connected to database"))
+		.then(() => console.log("> [Postgres]\t\t- Connected to database"))
 		.catch((err) => {
-			console.log("> [Postgres]\b- Something went wrong!\n");
+			console.log("> [Postgres]\t\t- Something went wrong!\n");
 			console.log("!", err.message);
 			process.exit(1);
 		});
 	db.redis
 		.connect()
-		.then(() => console.log("> [Redis]\t- Connected to redis"))
+		.then(() => console.log("> [Redis]\t\t- Connected to redis"))
 		.catch((err) => {
-			console.log("> [Redis]\t- Something went wrong!\n");
+			console.log("> [Redis]\t\t- Something went wrong!\n");
 			console.log("!", err.message);
 			process.exit(1);
 		});
