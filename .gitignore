@@ -1,6 +1,7 @@
 # Default ignore
 node_modules
 .env
+yarn.lock
 
 # Ignore public folder
 public/recipes/images/*

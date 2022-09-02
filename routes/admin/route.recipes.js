@@ -1,18 +1,11 @@
 const router = require("express").Router();
-const { auth } = require("../../middlewares");
-const { recipesController } = require("../../controllers");
+const { Recipes, LikedRecipes, SavedRecipes } = require("../../controllers");
 
-router
-	.route("/")
-	.get(recipesController.select.selectAll)
-	.post(auth.verifyToken, recipesController.insert.insertOne);
-router.route("/search").get(recipesController.select.selectByName);
-router.route("/latest").get(recipesController.select.selectLatest);
-router
-	.route("/:id")
-	.get(recipesController.select.selectById)
-	.patch(auth.verifyToken, recipesController.update.updateOne)
-	.delete(auth.verifyToken, recipesController.delete.deleteOne);
-router.route("/user/:id").get(recipesController.select.selectByOwner);
+router.route("/").get(Recipes.findAllPagination).post(Recipes.createOne);
+router.route("/all").get(Recipes.findAll);
+router.route("/popular").get(Recipes.findAllPopular);
+router.route("/liked").get(LikedRecipes.findAll).post(LikedRecipes.createOne).delete(LikedRecipes.deleteOne);
+router.route("/saved").get(SavedRecipes.findAll).post(SavedRecipes.createOne).delete(SavedRecipes.deleteOne);
+router.route("/:id").get(Recipes.findOne).patch(Recipes.updateOne).delete(Recipes.deleteOne);
 
 module.exports = router;

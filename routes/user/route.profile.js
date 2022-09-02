@@ -1,11 +1,15 @@
 const router = require("express").Router();
-const { auth } = require("../../middlewares");
-const { profileController } = require("../../controllers");
+const { handlingAuth, cacheData } = require("../../middlewares");
+const { upload } = require("../../middlewares/multer");
+const { Users, PhotoProfile } = require("../../controllers");
 
 router
 	.route("/")
-	.get(auth.verifyToken, profileController.select.selectById)
-	.patch(auth.verifyToken, profileController.update.updateOne)
-	.delete(auth.verifyToken, profileController.delete.deleteOne);
-
+	.get(handlingAuth.isLogin, cacheData.byUser("profile"), Users.findFromUser)
+	.patch(handlingAuth.isLogin, Users.updateFromUser)
+	.delete(handlingAuth.isLogin, Users.deleteFromUser);
+router
+	.route("/photo")
+	.post(handlingAuth.isLogin, upload("user_photo_", "photo-profile", "photo"), PhotoProfile.uploadPhoto)
+	.delete(handlingAuth.isLogin, PhotoProfile.deletePhoto);
 module.exports = router;

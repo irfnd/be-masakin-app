@@ -1,40 +1,46 @@
-module.exports = {
-	usersModel: {
-		insert: require("./users/model.insert"),
-		select: require("./users/model.select"),
-		update: require("./users/model.update"),
-		delete: require("./users/model.delete"),
-	},
-	tokensModel: {
-		insert: require("./tokens/model.insert"),
-		select: require("./tokens/model.select"),
-	},
-	recipesModel: {
-		insert: require("./recipes/model.insert"),
-		select: require("./recipes/model.select"),
-		update: require("./recipes/model.update"),
-		delete: require("./recipes/model.delete"),
-	},
-	commentsModel: {
-		insert: require("./comments/model.insert"),
-		select: require("./comments/model.select"),
-		update: require("./comments/model.update"),
-		delete: require("./comments/model.delete"),
-	},
-	recipesVideosModel: {
-		insert: require("./recipes_videos/model.insert"),
-		select: require("./recipes_videos/model.select"),
-		update: require("./recipes_videos/model.update"),
-		delete: require("./recipes_videos/model.delete"),
-	},
-	likedRecipesModel: {
-		insert: require("./liked_recipes/model.insert"),
-		select: require("./liked_recipes/model.select"),
-		delete: require("./liked_recipes/model.delete"),
-	},
-	savedRecipesModel: {
-		insert: require("./saved_recipes/model.insert"),
-		select: require("./saved_recipes/model.select"),
-		delete: require("./saved_recipes/model.delete"),
-	},
-};
+require("dotenv").config();
+const { DATABASE_URI, DATABASE_LOCAL_URI, REDIS_URI, ENV } = process.env;
+
+const Sequelize = require("sequelize");
+const { createClient } = require("redis");
+
+const dbUri = ENV === "production" ? DATABASE_URI : DATABASE_LOCAL_URI;
+const ssl = ENV === "production" ? { ssl: { require: true, rejectUnauthorized: false } } : null;
+const sequelize = new Sequelize(dbUri, { logging: false, dialectOptions: ssl });
+const redis = createClient({ url: REDIS_URI });
+
+const db = { sequelize, Sequelize, redis };
+
+db.Users = require("./model.users")(sequelize, Sequelize);
+db.Tokens = require("./model.tokens")(sequelize, Sequelize);
+db.Recipes = require("./model.recipes")(sequelize, Sequelize);
+db.Videos = require("./model.videos")(sequelize, Sequelize);
+db.Comments = require("./model.comments")(sequelize, Sequelize);
+db.LikedRecipes = require("./model.likedRecipes")(sequelize, Sequelize);
+db.SavedRecipes = require("./model.savedRecipes")(sequelize, Sequelize);
+
+// Users Relations
+db.Users.hasMany(db.Tokens, { onDelete: "cascade" });
+db.Users.hasMany(db.Recipes);
+db.Users.hasMany(db.Comments);
+db.Users.belongsToMany(db.Recipes, { through: db.LikedRecipes, onDelete: "cascade" });
+db.Users.belongsToMany(db.Recipes, { through: db.SavedRecipes, onDelete: "cascade" });
+
+// Tokens Relations
+db.Tokens.belongsTo(db.Users);
+
+// Recipes Relations
+db.Recipes.hasMany(db.Videos, { onDelete: "cascade" });
+db.Recipes.hasMany(db.Comments, { onDelete: "cascade" });
+db.Recipes.belongsTo(db.Users);
+db.Recipes.belongsToMany(db.Users, { through: db.LikedRecipes, onDelete: "cascade" });
+db.Recipes.belongsToMany(db.Users, { through: db.SavedRecipes, onDelete: "cascade" });
+
+// Videos Relations
+db.Videos.belongsTo(db.Recipes);
+
+// Comments Relations
+db.Comments.belongsTo(db.Users);
+db.Comments.belongsTo(db.Recipes);
+
+module.exports = db;

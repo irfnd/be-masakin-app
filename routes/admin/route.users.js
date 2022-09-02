@@ -1,17 +1,7 @@
 const router = require("express").Router();
-const { auth } = require("../../middlewares");
-const { usersController } = require("../../controllers");
+const { Users } = require("../../controllers");
 
-const adminRole = [auth.verifyToken, auth.isAdmin];
-
-router
-	.route("/")
-	.get(adminRole, usersController.select.selectAll)
-	.post(adminRole, usersController.insert.insertOne);
-router
-	.route("/:id")
-	.get(adminRole, usersController.select.selectById)
-	.patch(adminRole, usersController.update.updateOne)
-	.delete(adminRole, usersController.delete.deleteOne);
+router.route("/").get(Users.findAll).post(Users.createOne);
+router.route("/:id").get(Users.findOne).patch(Users.updateOne).delete(Users.deleteOne);
 
 module.exports = router;

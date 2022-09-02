@@ -1,6 +1,7 @@
 module.exports = {
-	auth: require("./auth"),
 	validator: require("./validator"),
-	multer: require("./multer"),
+	handlingAuth: require("./handlingAuth"),
 	handlingError: require("./handlingError"),
+	cacheData: require("./cachedData"),
+	multer: require("./multer"),
 };

@@ -5,15 +5,12 @@ module.exports = (app) => {
 	app.use("/auth", require("./auth/route.auth"));
 
 	// Superadmin special routes
-	app.use("/users", require("./admin/route.users"));
-	app.use("/recipes", require("./admin/route.recipes"));
-	app.use("/comments", require("./admin/route.comments"));
-	app.use("/recipes-videos", require("./admin/route.recipesVideos"));
+	// app.use("/admin", require("./admin"));
 
 	// Users routes
 	app.use("/profile", require("./user/route.profile"));
-	app.use("/my-recipes", require("./user/route.myRecipes"));
-	app.use("/liked-recipes", require("./user/route.likedRecipes"));
+	app.use("/recipes", require("./user/route.recipes"));
+	app.use("/comments", require("./user/route.comments"));
 
 	// Route not found
 	app.use("*", (req, res) => res.status(404).json(responseError("Route not found!")));
