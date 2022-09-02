@@ -47,9 +47,5 @@
 		"eslint-plugin-promise": "^6.0.0",
 		"nodemon": "^2.0.17",
 		"prettier": "^2.7.1"
-	},
-	"resolutions": {
-		"got": "^11.8.5",
-		"package-json": "^8.1.0"
 	}
 }
