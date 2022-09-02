@@ -1,5 +1,6 @@
 require("dotenv").config();
-const { SECRET_ACCESS_TOKEN, SECRET_REFRESH_TOKEN, EXPIRES_ACCESS_TOKEN, EXPIRES_REFRESH_TOKEN } = process.env;
+const { SECRET_ACCESS_TOKEN, SECRET_REFRESH_TOKEN, EXPIRES_ACCESS_TOKEN, EXPIRES_REFRESH_TOKEN, EXPIRES_VERIFY_TOKEN } =
+	process.env;
 
 const jwt = require("jsonwebtoken");
 const status = require("http-status");
@@ -10,6 +11,10 @@ const generateAccessToken = (payload) => {
 
 const generateRefreshToken = (payload) => {
 	return jwt.sign(payload, SECRET_REFRESH_TOKEN, { expiresIn: EXPIRES_REFRESH_TOKEN });
+};
+
+const generateVerifyToken = (payload) => {
+	return jwt.sign(payload, SECRET_ACCESS_TOKEN, { expiresIn: EXPIRES_VERIFY_TOKEN });
 };
 
 const checkAccessToken = (token) => {
@@ -37,6 +42,7 @@ const checkRefreshToken = (token) => {
 module.exports = {
 	generateAccessToken,
 	generateRefreshToken,
+	generateVerifyToken,
 	checkAccessToken,
 	checkRefreshToken,
 };

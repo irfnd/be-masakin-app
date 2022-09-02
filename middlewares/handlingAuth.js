@@ -7,7 +7,13 @@ const isLogin = async (req, res, next) => {
 	try {
 		if (!token) throw new Error("Access token required!", { cause: { code: status.UNAUTHORIZED } });
 		const decoded = await checkAccessToken(token);
-		req.decoded = { id: decoded.id, name: decoded.name, email: decoded.email, role: decoded.role };
+		req.decoded = {
+			id: decoded.id,
+			name: decoded.name,
+			email: decoded.email,
+			role: decoded.role,
+			isVerified: decoded.isVerified,
+		};
 		next();
 	} catch (error) {
 		next(error);

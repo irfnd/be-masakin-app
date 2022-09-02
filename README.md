@@ -82,6 +82,7 @@ yarn
 - <a href="#setup-firebase">Setup Firebase</a>
 - <a href="#setup-postgresql">Setup PostgreSQL</a>
 - <a href="#setup-redis">Setup Redis</a>
+- <a href="#setup-smtp">Setup SMTP</a>
 - <a href="#setup-environment">Setup Environment</a>
 - Type `npm run dev` or `yarn dev` to start project development
 - Type `npm run start` or `yarn start` to start project production
@@ -100,6 +101,8 @@ Create firebase to provide photo storage for this project. To get your firebase 
 
 ### Setup PostgreSQL
 
+PostgreSQL is required to provide database storage.
+
 - Create a database on your local/cloud postgreSQL server
 - Give database name whatever you want
 - Check postgreSQL local/cloud host and port
@@ -107,10 +110,23 @@ Create firebase to provide photo storage for this project. To get your firebase 
 
 ### Setup Redis
 
+Redis is required to provide REST API cached data when user doing GET request.
+
 - If you prefer to create redis on cloud, you can register on [Redis Cloud](https://app.redislabs.com)
 - Setup Data Access Control, Users, and Roles for database
 - If you use local redis server, check host and port
 - Add redis local/cloud URI to `.env` file
+
+### Setup SMTP
+
+SMTP is required to send verification user email and send resetting password email.
+
+- If you have your own SMTP server, add server url, port, username, and password to `.env` file
+- If you use gmail, you can create app password for your app and add the credential to `.env` file, for example:
+  - SMTP_HOST=smtp.gmail.com
+  - SMTP_PORT=587
+  - SMTP_USERNAME=[your_gmail]
+  - SMTP_PASSWORD=[your_app_password]
 
 ### Setup Environment
 

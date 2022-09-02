@@ -7,5 +7,6 @@ module.exports = (sequelize, Sequelize) => {
 		photo: { type: Sequelize.TEXT, defaultValue: null },
 		photoName: { type: Sequelize.TEXT, defaultValue: null },
 		role: { type: Sequelize.ENUM("user", "admin"), defaultValue: "user" },
+		isVerified: { type: Sequelize.BOOLEAN, defaultValue: false },
 	});
 };
