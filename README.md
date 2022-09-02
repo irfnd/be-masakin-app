@@ -1,6 +1,6 @@
 <div align="center">
   <p>
-    <img src="https://raw.githubusercontent.com/irfnd/fe-masakin-app/master/docs/main-banner.png" alt="Logo" width="auto">
+    <img src="https://firebasestorage.googleapis.com/v0/b/masakin-app-irfnd.appspot.com/o/documentations%2Fmain-banner.png?alt=media&token=d88c4590-775a-4292-b1bb-7eaec79a4539" alt="Logo" width="auto">
   </p>
 
   <h3 align="center">Masakin App (Backend)</h3>

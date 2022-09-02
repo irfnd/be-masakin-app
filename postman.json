@@ -1,0 +1,1881 @@
+{
+	"info": {
+		"_postman_id": "6b3b5d55-d06a-4933-8a2f-e56430f7a837",
+		"name": "Masakin App API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "8448000"
+	},
+	"item": [
+		{
+			"name": "Admin Routes",
+			"item": [
+				{
+					"name": "Users",
+					"item": [
+						{
+							"name": "Get Users",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJpcmZhbmRpYWJpbWFueXVAZ21haWwuY29tIiwibmFtZSI6ImFkbWluIiwicGhvdG9fcHJvZmlsZSI6bnVsbCwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjU3Nzg0MzIyLCJleHAiOjE2NTc4NzA3MjJ9.Ar7kJC0I9ZvdtW_My7R-5u7nYtuFihqu4ScJGahuCF0",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{route_admin_users}}/",
+									"host": [
+										"{{route_admin_users}}"
+									],
+									"path": [
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get User",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJhZG1pbkBlbWFpbC5jb20iLCJuYW1lIjoiYWRtaW4iLCJwaG90b19wcm9maWxlIjpudWxsLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2NTc1Njc0ODAsImV4cCI6MTY1NzY1Mzg4MH0.FDljSsdSm3Ia0bYl4qUxKkPdJf1e1g-saDHqHBkYAQo",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{route_admin_users}}/1",
+									"host": [
+										"{{route_admin_users}}"
+									],
+									"path": [
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add User",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJhZG1pbkBlbWFpbC5jb20iLCJuYW1lIjoiQWRtaW4iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2NTY2NzU1NjEsImV4cCI6MTY1Njc2MTk2MX0.hkQNa9fAQbUs7Er4zu7-WGqBI99sK5Xi09tjXajkF5A",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "Irfandi Iqbal Abimanyu",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "irfandiabimanyu@gmail.com",
+											"type": "text"
+										},
+										{
+											"key": "phone_number",
+											"value": "0895704237961",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "Password123.",
+											"type": "text"
+										},
+										{
+											"key": "photo_profile",
+											"type": "file",
+											"src": []
+										}
+									]
+								},
+								"url": {
+									"raw": "{{route_users}}/",
+									"host": [
+										"{{route_users}}"
+									],
+									"path": [
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update User",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJhZG1pbkBlbWFpbC5jb20iLCJuYW1lIjoiYWRtaW4iLCJwaG90b19wcm9maWxlIjpudWxsLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2NTc1Njc0ODAsImV4cCI6MTY1NzY1Mzg4MH0.FDljSsdSm3Ia0bYl4qUxKkPdJf1e1g-saDHqHBkYAQo",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "Irfandi Iqbal Abimanyu",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "email",
+											"value": "irfandiabimanyu@gmail.com",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "phone_number",
+											"value": "0895704237961",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "password",
+											"value": "Password123..",
+											"type": "text",
+											"disabled": true
+										},
+										{
+											"key": "photo_profile",
+											"type": "file",
+											"src": "/D:/Backup_Irfnd/Profile.jpg"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{route_users}}/1",
+									"host": [
+										"{{route_users}}"
+									],
+									"path": [
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete User",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJhZG1pbkBlbWFpbC5jb20iLCJuYW1lIjoiQWRtaW4iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2NTY2NzU1NjEsImV4cCI6MTY1Njc2MTk2MX0.hkQNa9fAQbUs7Er4zu7-WGqBI99sK5Xi09tjXajkF5A",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{route_users}}/3",
+									"host": [
+										"{{route_users}}"
+									],
+									"path": [
+										"3"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Recipes",
+					"item": [
+						{
+							"name": "Liked Recipes",
+							"item": [
+								{
+									"name": "Get Liked Recipes",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{route_admin_recipes}}/liked",
+											"host": [
+												"{{route_admin_recipes}}"
+											],
+											"path": [
+												"liked"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Add Liked Recipe",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "name",
+													"value": "Nasi Goreng Mushroom",
+													"type": "text"
+												},
+												{
+													"key": "shortDesc",
+													"value": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sed elementum ex, sit amet hendrerit orci. Phasellus pretium scelerisque enim id rutrum. In id ex in neque pretium eleifend quis ut leo.",
+													"type": "text"
+												},
+												{
+													"key": "ingredients",
+													"value": "1.\n2.\n3.\n4.\n5.",
+													"type": "text"
+												},
+												{
+													"key": "steps",
+													"value": "1.\n2.\n3.\n4.\n5.",
+													"type": "text"
+												},
+												{
+													"key": "photo",
+													"type": "file",
+													"src": "/C:/Users/Irfnd/Coding/Tugas Pijar Camp/resip-app/Nasi-goreng-jamur.jpg"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{route_admin_recipes}}/liked/1",
+											"host": [
+												"{{route_admin_recipes}}"
+											],
+											"path": [
+												"liked",
+												"1"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Delete Liked Recipe",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{route_admin_recipes}}/liked/1",
+											"host": [
+												"{{route_admin_recipes}}"
+											],
+											"path": [
+												"liked",
+												"1"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Saved Recipes",
+							"item": [
+								{
+									"name": "Get Saved Recipes",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{route_admin_recipes}}/saved",
+											"host": [
+												"{{route_admin_recipes}}"
+											],
+											"path": [
+												"saved"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Add Saved Recipe",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "name",
+													"value": "Nasi Goreng Mushroom",
+													"type": "text"
+												},
+												{
+													"key": "shortDesc",
+													"value": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sed elementum ex, sit amet hendrerit orci. Phasellus pretium scelerisque enim id rutrum. In id ex in neque pretium eleifend quis ut leo.",
+													"type": "text"
+												},
+												{
+													"key": "ingredients",
+													"value": "1.\n2.\n3.\n4.\n5.",
+													"type": "text"
+												},
+												{
+													"key": "steps",
+													"value": "1.\n2.\n3.\n4.\n5.",
+													"type": "text"
+												},
+												{
+													"key": "photo",
+													"type": "file",
+													"src": "/C:/Users/Irfnd/Coding/Tugas Pijar Camp/resip-app/Nasi-goreng-jamur.jpg"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{route_admin_recipes}}/saved/1",
+											"host": [
+												"{{route_admin_recipes}}"
+											],
+											"path": [
+												"saved",
+												"1"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Delete Saved Recipe",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{route_admin_recipes}}/saved/1",
+											"host": [
+												"{{route_admin_recipes}}"
+											],
+											"path": [
+												"saved",
+												"1"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Get Recipes (Pagination) Copy",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJhZG1pbkBlbWFpbC5jb20iLCJuYW1lIjoiYWRtaW4iLCJwaG90b19wcm9maWxlIjoiL3VzZXJzL2ltYWdlcy9waG90by1wcm9maWxlLWMzMTA3MDI4LTc3YTctNDVlOS04MTIwLWI0ZDczODM3MTdkZi5qcGciLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2NTc1OTM2NjAsImV4cCI6MTY1NzY4MDA2MH0.W6v1ZpbRQqB33grtDLGOZCIaEX9YNkT-ko71LQQkg9E",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{route_admin_recipes}}?search=banteng",
+									"host": [
+										"{{route_admin_recipes}}"
+									],
+									"query": [
+										{
+											"key": "search",
+											"value": "banteng"
+										},
+										{
+											"key": "page",
+											"value": "1",
+											"disabled": true
+										},
+										{
+											"key": "size",
+											"value": "5",
+											"disabled": true
+										},
+										{
+											"key": "sort",
+											"value": "likedCount",
+											"disabled": true
+										},
+										{
+											"key": "order",
+											"value": "desc",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Recipes (All)",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{route_admin_recipes}}/all",
+									"host": [
+										"{{route_admin_recipes}}"
+									],
+									"path": [
+										"all"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Recipes (Popular)",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{route_admin_recipes}}/popular",
+									"host": [
+										"{{route_admin_recipes}}"
+									],
+									"path": [
+										"popular"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Recipe",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{route_admin_recipes}}/2",
+									"host": [
+										"{{route_admin_recipes}}"
+									],
+									"path": [
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add Recipe",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "Nasi Goreng Jamur",
+											"type": "text"
+										},
+										{
+											"key": "shortDesc",
+											"value": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sed elementum ex, sit amet hendrerit orci. Phasellus pretium scelerisque enim id rutrum. In id ex in neque pretium eleifend quis ut leo.",
+											"type": "text"
+										},
+										{
+											"key": "ingredients",
+											"value": "1.\n2.\n3.\n4.\n5.",
+											"type": "text"
+										},
+										{
+											"key": "steps",
+											"value": "1.\n2.\n3.\n4.\n5.",
+											"type": "text"
+										},
+										{
+											"key": "photo",
+											"type": "file",
+											"src": "/C:/Users/Irfnd/Coding/Tugas Pijar Camp/resip-app/Nasi-goreng-jamur.jpg"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{route_admin_recipes}}",
+									"host": [
+										"{{route_admin_recipes}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Recipe",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJhZG1pbkBlbWFpbC5jb20iLCJuYW1lIjoiYWRtaW4iLCJwaG90b19wcm9maWxlIjoiL3VzZXJzL2ltYWdlcy9waG90by1wcm9maWxlLWMzMTA3MDI4LTc3YTctNDVlOS04MTIwLWI0ZDczODM3MTdkZi5qcGciLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2NTc1OTM2NjAsImV4cCI6MTY1NzY4MDA2MH0.W6v1ZpbRQqB33grtDLGOZCIaEX9YNkT-ko71LQQkg9E",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "title",
+											"value": "Resep Nasi Goreng Jamur, Masakan Kesukaan Semua Orang",
+											"type": "text"
+										},
+										{
+											"key": "photo_recipe",
+											"type": "file",
+											"src": "/C:/Users/Irfnd/Documents/Coding/Tugas Pijar Camp/resip-app/Nasi-goreng-jamur.jpg",
+											"disabled": true
+										},
+										{
+											"key": "ingredients",
+											"value": "600 g nasi putih\n100 g daging ayam giling\n2 butir telur ayam\n100 g jamur kancing, belah dua\n1 bungkus Royco Bumbu Komplit Nasi Goreng\n1 sdm minyak\n1 sdm margarin",
+											"type": "text"
+										},
+										{
+											"key": "steps",
+											"value": "1. Panaskan minyak dan margarin di dalam wajan di atas api besar. Masukkan daging ayam, masak hingga berubah warna. Sisihkan di pinggir wajan.\n2. Masukkan telur, diamkan sebentar. Masak orak arik. Setelah matang, aduk rata dengan ayam.\n3. Masukkan jamur, aduk rata.\n4. Tambahkan nasi dan Royco Bumbu Komplit Nasi Goreng, aduk rata.\n5. Masak hingga bumbu meresap sempurna. Angkat.",
+											"type": "text"
+										},
+										{
+											"key": "id_owner",
+											"value": "1",
+											"type": "text",
+											"disabled": true
+										}
+									]
+								},
+								"url": {
+									"raw": "{{route_admin_recipes}}/2",
+									"host": [
+										"{{route_admin_recipes}}"
+									],
+									"path": [
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Recipe",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJhZG1pbkBlbWFpbC5jb20iLCJuYW1lIjoiQWRtaW4iLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2NTY2NDQyNjgsImV4cCI6MTY1NjczMDY2OH0.xxf-jq-hctHCZ4lmhE0dt17D_fwI35xS_PWXooiE2A8",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{route_admin_recipes}}/3",
+									"host": [
+										"{{route_admin_recipes}}"
+									],
+									"path": [
+										"3"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Videos",
+					"item": [
+						{
+							"name": "Get Videos",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{route_recipes_videos}}/1",
+									"host": [
+										"{{route_recipes_videos}}"
+									],
+									"path": [
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Videos (Recipe)",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{route_recipes_videos}}/recipe/1",
+									"host": [
+										"{{route_recipes_videos}}"
+									],
+									"path": [
+										"recipe",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Video",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{route_recipes_videos}}/recipe/1",
+									"host": [
+										"{{route_recipes_videos}}"
+									],
+									"path": [
+										"recipe",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add Video",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "title",
+											"value": "#1 Resep Nasi Goreng Jamur, Masakan Kesukaan Semua Orang",
+											"type": "text"
+										},
+										{
+											"key": "description",
+											"value": "Setelah sekian banyak resep nasi goreng kita lalui, sekarang tiba waktunya menikmati Nasi Goreng Jamur. Dengan segala kemudahannya, jadikan resep ini sebagai temanmu di kala lapar tengah malam, makan pagi, ataupun makan siang.Cukup dengan bahan minimalis, kamu dapat membuat resep Nasi Goreng Jamur ini dimanapun kamu berada. Siapkan sebungkus Royco Bumbu Komplit Nasi Goreng, tambahkan bumbu-bumbu dasar dan juga daging ayam giling serta telur dan tentunya – jamur kancing. Gunakan minyak dan margarin untuk rasa yang lebih istimewa, tumis ayam, orak-arik telur, dan campurkan nasi dengan segenap bahan lainnya. Masak hingga matang dan voi la, jadi sudah hidangan mudah yang satu ini.Ingin mencari inspirasi masak nasi goreng lainnya? Coba saja resep Nasi Goreng Kari, Nasi Goreng Spesial , ataupun Nasi Goreng Kunyit. Seru!",
+											"type": "text"
+										},
+										{
+											"key": "id_recipe",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "recipe_video",
+											"type": "file",
+											"src": "/C:/Users/Irfnd/Documents/Coding/Tugas Pijar Camp/resip-app/Resep Nasi Goreng Kuning Udang Jamur Pas Buat Sarapan di Hari Sabtu.mp4"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{route_admin_videos}}",
+									"host": [
+										"{{route_admin_videos}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Video",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "title",
+											"value": "Step #1. Resep Nasi Goreng Jamur, Masakan Kesukaan Semua Orang",
+											"type": "text"
+										},
+										{
+											"key": "description",
+											"value": "Setelah sekian banyak resep nasi goreng kita lalui, sekarang tiba waktunya menikmati Nasi Goreng Jamur. Dengan segala kemudahannya, jadikan resep ini sebagai temanmu di kala lapar tengah malam, makan pagi, ataupun makan siang.Cukup dengan bahan minimalis, kamu dapat membuat resep Nasi Goreng Jamur ini dimanapun kamu berada. Siapkan sebungkus Royco Bumbu Komplit Nasi Goreng, tambahkan bumbu-bumbu dasar dan juga daging ayam giling serta telur dan tentunya – jamur kancing. Gunakan minyak dan margarin untuk rasa yang lebih istimewa, tumis ayam, orak-arik telur, dan campurkan nasi dengan segenap bahan lainnya. Masak hingga matang dan voi la, jadi sudah hidangan mudah yang satu ini.Ingin mencari inspirasi masak nasi goreng lainnya? Coba saja resep Nasi Goreng Kari, Nasi Goreng Spesial , ataupun Nasi Goreng Kunyit. Seru!",
+											"type": "text"
+										},
+										{
+											"key": "id_recipe",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "recipe_video",
+											"type": "file",
+											"src": []
+										}
+									]
+								},
+								"url": {
+									"raw": "{{route_admin_videos}}/1",
+									"host": [
+										"{{route_admin_videos}}"
+									],
+									"path": [
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Video",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{route_admin_videos}}/1",
+									"host": [
+										"{{route_admin_videos}}"
+									],
+									"path": [
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Comments",
+					"item": [
+						{
+							"name": "Get Comments",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "comment",
+											"value": "Nice Recipe",
+											"type": "text"
+										},
+										{
+											"key": "recipeId",
+											"value": "1",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{route_admin_comments}}",
+									"host": [
+										"{{route_admin_comments}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Comment",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{route_admin_comments}}/1",
+									"host": [
+										"{{route_admin_comments}}"
+									],
+									"path": [
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add Comment",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "comment",
+											"value": "Nice Recipe",
+											"type": "text"
+										},
+										{
+											"key": "recipeId",
+											"value": "1",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{route_admin_comments}}",
+									"host": [
+										"{{route_admin_comments}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Comment",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "comment",
+											"value": "Nice Recipe",
+											"type": "text"
+										},
+										{
+											"key": "recipeId",
+											"value": "1",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{route_admin_comments}}/1",
+									"host": [
+										"{{route_admin_comments}}"
+									],
+									"path": [
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Comment",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "comment",
+											"value": "Nice Recipe",
+											"type": "text"
+										},
+										{
+											"key": "recipeId",
+											"value": "1",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{route_admin_comments}}/1",
+									"host": [
+										"{{route_admin_comments}}"
+									],
+									"path": [
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Auth Routes",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Irfandi Iqbal Abimanyu",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "irfandiabimanyu@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "phoneNumber",
+									"value": "082175688883",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "Irfiqnyu29.",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{route_auth}}/register",
+							"host": [
+								"{{route_auth}}"
+							],
+							"path": [
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "irfandiabimanyu@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "Irfiqnyu29.",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{route_auth}}/login",
+							"host": [
+								"{{route_auth}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Refresh Token",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "refresh_token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ1c2VyMUBlbWFpbC5jb20iLCJuYW1lIjoiVXNlcjEiLCJyb2xlIjoidXNlciIsImlhdCI6MTY1NjY0Mzg2OCwiZXhwIjoxNjU5MjM1ODY4fQ.-qUsdNyQ80JC8yoPC5yWyIXcgbQR-_VDOr74w4T4Nd0",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{route_auth}}/refresh-token",
+							"host": [
+								"{{route_auth}}"
+							],
+							"path": [
+								"refresh-token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Send Verification",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6IklyZmFuZGkgSXFiYWwgQWJpbWFueXUiLCJlbWFpbCI6ImlyZmFuZGlhYmltYW55dUBnbWFpbC5jb20iLCJyb2xlIjoidXNlciIsImlzVmVyaWZpZWQiOmZhbHNlLCJpYXQiOjE2NjIwOTc4MzYsImV4cCI6MTY2MjA5OTYzNn0.lp0CT-_mEEheXvWAztsB-Ycup0ivJov1RPeAHQ3HBPs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "refresh_token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ1c2VyMUBlbWFpbC5jb20iLCJuYW1lIjoiVXNlcjEiLCJyb2xlIjoidXNlciIsImlhdCI6MTY1NjY0Mzg2OCwiZXhwIjoxNjU5MjM1ODY4fQ.-qUsdNyQ80JC8yoPC5yWyIXcgbQR-_VDOr74w4T4Nd0",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{route_auth}}/send-verification",
+							"host": [
+								"{{route_auth}}"
+							],
+							"path": [
+								"send-verification"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Verify",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "refresh_token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ1c2VyMUBlbWFpbC5jb20iLCJuYW1lIjoiVXNlcjEiLCJyb2xlIjoidXNlciIsImlhdCI6MTY1NjY0Mzg2OCwiZXhwIjoxNjU5MjM1ODY4fQ.-qUsdNyQ80JC8yoPC5yWyIXcgbQR-_VDOr74w4T4Nd0",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{route_auth}}/verify?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6IklyZmFuZGkgSXFiYWwgQWJpbWFueXUiLCJlbWFpbCI6ImlyZmFuZGlhYmltYW55dUBnbWFpbC5jb20iLCJyb2xlIjoidXNlciIsImlzVmVyaWZpZWQiOmZhbHNlLCJpYXQiOjE2NjIwOTc4NDMsImV4cCI6MTY2MjA5ODE0M30.DciGhgJcWvLHJpQqG2P9OxSVa3N7b6Tv8nl_2IZcIsQ",
+							"host": [
+								"{{route_auth}}"
+							],
+							"path": [
+								"verify"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6IklyZmFuZGkgSXFiYWwgQWJpbWFueXUiLCJlbWFpbCI6ImlyZmFuZGlhYmltYW55dUBnbWFpbC5jb20iLCJyb2xlIjoidXNlciIsImlzVmVyaWZpZWQiOmZhbHNlLCJpYXQiOjE2NjIwOTc4NDMsImV4cCI6MTY2MjA5ODE0M30.DciGhgJcWvLHJpQqG2P9OxSVa3N7b6Tv8nl_2IZcIsQ"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "User Routes",
+			"item": [
+				{
+					"name": "Profile",
+					"item": [
+						{
+							"name": "Photo",
+							"item": [
+								{
+									"name": "Add Photo",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "photo",
+													"type": "file",
+													"src": "/C:/Users/Irfnd/Coding/Tugas Pijar Camp/resip-app/Photo-profile.jpg"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{route_profile}}/photo",
+											"host": [
+												"{{route_profile}}"
+											],
+											"path": [
+												"photo"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Delete Photo",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{route_profile}}/photo",
+											"host": [
+												"{{route_profile}}"
+											],
+											"path": [
+												"photo"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Get Profile",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{route_profile}}",
+									"host": [
+										"{{route_profile}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Profile",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "Irfandi Iqbal Abimanyu",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "irfandiabimanyu@gmail.com",
+											"type": "text"
+										},
+										{
+											"key": "phoneNumber",
+											"value": "082175688883",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "Irfiqnyu29.",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{route_profile}}",
+									"host": [
+										"{{route_profile}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Profile",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{route_profile}}",
+									"host": [
+										"{{route_profile}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Recipes",
+					"item": [
+						{
+							"name": "My Recipes",
+							"item": [
+								{
+									"name": "Get My Recipes",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{route_recipes}}/mine",
+											"host": [
+												"{{route_recipes}}"
+											],
+											"path": [
+												"mine"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Update My Recipe",
+									"request": {
+										"method": "PATCH",
+										"header": [],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "name",
+													"value": "Nasi Goreng Mushroom",
+													"type": "text"
+												},
+												{
+													"key": "shortDesc",
+													"value": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sed elementum ex, sit amet hendrerit orci. Phasellus pretium scelerisque enim id rutrum. In id ex in neque pretium eleifend quis ut leo.",
+													"type": "text"
+												},
+												{
+													"key": "ingredients",
+													"value": "1.\n2.\n3.\n4.\n5.",
+													"type": "text"
+												},
+												{
+													"key": "steps",
+													"value": "1.\n2.\n3.\n4.\n5.",
+													"type": "text"
+												},
+												{
+													"key": "photo",
+													"type": "file",
+													"src": "/C:/Users/Irfnd/Coding/Tugas Pijar Camp/resip-app/Nasi-goreng-jamur.jpg"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{route_recipes}}/mine/2",
+											"host": [
+												"{{route_recipes}}"
+											],
+											"path": [
+												"mine",
+												"2"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Delete My Recipe",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{route_recipes}}/mine/2",
+											"host": [
+												"{{route_recipes}}"
+											],
+											"path": [
+												"mine",
+												"2"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Liked Recipes",
+							"item": [
+								{
+									"name": "Get Liked Recipes",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{route_recipes}}/liked",
+											"host": [
+												"{{route_recipes}}"
+											],
+											"path": [
+												"liked"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Add Liked Recipe",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "name",
+													"value": "Nasi Goreng Mushroom",
+													"type": "text"
+												},
+												{
+													"key": "shortDesc",
+													"value": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sed elementum ex, sit amet hendrerit orci. Phasellus pretium scelerisque enim id rutrum. In id ex in neque pretium eleifend quis ut leo.",
+													"type": "text"
+												},
+												{
+													"key": "ingredients",
+													"value": "1.\n2.\n3.\n4.\n5.",
+													"type": "text"
+												},
+												{
+													"key": "steps",
+													"value": "1.\n2.\n3.\n4.\n5.",
+													"type": "text"
+												},
+												{
+													"key": "photo",
+													"type": "file",
+													"src": "/C:/Users/Irfnd/Coding/Tugas Pijar Camp/resip-app/Nasi-goreng-jamur.jpg"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{route_recipes}}/liked/1",
+											"host": [
+												"{{route_recipes}}"
+											],
+											"path": [
+												"liked",
+												"1"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Delete Liked Recipe",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{route_recipes}}/liked/1",
+											"host": [
+												"{{route_recipes}}"
+											],
+											"path": [
+												"liked",
+												"1"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Saved Recipes",
+							"item": [
+								{
+									"name": "Get Saved Recipes",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{route_recipes}}/saved",
+											"host": [
+												"{{route_recipes}}"
+											],
+											"path": [
+												"saved"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Add Saved Recipe",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "name",
+													"value": "Nasi Goreng Mushroom",
+													"type": "text"
+												},
+												{
+													"key": "shortDesc",
+													"value": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sed elementum ex, sit amet hendrerit orci. Phasellus pretium scelerisque enim id rutrum. In id ex in neque pretium eleifend quis ut leo.",
+													"type": "text"
+												},
+												{
+													"key": "ingredients",
+													"value": "1.\n2.\n3.\n4.\n5.",
+													"type": "text"
+												},
+												{
+													"key": "steps",
+													"value": "1.\n2.\n3.\n4.\n5.",
+													"type": "text"
+												},
+												{
+													"key": "photo",
+													"type": "file",
+													"src": "/C:/Users/Irfnd/Coding/Tugas Pijar Camp/resip-app/Nasi-goreng-jamur.jpg"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{route_recipes}}/saved/1",
+											"host": [
+												"{{route_recipes}}"
+											],
+											"path": [
+												"saved",
+												"1"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Delete Saved Recipe",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{route_recipes}}/saved/1",
+											"host": [
+												"{{route_recipes}}"
+											],
+											"path": [
+												"saved",
+												"1"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Get Recipes (Pagination)",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJhZG1pbkBlbWFpbC5jb20iLCJuYW1lIjoiYWRtaW4iLCJwaG90b19wcm9maWxlIjoiL3VzZXJzL2ltYWdlcy9waG90by1wcm9maWxlLWMzMTA3MDI4LTc3YTctNDVlOS04MTIwLWI0ZDczODM3MTdkZi5qcGciLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2NTc1OTM2NjAsImV4cCI6MTY1NzY4MDA2MH0.W6v1ZpbRQqB33grtDLGOZCIaEX9YNkT-ko71LQQkg9E",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{route_recipes}}?search=banteng",
+									"host": [
+										"{{route_recipes}}"
+									],
+									"query": [
+										{
+											"key": "search",
+											"value": "banteng"
+										},
+										{
+											"key": "page",
+											"value": "1",
+											"disabled": true
+										},
+										{
+											"key": "size",
+											"value": "5",
+											"disabled": true
+										},
+										{
+											"key": "sort",
+											"value": "likedCount",
+											"disabled": true
+										},
+										{
+											"key": "order",
+											"value": "desc",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Recipes (All)",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{route_recipes}}/all",
+									"host": [
+										"{{route_recipes}}"
+									],
+									"path": [
+										"all"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Recipes (New)",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{route_recipes}}/new?sort=createdAt&order=desc",
+									"host": [
+										"{{route_recipes}}"
+									],
+									"path": [
+										"new"
+									],
+									"query": [
+										{
+											"key": "search",
+											"value": "banteng",
+											"disabled": true
+										},
+										{
+											"key": "page",
+											"value": "1",
+											"disabled": true
+										},
+										{
+											"key": "size",
+											"value": "5",
+											"disabled": true
+										},
+										{
+											"key": "sort",
+											"value": "createdAt"
+										},
+										{
+											"key": "order",
+											"value": "desc"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Recipes (Popular)",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{route_recipes}}/popular",
+									"host": [
+										"{{route_recipes}}"
+									],
+									"path": [
+										"popular"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Recipe",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{route_recipes}}/2",
+									"host": [
+										"{{route_recipes}}"
+									],
+									"path": [
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Check Recipe",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{route_recipes}}/check/1",
+									"host": [
+										"{{route_recipes}}"
+									],
+									"path": [
+										"check",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Add Recipe",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "Nasi Goreng Jamur",
+											"type": "text"
+										},
+										{
+											"key": "shortDesc",
+											"value": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sed elementum ex, sit amet hendrerit orci. Phasellus pretium scelerisque enim id rutrum. In id ex in neque pretium eleifend quis ut leo.",
+											"type": "text"
+										},
+										{
+											"key": "ingredients",
+											"value": "1.\n2.\n3.\n4.\n5.",
+											"type": "text"
+										},
+										{
+											"key": "steps",
+											"value": "1.\n2.\n3.\n4.\n5.",
+											"type": "text"
+										},
+										{
+											"key": "photo",
+											"type": "file",
+											"src": "/C:/Users/Irfnd/Coding/Tugas Pijar Camp/resip-app/Nasi-goreng-jamur.jpg"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{route_recipes}}",
+									"host": [
+										"{{route_recipes}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Comments",
+					"item": [
+						{
+							"name": "Add Comments",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "comment",
+											"value": "Nice Recipe",
+											"type": "text"
+										},
+										{
+											"key": "recipeId",
+											"value": "1",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{route_comments}}",
+									"host": [
+										"{{route_comments}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6IklyZmFuZGkgSXFiYWwgQWJpbWFueXUiLCJlbWFpbCI6ImlyZmFuZGlhYmltYW55dUBnbWFpbC5jb20iLCJyb2xlIjoidXNlciIsImlzVmVyaWZpZWQiOmZhbHNlLCJpYXQiOjE2NjIwOTc4MzYsImV4cCI6MTY2MjA5OTYzNn0.lp0CT-_mEEheXvWAztsB-Ycup0ivJov1RPeAHQ3HBPs",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Get 404 Page",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{route_base}}",
+					"host": [
+						"{{route_base}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "route_base",
+			"value": "localhost:8000",
+			"type": "string"
+		},
+		{
+			"key": "route_auth",
+			"value": "localhost:8000/auth",
+			"type": "string"
+		},
+		{
+			"key": "route_admin_users",
+			"value": "localhost:8000/admin/users",
+			"type": "string"
+		},
+		{
+			"key": "route_admin_recipes",
+			"value": "localhost:8000/admin/recipes",
+			"type": "string"
+		},
+		{
+			"key": "route_admin_comments",
+			"value": "localhost:8000/admin/comments",
+			"type": "string"
+		},
+		{
+			"key": "route_admin_videos",
+			"value": "localhost:8000/admin/videos",
+			"type": "string"
+		},
+		{
+			"key": "route_profile",
+			"value": "localhost:8000/profile",
+			"type": "string"
+		},
+		{
+			"key": "route_recipes",
+			"value": "localhost:8000/recipes",
+			"type": "string"
+		},
+		{
+			"key": "route_comments",
+			"value": "localhost:8000/comments",
+			"type": "string"
+		}
+	]
+}
