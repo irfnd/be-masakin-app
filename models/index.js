@@ -1,13 +1,13 @@
 require("dotenv").config();
-const { DATABASE_URL, DATABASE_URL_LOCAL, REDIS_URL, ENV } = process.env;
+const { DATABASE_URI, DATABASE_LOCAL_URI, REDIS_URI, ENV } = process.env;
 
 const Sequelize = require("sequelize");
 const { createClient } = require("redis");
 
-const dbUri = ENV === "production" ? DATABASE_URL : DATABASE_URL_LOCAL;
+const dbUri = ENV === "production" ? DATABASE_URI : DATABASE_LOCAL_URI;
 const ssl = ENV === "production" ? { ssl: { require: true, rejectUnauthorized: false } } : null;
 const sequelize = new Sequelize(dbUri, { logging: false, dialectOptions: ssl });
-const redis = createClient({ url: REDIS_URL });
+const redis = createClient({ url: REDIS_URI });
 
 const db = { sequelize, Sequelize, redis };
 

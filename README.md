@@ -1,55 +1,139 @@
-# 🍳 (Backend) Resip! App - Recipes Inspiration Portal!
+<div align="center">
+  <p>
+    <img src="https://raw.githubusercontent.com/irfnd/fe-masakin-app/master/docs/main-banner.png" alt="Logo" width="auto">
+  </p>
 
-A place to find inspiration for cooking recipes anywhere and anytime.
+  <h3 align="center">Masakin App (Backend)</h3>
+  <i><h4 align="center">A place to find inspiration for cooking recipes anywhere and anytime</h4></i>
 
-## 📝 Description
+  <p align="center">
+    <a href="https://masakin-app.herokuapp.com/">View Demo</a>
+    |
+    <a href="https://github.com/irfnd/be-masakin-app/issues">Report Bug</a>
+    |
+    <a href="https://github.com/irfnd/be-masakin-app/issues">Request Feature</a>
+  </p>
+</div>
 
-Projek ini merupakan tugas studi kasus food recipe _beginner backend_ **Pijar Camp Fullstack Web Batch 3**. Dibangun menggunakan bahasa pemrograman **JavaScript** diatas **NodeJS**, dengan _framework_ **ExpressJS** dan menggunakan **PostgreSQL** sebagai _database_-nya.
+## About The Project
 
-## 📚 Stack and Packages
+**Masakin App** is a simple website that provides a variety of user-entered recipes, the recipes provided display ingredients and cooking stages with videos. Users can leave comments for the displayed recipes. In addition, users can also give likes and save the recipes they want.
 
-### Dependencies
+### Built With
 
-- [bcrypt](https://github.com/kelektiv/node.bcrypt.js)
-- [cors](https://github.com/expressjs/cors)
-- [dotenv](https://github.com/motdotla/dotenv)
-- [express](https://github.com/expressjs/express)
-- [helmet](https://github.com/helmetjs/helmet)
-- [joi](https://github.com/sideway/joi)
-- [jsonwebtoken](https://github.com/auth0/node-jsonwebtoken)
-- [morgan](https://github.com/expressjs/morgan)
-- [multer](https://github.com/expressjs/multer)
-- [pg](https://github.com/brianc/node-postgres)
-- [uuid](https://github.com/uuidjs/uuid)
+This app was built with some technologies below:
 
-### Dev. Dependencies
+[![JavaScript](https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E)](https://www.ecma-international.org/publications-and-standards/standards/)
+[![Express JS](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white)](https://expressjs.com/)
+[![JWT](https://img.shields.io/badge/JWT-000000?style=for-the-badge&logo=JSON%20web%20tokens&logoColor=white)](https://jwt.io/)
+[![Sequelize](https://img.shields.io/badge/Sequelize-52B0E7?style=for-the-badge&logo=Sequelize&logoColor=white)](https://sequelize.org/)
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)](https://www.postgresql.org/)
+[![Redis](https://img.shields.io/badge/redis-%23DD0031.svg?&style=for-the-badge&logo=redis&logoColor=white)](https://redis.com/)
+[![Firebase](https://img.shields.io/badge/firebase-ffca28?style=for-the-badge&logo=firebase&logoColor=black)](https://firebase.google.com/)
+[![Heroku](https://img.shields.io/badge/Heroku-430098?style=for-the-badge&logo=heroku&logoColor=white)](https://www.heroku.com/)
 
-- [eslint](https://github.com/eslint/eslint)
-- [nodemon](https://github.com/remy/nodemon)
-- [prettier](https://github.com/prettier/prettier)
+## Getting Started
 
-## 🎯 Task Requirements
+### Prerequisites
 
-Buatlah API dari desain aplikasi berikut ini:
-[Desain Aplikasi](https://www.figma.com/file/SUbBTYCq1e4ngRt20lSdqr/Food-Recipe?node-id=47%3A1273)
+#### Required
 
-- [x] Flowchart Aplikasi
-- [x] Table (Recipe, User, Comment)
-- [x] CRUD
-- [x] Comment by resep (opsional)
-- [x] Resep by user (opsional)
-- [x] Pencarian Resep berdasarkan nama
-- [x] Resep terbaru maksimal 5
-- [x] Pagination (opsional)
-- [x] Linter
-- [x] Error Handling
-- [x] Cors
-- [x] ENV
-- [x] Dokumentasi Postman
-- [x] Gunakan Bahasa Inggris untuk nama File dan Fungsi
-- [x] Upload/push tugas kamu ke GitHub dan gunakan nama yang profesional
-- [x] Dapat didemokan menggunakan postman
-- [x] Presentasikan apa yang telah Anda lakukan dalam minggu ini
-- [x] Jelaskan dengan bahasa kalian sendiri apa itu dan konsep tentang [Node JS, Express, postgreSQL, REST API]
-- [x] Ceritakan dan Demokan tentang proyek ini
-- [x] User Authentication
+Before going to the installation stage there are some software that must be installed first.
+
+[![Node JS](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)](https://nodejs.org/en/download)
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)](https://www.postgresql.org/)
+[![Redis](https://img.shields.io/badge/redis-%23DD0031.svg?&style=for-the-badge&logo=redis&logoColor=white)](https://redis.com/)
+[![Postman](https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=Postman&logoColor=white)](https://www.postman.com/)
+
+#### Optional
+
+You can install yarn package manager for your project
+
+[![Yarn](https://img.shields.io/badge/Yarn-2C8EBB?style=for-the-badge&logo=yarn&logoColor=white)](https://yarnpkg.com/)
+
+### Installation
+
+If you want to run this project locally, I suggest you to create a database on your local postgreSQL server first before configuring this backend repo. You can give the database name whatever you want, as long as it includes the postgreSQL URI in the .env file. and don't forget to include the redis URI too.
+
+- Clone this repo
+
+```bash
+git clone https://github.com/irfnd/be-masakin-app
+```
+
+- Go to folder repo
+
+```bash
+cd be-masakin-app
+```
+
+- Install packages
+
+```bash
+npm install
+```
+
+- or install packages with yarn
+
+```bash
+yarn
+```
+
+- <a href="#setup-firebase">Setup Firebase</a>
+- <a href="#setup-postgresql">Setup PostgreSQL</a>
+- <a href="#setup-redis">Setup Redis</a>
+- <a href="#setup-environment">Setup Environment</a>
+- Type `npm run dev` or `yarn dev` to start project development
+- Type `npm run start` or `yarn start` to start project production
+
+### Setup Firebase
+
+Create firebase to provide photo storage for this project. To get your firebase credentials follow this steps:
+
+- Open your console firebase
+- Open Project settings
+- Click Service accounts tabs
+- Click Firebase Admin SDK tabs
+- Click Generate new private key button
+- Download, rename it to `credentials.json` and put your credentials file to libs folder
+- Add bucket name on `.env` file
+
+### Setup PostgreSQL
+
+- Create a database on your local/cloud postgreSQL server
+- Give database name whatever you want
+- Check postgreSQL local/cloud host and port
+- Add postgreSQL URI to `.env` file
+
+### Setup Redis
+
+- If you prefer to create redis on cloud, you can register on [Redis Cloud](https://app.redislabs.com)
+- Setup Data Access Control, Users, and Roles for database
+- If you use local redis server, check host and port
+- Add redis local/cloud URI to `.env` file
+
+### Setup Environment
+
+- Read `.env.example` to get all detail environment for this project
+- Create your `.env` file based on `.env.example`
+- Put `.env` to root project folder
+
+## Postman
+
+- Get `postman.json` file from this repo
+- Import to your postman
+- All routes for this project can be seen in postman
+
+## Contributing
+
+Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+
+- Fork the Project
+- Create your Feature Branch `git checkout -b feature/AmazingFeature`
+- Commit your Changes `git commit -m 'Add some AmazingFeature'`
+- Push to the Branch `git push origin feature/AmazingFeature`
+- Open a Pull Request
+
+## License
+
+Distributed under the [MIT](/LICENSE) License.

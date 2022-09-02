@@ -1,6 +1,6 @@
 const status = require("http-status");
 const { Op } = require("sequelize");
-const { Users, Recipes, LikedRecipes, SavedRecipes, Comments, Videos, sequelize, redis } = require("../models");
+const { Users, Recipes, Comments, Videos, sequelize, redis } = require("../models");
 const { queryLiked, querySaved } = require("../models/helpers/subQuery");
 const { responseSuccess } = require("../libs/response");
 const { getPagination, getPagingData, getSortOrder } = require("../libs/searchPagination");
