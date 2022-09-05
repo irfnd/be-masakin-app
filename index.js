@@ -1,5 +1,5 @@
 require("dotenv").config();
-const { ENV, CLIENT_HOST, CLIENT_LOCAL_URL, DATABASE_SYNC } = process.env;
+const { CLIENT_URL, DATABASE_SYNC } = process.env;
 
 const toBool = require("to-bool");
 const express = require("express");
@@ -14,7 +14,7 @@ const { transport } = require("./libs/emailServices");
 
 const port = process.env.PORT || 8000;
 const app = express();
-const client = ENV === "production" ? CLIENT_HOST : CLIENT_LOCAL_URL;
+const client = CLIENT_URL.split(",");
 
 app.use(cors({ origin: client }));
 app.use(helmet());
