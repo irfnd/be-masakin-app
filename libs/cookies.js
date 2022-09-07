@@ -4,7 +4,7 @@ const parse = require("parse-duration");
 const cookiesOptions = {
 	path: "/",
 	maxAge: parse(env.expiresAccessToken),
-	domain: env.modeEnv === "production" ? "masakin-app.vercel.app" : "localhost",
+	// domain: env.modeEnv === "production" ? "masakin-app.vercel.app" : "localhost",
 	// httpOnly: true,
 };
 
