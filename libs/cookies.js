@@ -7,7 +7,7 @@ const cookiesOptions = {
 	sameSite: "none",
 	secure: true,
 	httpOnly: true,
-	// domain: env.modeEnv === "production" ? "masakin-app.vercel.app" : "localhost",
+	domain: env.modeEnv === "production" ? "masakin-app.vercel.app" : "localhost",
 };
 
 module.exports = {
