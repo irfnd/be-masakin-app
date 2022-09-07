@@ -8,6 +8,8 @@ const {
 	checkAccessToken,
 	checkRefreshToken,
 } = require("../libs/handleJwt");
+const { cookiesOptions } = require("../libs/cookies");
+const { crypto } = require("../libs/crypto");
 const { responseSuccess } = require("../libs/response");
 const { sendVerificationEmail } = require("../libs/emailServices");
 
@@ -39,7 +41,11 @@ const login = async (req, res, next) => {
 		const accessToken = generateAccessToken(payload);
 		const refreshToken = generateRefreshToken(payload);
 		await Tokens.create({ token: refreshToken, userId: getUser.id });
-		res.json(responseSuccess("retrieved", { ...payload, photo: getUser.photo, accessToken, refreshToken }));
+		const token = { accessToken, refreshToken };
+		const results = { ...payload, photo: getUser.photo };
+		res.cookie("token", crypto.encryptData(JSON.stringify(token)), cookiesOptions);
+		res.cookie("user", crypto.encryptData(JSON.stringify(results)), cookiesOptions);
+		res.json(responseSuccess("retrieved", { ...results, ...token }));
 	} catch (err) {
 		next(err);
 	}
@@ -59,10 +65,15 @@ const refresh = async (req, res, next) => {
 			role: decoded.role,
 			isVerified: decoded.isVerified,
 		};
+		const getUser = await Users.findByPk(payload.id);
 		const newAccessToken = generateAccessToken(payload);
 		const newRefreshToken = generateRefreshToken(payload);
 		await Tokens.update({ token: newRefreshToken }, { where: { token: refreshToken } });
-		res.json(responseSuccess("retrieved", { ...payload, accessToken: newAccessToken, refreshToken: newRefreshToken }));
+		const newToken = { accessToken: newAccessToken, refreshToken: newRefreshToken };
+		const results = { ...payload, photo: getUser.photo };
+		res.cookie("token", crypto.encryptData(JSON.stringify(newToken)), cookiesOptions);
+		res.cookie("user", crypto.encryptData(JSON.stringify(results)), cookiesOptions);
+		res.json(responseSuccess("retrieved", { ...results, ...newToken }));
 	} catch (err) {
 		next(err);
 	}

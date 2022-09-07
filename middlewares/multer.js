@@ -1,5 +1,4 @@
-require("dotenv").config();
-const { BUCKET_NAME } = process.env;
+const env = require("../libs/env");
 
 const status = require("http-status");
 const multer = require("multer");
@@ -7,7 +6,7 @@ const firebaseStorage = require("multer-firebase-storage");
 const firebaseInstance = require("../libs/firebase");
 
 const storageOptions = (folder, prefix) => ({
-	bucketName: BUCKET_NAME,
+	bucketName: env.bucketName,
 	directoryPath: folder,
 	namePrefix: prefix,
 	unique: true,
@@ -28,8 +27,6 @@ const upload = (prefix, folder, field) => {
 	}).single(field);
 };
 
-const deleteFile = (imageUrl) => {
-	return firebaseInstance.storage().bucket(BUCKET_NAME).file(imageUrl).delete();
-};
+const deleteFile = (imageUrl) => firebaseInstance.storage().bucket(env.bucketName).file(imageUrl).delete();
 
 module.exports = { upload, deleteFile };

@@ -29,12 +29,8 @@
 								"header": [],
 								"url": {
 									"raw": "{{route_admin_users}}/",
-									"host": [
-										"{{route_admin_users}}"
-									],
-									"path": [
-										""
-									]
+									"host": ["{{route_admin_users}}"],
+									"path": [""]
 								}
 							},
 							"response": []
@@ -56,12 +52,8 @@
 								"header": [],
 								"url": {
 									"raw": "{{route_admin_users}}/1",
-									"host": [
-										"{{route_admin_users}}"
-									],
-									"path": [
-										"1"
-									]
+									"host": ["{{route_admin_users}}"],
+									"path": ["1"]
 								}
 							},
 							"response": []
@@ -113,12 +105,8 @@
 								},
 								"url": {
 									"raw": "{{route_users}}/",
-									"host": [
-										"{{route_users}}"
-									],
-									"path": [
-										""
-									]
+									"host": ["{{route_users}}"],
+									"path": [""]
 								}
 							},
 							"response": []
@@ -174,12 +162,8 @@
 								},
 								"url": {
 									"raw": "{{route_users}}/1",
-									"host": [
-										"{{route_users}}"
-									],
-									"path": [
-										"1"
-									]
+									"host": ["{{route_users}}"],
+									"path": ["1"]
 								}
 							},
 							"response": []
@@ -201,12 +185,8 @@
 								"header": [],
 								"url": {
 									"raw": "{{route_users}}/3",
-									"host": [
-										"{{route_users}}"
-									],
-									"path": [
-										"3"
-									]
+									"host": ["{{route_users}}"],
+									"path": ["3"]
 								}
 							},
 							"response": []
@@ -226,12 +206,8 @@
 										"header": [],
 										"url": {
 											"raw": "{{route_admin_recipes}}/liked",
-											"host": [
-												"{{route_admin_recipes}}"
-											],
-											"path": [
-												"liked"
-											]
+											"host": ["{{route_admin_recipes}}"],
+											"path": ["liked"]
 										}
 									},
 									"response": []
@@ -273,13 +249,8 @@
 										},
 										"url": {
 											"raw": "{{route_admin_recipes}}/liked/1",
-											"host": [
-												"{{route_admin_recipes}}"
-											],
-											"path": [
-												"liked",
-												"1"
-											]
+											"host": ["{{route_admin_recipes}}"],
+											"path": ["liked", "1"]
 										}
 									},
 									"response": []
@@ -291,13 +262,8 @@
 										"header": [],
 										"url": {
 											"raw": "{{route_admin_recipes}}/liked/1",
-											"host": [
-												"{{route_admin_recipes}}"
-											],
-											"path": [
-												"liked",
-												"1"
-											]
+											"host": ["{{route_admin_recipes}}"],
+											"path": ["liked", "1"]
 										}
 									},
 									"response": []
@@ -314,12 +280,8 @@
 										"header": [],
 										"url": {
 											"raw": "{{route_admin_recipes}}/saved",
-											"host": [
-												"{{route_admin_recipes}}"
-											],
-											"path": [
-												"saved"
-											]
+											"host": ["{{route_admin_recipes}}"],
+											"path": ["saved"]
 										}
 									},
 									"response": []
@@ -361,13 +323,8 @@
 										},
 										"url": {
 											"raw": "{{route_admin_recipes}}/saved/1",
-											"host": [
-												"{{route_admin_recipes}}"
-											],
-											"path": [
-												"saved",
-												"1"
-											]
+											"host": ["{{route_admin_recipes}}"],
+											"path": ["saved", "1"]
 										}
 									},
 									"response": []
@@ -379,13 +336,8 @@
 										"header": [],
 										"url": {
 											"raw": "{{route_admin_recipes}}/saved/1",
-											"host": [
-												"{{route_admin_recipes}}"
-											],
-											"path": [
-												"saved",
-												"1"
-											]
+											"host": ["{{route_admin_recipes}}"],
+											"path": ["saved", "1"]
 										}
 									},
 									"response": []
@@ -409,9 +361,7 @@
 								"header": [],
 								"url": {
 									"raw": "{{route_admin_recipes}}?search=banteng",
-									"host": [
-										"{{route_admin_recipes}}"
-									],
+									"host": ["{{route_admin_recipes}}"],
 									"query": [
 										{
 											"key": "search",
@@ -449,12 +399,8 @@
 								"header": [],
 								"url": {
 									"raw": "{{route_admin_recipes}}/all",
-									"host": [
-										"{{route_admin_recipes}}"
-									],
-									"path": [
-										"all"
-									]
+									"host": ["{{route_admin_recipes}}"],
+									"path": ["all"]
 								}
 							},
 							"response": []
@@ -466,12 +412,8 @@
 								"header": [],
 								"url": {
 									"raw": "{{route_admin_recipes}}/popular",
-									"host": [
-										"{{route_admin_recipes}}"
-									],
-									"path": [
-										"popular"
-									]
+									"host": ["{{route_admin_recipes}}"],
+									"path": ["popular"]
 								}
 							},
 							"response": []
@@ -483,12 +425,8 @@
 								"header": [],
 								"url": {
 									"raw": "{{route_admin_recipes}}/2",
-									"host": [
-										"{{route_admin_recipes}}"
-									],
-									"path": [
-										"2"
-									]
+									"host": ["{{route_admin_recipes}}"],
+									"path": ["2"]
 								}
 							},
 							"response": []
@@ -530,9 +468,7 @@
 								},
 								"url": {
 									"raw": "{{route_admin_recipes}}",
-									"host": [
-										"{{route_admin_recipes}}"
-									]
+									"host": ["{{route_admin_recipes}}"]
 								}
 							},
 							"response": []
@@ -586,12 +522,8 @@
 								},
 								"url": {
 									"raw": "{{route_admin_recipes}}/2",
-									"host": [
-										"{{route_admin_recipes}}"
-									],
-									"path": [
-										"2"
-									]
+									"host": ["{{route_admin_recipes}}"],
+									"path": ["2"]
 								}
 							},
 							"response": []
@@ -613,12 +545,8 @@
 								"header": [],
 								"url": {
 									"raw": "{{route_admin_recipes}}/3",
-									"host": [
-										"{{route_admin_recipes}}"
-									],
-									"path": [
-										"3"
-									]
+									"host": ["{{route_admin_recipes}}"],
+									"path": ["3"]
 								}
 							},
 							"response": []
@@ -635,12 +563,8 @@
 								"header": [],
 								"url": {
 									"raw": "{{route_recipes_videos}}/1",
-									"host": [
-										"{{route_recipes_videos}}"
-									],
-									"path": [
-										"1"
-									]
+									"host": ["{{route_recipes_videos}}"],
+									"path": ["1"]
 								}
 							},
 							"response": []
@@ -652,13 +576,8 @@
 								"header": [],
 								"url": {
 									"raw": "{{route_recipes_videos}}/recipe/1",
-									"host": [
-										"{{route_recipes_videos}}"
-									],
-									"path": [
-										"recipe",
-										"1"
-									]
+									"host": ["{{route_recipes_videos}}"],
+									"path": ["recipe", "1"]
 								}
 							},
 							"response": []
@@ -670,13 +589,8 @@
 								"header": [],
 								"url": {
 									"raw": "{{route_recipes_videos}}/recipe/1",
-									"host": [
-										"{{route_recipes_videos}}"
-									],
-									"path": [
-										"recipe",
-										"1"
-									]
+									"host": ["{{route_recipes_videos}}"],
+									"path": ["recipe", "1"]
 								}
 							},
 							"response": []
@@ -713,9 +627,7 @@
 								},
 								"url": {
 									"raw": "{{route_admin_videos}}",
-									"host": [
-										"{{route_admin_videos}}"
-									]
+									"host": ["{{route_admin_videos}}"]
 								}
 							},
 							"response": []
@@ -752,12 +664,8 @@
 								},
 								"url": {
 									"raw": "{{route_admin_videos}}/1",
-									"host": [
-										"{{route_admin_videos}}"
-									],
-									"path": [
-										"1"
-									]
+									"host": ["{{route_admin_videos}}"],
+									"path": ["1"]
 								}
 							},
 							"response": []
@@ -769,12 +677,8 @@
 								"header": [],
 								"url": {
 									"raw": "{{route_admin_videos}}/1",
-									"host": [
-										"{{route_admin_videos}}"
-									],
-									"path": [
-										"1"
-									]
+									"host": ["{{route_admin_videos}}"],
+									"path": ["1"]
 								}
 							},
 							"response": []
@@ -809,9 +713,7 @@
 								},
 								"url": {
 									"raw": "{{route_admin_comments}}",
-									"host": [
-										"{{route_admin_comments}}"
-									]
+									"host": ["{{route_admin_comments}}"]
 								}
 							},
 							"response": []
@@ -823,12 +725,8 @@
 								"header": [],
 								"url": {
 									"raw": "{{route_admin_comments}}/1",
-									"host": [
-										"{{route_admin_comments}}"
-									],
-									"path": [
-										"1"
-									]
+									"host": ["{{route_admin_comments}}"],
+									"path": ["1"]
 								}
 							},
 							"response": []
@@ -855,9 +753,7 @@
 								},
 								"url": {
 									"raw": "{{route_admin_comments}}",
-									"host": [
-										"{{route_admin_comments}}"
-									]
+									"host": ["{{route_admin_comments}}"]
 								}
 							},
 							"response": []
@@ -884,12 +780,8 @@
 								},
 								"url": {
 									"raw": "{{route_admin_comments}}/1",
-									"host": [
-										"{{route_admin_comments}}"
-									],
-									"path": [
-										"1"
-									]
+									"host": ["{{route_admin_comments}}"],
+									"path": ["1"]
 								}
 							},
 							"response": []
@@ -916,12 +808,8 @@
 								},
 								"url": {
 									"raw": "{{route_admin_comments}}/1",
-									"host": [
-										"{{route_admin_comments}}"
-									],
-									"path": [
-										"1"
-									]
+									"host": ["{{route_admin_comments}}"],
+									"path": ["1"]
 								}
 							},
 							"response": []
@@ -965,12 +853,8 @@
 						},
 						"url": {
 							"raw": "{{route_auth}}/register",
-							"host": [
-								"{{route_auth}}"
-							],
-							"path": [
-								"register"
-							]
+							"host": ["{{route_auth}}"],
+							"path": ["register"]
 						}
 					},
 					"response": []
@@ -997,12 +881,8 @@
 						},
 						"url": {
 							"raw": "{{route_auth}}/login",
-							"host": [
-								"{{route_auth}}"
-							],
-							"path": [
-								"login"
-							]
+							"host": ["{{route_auth}}"],
+							"path": ["login"]
 						}
 					},
 					"response": []
@@ -1024,12 +904,8 @@
 						},
 						"url": {
 							"raw": "{{route_auth}}/refresh-token",
-							"host": [
-								"{{route_auth}}"
-							],
-							"path": [
-								"refresh-token"
-							]
+							"host": ["{{route_auth}}"],
+							"path": ["refresh-token"]
 						}
 					},
 					"response": []
@@ -1061,12 +937,8 @@
 						},
 						"url": {
 							"raw": "{{route_auth}}/send-verification",
-							"host": [
-								"{{route_auth}}"
-							],
-							"path": [
-								"send-verification"
-							]
+							"host": ["{{route_auth}}"],
+							"path": ["send-verification"]
 						}
 					},
 					"response": []
@@ -1094,12 +966,8 @@
 						},
 						"url": {
 							"raw": "{{route_auth}}/verify?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6IklyZmFuZGkgSXFiYWwgQWJpbWFueXUiLCJlbWFpbCI6ImlyZmFuZGlhYmltYW55dUBnbWFpbC5jb20iLCJyb2xlIjoidXNlciIsImlzVmVyaWZpZWQiOmZhbHNlLCJpYXQiOjE2NjIwOTc4NDMsImV4cCI6MTY2MjA5ODE0M30.DciGhgJcWvLHJpQqG2P9OxSVa3N7b6Tv8nl_2IZcIsQ",
-							"host": [
-								"{{route_auth}}"
-							],
-							"path": [
-								"verify"
-							],
+							"host": ["{{route_auth}}"],
+							"path": ["verify"],
 							"query": [
 								{
 									"key": "token",
@@ -1116,18 +984,14 @@
 					"listen": "prerequest",
 					"script": {
 						"type": "text/javascript",
-						"exec": [
-							""
-						]
+						"exec": [""]
 					}
 				},
 				{
 					"listen": "test",
 					"script": {
 						"type": "text/javascript",
-						"exec": [
-							""
-						]
+						"exec": [""]
 					}
 				}
 			]
@@ -1158,12 +1022,8 @@
 										},
 										"url": {
 											"raw": "{{route_profile}}/photo",
-											"host": [
-												"{{route_profile}}"
-											],
-											"path": [
-												"photo"
-											]
+											"host": ["{{route_profile}}"],
+											"path": ["photo"]
 										}
 									},
 									"response": []
@@ -1175,12 +1035,8 @@
 										"header": [],
 										"url": {
 											"raw": "{{route_profile}}/photo",
-											"host": [
-												"{{route_profile}}"
-											],
-											"path": [
-												"photo"
-											]
+											"host": ["{{route_profile}}"],
+											"path": ["photo"]
 										}
 									},
 									"response": []
@@ -1194,9 +1050,7 @@
 								"header": [],
 								"url": {
 									"raw": "{{route_profile}}",
-									"host": [
-										"{{route_profile}}"
-									]
+									"host": ["{{route_profile}}"]
 								}
 							},
 							"response": []
@@ -1233,9 +1087,7 @@
 								},
 								"url": {
 									"raw": "{{route_profile}}",
-									"host": [
-										"{{route_profile}}"
-									]
+									"host": ["{{route_profile}}"]
 								}
 							},
 							"response": []
@@ -1247,9 +1099,7 @@
 								"header": [],
 								"url": {
 									"raw": "{{route_profile}}",
-									"host": [
-										"{{route_profile}}"
-									]
+									"host": ["{{route_profile}}"]
 								}
 							},
 							"response": []
@@ -1269,12 +1119,8 @@
 										"header": [],
 										"url": {
 											"raw": "{{route_recipes}}/mine",
-											"host": [
-												"{{route_recipes}}"
-											],
-											"path": [
-												"mine"
-											]
+											"host": ["{{route_recipes}}"],
+											"path": ["mine"]
 										}
 									},
 									"response": []
@@ -1316,13 +1162,8 @@
 										},
 										"url": {
 											"raw": "{{route_recipes}}/mine/2",
-											"host": [
-												"{{route_recipes}}"
-											],
-											"path": [
-												"mine",
-												"2"
-											]
+											"host": ["{{route_recipes}}"],
+											"path": ["mine", "2"]
 										}
 									},
 									"response": []
@@ -1334,13 +1175,8 @@
 										"header": [],
 										"url": {
 											"raw": "{{route_recipes}}/mine/2",
-											"host": [
-												"{{route_recipes}}"
-											],
-											"path": [
-												"mine",
-												"2"
-											]
+											"host": ["{{route_recipes}}"],
+											"path": ["mine", "2"]
 										}
 									},
 									"response": []
@@ -1357,12 +1193,8 @@
 										"header": [],
 										"url": {
 											"raw": "{{route_recipes}}/liked",
-											"host": [
-												"{{route_recipes}}"
-											],
-											"path": [
-												"liked"
-											]
+											"host": ["{{route_recipes}}"],
+											"path": ["liked"]
 										}
 									},
 									"response": []
@@ -1404,13 +1236,8 @@
 										},
 										"url": {
 											"raw": "{{route_recipes}}/liked/1",
-											"host": [
-												"{{route_recipes}}"
-											],
-											"path": [
-												"liked",
-												"1"
-											]
+											"host": ["{{route_recipes}}"],
+											"path": ["liked", "1"]
 										}
 									},
 									"response": []
@@ -1422,13 +1249,8 @@
 										"header": [],
 										"url": {
 											"raw": "{{route_recipes}}/liked/1",
-											"host": [
-												"{{route_recipes}}"
-											],
-											"path": [
-												"liked",
-												"1"
-											]
+											"host": ["{{route_recipes}}"],
+											"path": ["liked", "1"]
 										}
 									},
 									"response": []
@@ -1445,12 +1267,8 @@
 										"header": [],
 										"url": {
 											"raw": "{{route_recipes}}/saved",
-											"host": [
-												"{{route_recipes}}"
-											],
-											"path": [
-												"saved"
-											]
+											"host": ["{{route_recipes}}"],
+											"path": ["saved"]
 										}
 									},
 									"response": []
@@ -1492,13 +1310,8 @@
 										},
 										"url": {
 											"raw": "{{route_recipes}}/saved/1",
-											"host": [
-												"{{route_recipes}}"
-											],
-											"path": [
-												"saved",
-												"1"
-											]
+											"host": ["{{route_recipes}}"],
+											"path": ["saved", "1"]
 										}
 									},
 									"response": []
@@ -1510,13 +1323,8 @@
 										"header": [],
 										"url": {
 											"raw": "{{route_recipes}}/saved/1",
-											"host": [
-												"{{route_recipes}}"
-											],
-											"path": [
-												"saved",
-												"1"
-											]
+											"host": ["{{route_recipes}}"],
+											"path": ["saved", "1"]
 										}
 									},
 									"response": []
@@ -1540,9 +1348,7 @@
 								"header": [],
 								"url": {
 									"raw": "{{route_recipes}}?search=banteng",
-									"host": [
-										"{{route_recipes}}"
-									],
+									"host": ["{{route_recipes}}"],
 									"query": [
 										{
 											"key": "search",
@@ -1580,12 +1386,8 @@
 								"header": [],
 								"url": {
 									"raw": "{{route_recipes}}/all",
-									"host": [
-										"{{route_recipes}}"
-									],
-									"path": [
-										"all"
-									]
+									"host": ["{{route_recipes}}"],
+									"path": ["all"]
 								}
 							},
 							"response": []
@@ -1597,12 +1399,8 @@
 								"header": [],
 								"url": {
 									"raw": "{{route_recipes}}/new?sort=createdAt&order=desc",
-									"host": [
-										"{{route_recipes}}"
-									],
-									"path": [
-										"new"
-									],
+									"host": ["{{route_recipes}}"],
+									"path": ["new"],
 									"query": [
 										{
 											"key": "search",
@@ -1639,12 +1437,8 @@
 								"header": [],
 								"url": {
 									"raw": "{{route_recipes}}/popular",
-									"host": [
-										"{{route_recipes}}"
-									],
-									"path": [
-										"popular"
-									]
+									"host": ["{{route_recipes}}"],
+									"path": ["popular"]
 								}
 							},
 							"response": []
@@ -1656,12 +1450,8 @@
 								"header": [],
 								"url": {
 									"raw": "{{route_recipes}}/2",
-									"host": [
-										"{{route_recipes}}"
-									],
-									"path": [
-										"2"
-									]
+									"host": ["{{route_recipes}}"],
+									"path": ["2"]
 								}
 							},
 							"response": []
@@ -1673,13 +1463,8 @@
 								"header": [],
 								"url": {
 									"raw": "{{route_recipes}}/check/1",
-									"host": [
-										"{{route_recipes}}"
-									],
-									"path": [
-										"check",
-										"1"
-									]
+									"host": ["{{route_recipes}}"],
+									"path": ["check", "1"]
 								}
 							},
 							"response": []
@@ -1721,9 +1506,7 @@
 								},
 								"url": {
 									"raw": "{{route_recipes}}",
-									"host": [
-										"{{route_recipes}}"
-									]
+									"host": ["{{route_recipes}}"]
 								}
 							},
 							"response": []
@@ -1755,9 +1538,7 @@
 								},
 								"url": {
 									"raw": "{{route_comments}}",
-									"host": [
-										"{{route_comments}}"
-									]
+									"host": ["{{route_comments}}"]
 								}
 							},
 							"response": []
@@ -1780,18 +1561,14 @@
 					"listen": "prerequest",
 					"script": {
 						"type": "text/javascript",
-						"exec": [
-							""
-						]
+						"exec": [""]
 					}
 				},
 				{
 					"listen": "test",
 					"script": {
 						"type": "text/javascript",
-						"exec": [
-							""
-						]
+						"exec": [""]
 					}
 				}
 			]
@@ -1803,9 +1580,7 @@
 				"header": [],
 				"url": {
 					"raw": "{{route_base}}",
-					"host": [
-						"{{route_base}}"
-					]
+					"host": ["{{route_base}}"]
 				}
 			},
 			"response": []
@@ -1816,18 +1591,14 @@
 			"listen": "prerequest",
 			"script": {
 				"type": "text/javascript",
-				"exec": [
-					""
-				]
+				"exec": [""]
 			}
 		},
 		{
 			"listen": "test",
 			"script": {
 				"type": "text/javascript",
-				"exec": [
-					""
-				]
+				"exec": [""]
 			}
 		}
 	],
