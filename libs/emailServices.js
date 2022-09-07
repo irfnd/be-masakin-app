@@ -1,20 +1,18 @@
-require("dotenv").config();
-const { ENV, SMTP_HOST, SMTP_PORT, SMTP_USERNAME, SMTP_PASSWORD, EMAIL_FROM, SERVER_URL, SERVER_LOCAL_URL } = process.env;
+const env = require("../libs/env");
 
-const serverUrl = ENV === "production" ? SERVER_URL : SERVER_LOCAL_URL;
-
+const serverUrl = env.modeEnv === "production" ? env.serverUrl : env.serverLocalUrl;
 const nodemailer = require("nodemailer");
 const transport = nodemailer.createTransport({
-	host: SMTP_HOST,
-	port: SMTP_PORT,
+	host: env.smtpHost,
+	port: env.smtpPort,
 	auth: {
-		user: SMTP_USERNAME,
-		pass: SMTP_PASSWORD,
+		user: env.smtpUsername,
+		pass: env.smtpPassword,
 	},
 });
 
 const sendEmail = async (to, subject, text) => {
-	const msg = { from: EMAIL_FROM, to, subject, text };
+	const msg = { from: env.emailFrom, to, subject, text };
 	await transport.sendMail(msg);
 };
 

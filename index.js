@@ -1,6 +1,4 @@
-require("dotenv").config();
-const { CLIENT_URL, DATABASE_SYNC } = process.env;
-
+const env = require("./libs/env");
 const toBool = require("to-bool");
 const express = require("express");
 const cors = require("cors");
@@ -8,20 +6,22 @@ const helmet = require("helmet");
 const xss = require("xss-clean");
 const compression = require("compression");
 const morgan = require("morgan");
+const cookieParser = require("cookie-parser");
 const { handlingError } = require("./middlewares");
 const db = require("./models");
 const { transport } = require("./libs/emailServices");
 
 const port = process.env.PORT || 8000;
 const app = express();
-const client = CLIENT_URL.split(",");
+const client = env.clientUrl.split(",");
 
-app.use(cors({ origin: client }));
+app.use(cors({ origin: client, credentials: true }));
 app.use(helmet());
 app.use(xss());
 app.use(compression());
 app.use(morgan("dev"));
 app.use(express.json());
+app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
@@ -31,7 +31,7 @@ app.use(handlingError);
 app.listen(port, async () => {
 	console.log(`\n> [Express]\t-> Server running successfully`);
 	await db.sequelize
-		.sync({ force: toBool(DATABASE_SYNC) })
+		.sync({ force: toBool(env.dbSync) })
 		.then(() => console.log("> [Postgres]\t-> Connected to postgreSQL"))
 		.catch((err) => {
 			console.log("> [Postgres]\t\t-> Something went wrong!\n");
