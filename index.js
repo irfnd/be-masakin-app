@@ -15,7 +15,7 @@ const port = process.env.PORT || 8000;
 const app = express();
 const client = env.clientUrl.split(",");
 
-app.use(cors({ origin: client, credentials: true }));
+app.use(cors({ origin: client, allowedHeaders: client, credentials: true }));
 app.use(helmet());
 app.use(xss());
 app.use(compression());
