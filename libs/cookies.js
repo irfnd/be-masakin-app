@@ -6,7 +6,7 @@ const cookiesOptions = {
 	maxAge: parse(env.expiresAccessToken),
 	sameSite: env.modeEnv === "production" ? "none" : "lax",
 	secure: env.modeEnv === "production",
-	domain: env.modeEnv === "production" ? ".masakin-app.vercel.app" : ".localhost",
+	domain: env.modeEnv === "production" ? "masakin-app.vercel.app" : "localhost",
 	// httpOnly: true,
 };
 
