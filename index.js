@@ -14,8 +14,9 @@ const { transport } = require("./libs/emailServices");
 const port = process.env.PORT || 8000;
 const app = express();
 const client = env.clientUrl.split(",");
+const headers = ["Set-Cookie", "Cookie", "Content-Type"]
 
-app.use(cors({ origin: client, allowedHeaders: ["Set-Cookie", "Cookie"], credentials: true }));
+app.use(cors({ origin: client, allowedHeaders: headers, credentials: true }));
 app.use(helmet());
 app.use(xss());
 app.use(compression());
