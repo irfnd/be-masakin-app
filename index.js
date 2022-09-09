@@ -6,7 +6,7 @@ const helmet = require("helmet");
 const xss = require("xss-clean");
 const compression = require("compression");
 const morgan = require("morgan");
-const cookieParser = require("cookie-parser");
+// const cookieParser = require("cookie-parser");
 const { handlingError } = require("./middlewares");
 const db = require("./models");
 const { transport } = require("./libs/emailServices");
@@ -14,15 +14,16 @@ const { transport } = require("./libs/emailServices");
 const port = process.env.PORT || 8000;
 const app = express();
 const client = env.clientUrl.split(",");
-const headers = ["Set-Cookie", "Cookie", "Content-Type"]
+// const headers = ["Set-Cookie", "Cookie", "Content-Type"]
+// allowedHeaders: headers, credentials: true
 
-app.use(cors({ origin: client, allowedHeaders: headers, credentials: true }));
+app.use(cors({ origin: client }));
 app.use(helmet());
 app.use(xss());
 app.use(compression());
 app.use(morgan("dev"));
 app.use(express.json());
-app.use(cookieParser());
+// app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 

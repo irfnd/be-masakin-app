@@ -1,8 +1,8 @@
 const status = require("http-status");
 const { Users } = require("../models");
 const { deleteFile } = require("../middlewares/multer");
-const { cookiesOptions } = require("../libs/cookies");
-const { crypto } = require("../libs/crypto");
+// const { cookiesOptions } = require("../libs/cookies");
+// const { crypto } = require("../libs/crypto");
 const { responseSuccess } = require("../libs/response");
 
 const uploadPhoto = async (req, res, next) => {
@@ -23,8 +23,8 @@ const uploadPhoto = async (req, res, next) => {
 			photoName: results[1][0].photoName,
 			role: results[1][0].role,
 		};
-		res.cookie("user", crypto.encryptData(JSON.stringify(newUser)), cookiesOptions);
-		res.json(responseSuccess("updated", results[1][0]));
+		// res.cookie("user", crypto.encryptData(JSON.stringify(newUser)), cookiesOptions);
+		res.json(responseSuccess("updated", newUser));
 	} catch (err) {
 		next(err);
 	}
