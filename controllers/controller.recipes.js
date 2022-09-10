@@ -141,7 +141,7 @@ const createFromUser = async (req, res, next) => {
 			userId,
 		};
 		const results = await Recipes.create(newRecipe);
-		const videos = req.body.videos !== "" ? await Videos.create(JSON.parse(req.body.videos)) : null;
+		const videos = req.body.videos !== "" ? await Videos.create({ ...JSON.parse(req.body.videos), id_recipe: results.id }) : null;
 		res.json(responseSuccess("added", { ...results, videos }));
 	} catch (err) {
 		console.log(err);
