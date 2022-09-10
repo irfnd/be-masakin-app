@@ -141,9 +141,9 @@ const createFromUser = async (req, res, next) => {
 			userId,
 		};
 		const results = await Recipes.create(newRecipe);
-		const newVideo = req.body.videos !== "" ? JSON.parse(req.body.videos).map((el) => ({ ...el, id_recipe: results.id })) : null;
+		const newVideo = req.body.videos !== "" ? JSON.parse(req.body.videos).map((el) => ({ ...el, recipeId: results.id })) : null;
 		const videos = newVideo.length > 0 ? await Videos.bulkCreate(newVideo) : null;
-		res.json(responseSuccess("added", { ...results, videos }));
+		res.json(responseSuccess("added", { ...Object.asign({}, results), videos }));
 	} catch (err) {
 		console.log(err);
 		next(err);
