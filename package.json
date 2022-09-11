@@ -1,13 +1,14 @@
 {
-	"name": "resip-app-backend",
+	"name": "be-masakin-app",
 	"version": "1.0.0",
-	"description": "Backend resip app",
+	"description": "Masakin App (Backend) - \"A place to find inspiration for cooking recipes anywhere and anytime\"",
 	"main": "index.js",
-	"author": "irfnd <irfandiabimanyu@gmail.com>",
+	"author": "Irfandi Iqbal Abimanyu",
 	"license": "MIT",
 	"private": false,
 	"engines": {
-		"node": "16.x"
+		"node": ">=16.0.0",
+		"npm": ">=8.0.0"
 	},
 	"scripts": {
 		"dev": "nodemon index",
