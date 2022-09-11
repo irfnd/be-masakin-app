@@ -7,7 +7,7 @@
   <i><h4 align="center">A place to find inspiration for cooking recipes anywhere and anytime</h4></i>
 
   <p align="center">
-    <a href="https://masakin-app.herokuapp.com/">View Demo</a>
+    <a href="https://be-masakin-app.up.railway.app/">View Demo</a>
     |
     <a href="https://github.com/irfnd/be-masakin-app/issues">Report Bug</a>
     |
