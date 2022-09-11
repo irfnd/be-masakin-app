@@ -23,7 +23,7 @@ const check = async (req, res, next) => {
 		});
 
 		results = { liked: checkLiked?.recipes?.length > 0 || false, saved: checkSaved?.recipes?.length > 0 || false };
-		await redis.set(`checkRecipe-${uniqueName}`, JSON.stringify(results), { EX: 30, NX: true });
+		await redis.set(`checkRecipe-${uniqueName}`, JSON.stringify(results), { EX: 3, NX: true });
 		res.json(responseSuccess("retrieved", { fromCache: false, data: results }));
 	} catch (err) {
 		next(err);

@@ -28,7 +28,7 @@ const findAll = async (req, res, next) => {
 				Videos,
 			],
 		});
-		await redis.set("recipeAll", JSON.stringify(results), { EX: 30, NX: true });
+		await redis.set("recipeAll", JSON.stringify(results), { EX: 3, NX: true });
 		res.json(responseSuccess("retrieved", { fromCache: false, data: results }));
 	} catch (err) {
 		next(err);
@@ -50,7 +50,7 @@ const findAllPopular = async (req, res, next) => {
 				[sequelize.literal('"savedCount"'), "desc"],
 			],
 		});
-		await redis.set("recipeAllPopular", JSON.stringify(results), { EX: 30, NX: true });
+		await redis.set("recipeAllPopular", JSON.stringify(results), { EX: 3, NX: true });
 		res.json(responseSuccess("retrieved", { fromCache: false, data: results }));
 	} catch (err) {
 		next(err);
@@ -76,7 +76,7 @@ const findAllPagination = async (req, res, next) => {
 			order: handleSort,
 		});
 		results = getPagingData(getRecipes, page, limit);
-		await redis.set(`recipeAllPagination-${uniqueName}`, JSON.stringify(results), { EX: 30, NX: true });
+		await redis.set(`recipeAllPagination-${uniqueName}`, JSON.stringify(results), { EX: 3, NX: true });
 		res.json(responseSuccess("retrieved", { fromCache: false, data: results }));
 	} catch (err) {
 		next(err);
@@ -97,7 +97,7 @@ const findOne = async (req, res, next) => {
 			],
 		});
 		if (!results) throw new Error("Recipe not found!", { cause: { code: status.NOT_FOUND } });
-		await redis.set(`recipe-${id}`, JSON.stringify(results), { EX: 30, NX: true });
+		await redis.set(`recipe-${id}`, JSON.stringify(results), { EX: 3, NX: true });
 		res.json(responseSuccess("retrieved", { fromCache: false, data: results }));
 	} catch (err) {
 		next(err);
@@ -163,7 +163,7 @@ const findAllMyRecipes = async (req, res, next) => {
 			],
 			where: { userId },
 		});
-		await redis.set(`recipeMine-${userId}`, JSON.stringify(results), { EX: 30, NX: true });
+		await redis.set(`recipeMine-${userId}`, JSON.stringify(results), { EX: 3, NX: true });
 		res.json(responseSuccess("retrieved", { fromCache: false, data: results }));
 	} catch (err) {
 		next(err);
@@ -187,7 +187,7 @@ const findAllMyRecipesPagination = async (req, res, next) => {
 			order: handleSort,
 		});
 		results = getPagingData(getRecipes, page, limit);
-		await redis.set(`myRecipePagination-${uniqueName}`, JSON.stringify(results), { EX: 30, NX: true });
+		await redis.set(`myRecipePagination-${uniqueName}`, JSON.stringify(results), { EX: 3, NX: true });
 		res.json(responseSuccess("retrieved", { fromCache: false, data: results }));
 	} catch (err) {
 		next(err);

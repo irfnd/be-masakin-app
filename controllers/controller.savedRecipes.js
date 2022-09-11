@@ -22,17 +22,17 @@ const findAll = async (req, res, next) => {
 			if (!id) throw new Error("Query id required!", { cause: { code: status.BAD_REQUEST } });
 			if (!Number(id)) throw new Error("Query id must be a number!", { cause: { code: status.BAD_REQUEST } });
 			results = await SavedRecipes.findAll({ where: { userId: id } });
-			await redis.set(`savedRecipeAll-${uniqueName}`, JSON.stringify(results), { EX: 30, NX: true });
+			await redis.set(`savedRecipeAll-${uniqueName}`, JSON.stringify(results), { EX: 3, NX: true });
 			res.json(responseSuccess("retrieved", { fromCache: false, results }));
 		} else if (by === "recipe") {
 			if (!id) throw new Error("Query id required!", { cause: { code: status.BAD_REQUEST } });
 			if (!Number(id)) throw new Error("Query id must be a number!", { cause: { code: status.BAD_REQUEST } });
 			results = await SavedRecipes.findAll({ where: { recipeId: id } });
-			await redis.set(`likedRecipeAll-${uniqueName}`, JSON.stringify(results), { EX: 30, NX: true });
+			await redis.set(`likedRecipeAll-${uniqueName}`, JSON.stringify(results), { EX: 3, NX: true });
 			res.json(responseSuccess("retrieved", { fromCache: false, results }));
 		} else {
 			results = await SavedRecipes.findAll();
-			await redis.set(`likedRecipeAll-${uniqueName}`, JSON.stringify(results), { EX: 30, NX: true });
+			await redis.set(`likedRecipeAll-${uniqueName}`, JSON.stringify(results), { EX: 3, NX: true });
 			res.json(responseSuccess("retrieved", { fromCache: false, results }));
 		}
 	} catch (err) {
@@ -86,7 +86,7 @@ const findAllFromUser = async (req, res, next) => {
 				],
 			},
 		});
-		await redis.set(`savedRecipeAll-${id}`, JSON.stringify(results.recipes), { EX: 30, NX: true });
+		await redis.set(`savedRecipeAll-${id}`, JSON.stringify(results.recipes), { EX: 3, NX: true });
 		res.json(responseSuccess("retrieved", { fromCache: false, data: results.recipes }));
 	} catch (err) {
 		next(err);

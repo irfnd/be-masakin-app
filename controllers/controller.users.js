@@ -69,7 +69,7 @@ const findFromUser = async (req, res, next) => {
 		if (!Number(id)) throw new Error("Parameter id must be a number!", { cause: { code: status.BAD_REQUEST } });
 		results = await Users.findByPk(id);
 		if (!results) throw new Error("User not found!", { cause: { code: status.NOT_FOUND } });
-		await redis.set(`profile-${id}`, JSON.stringify(results), { EX: 30, NX: true });
+		await redis.set(`profile-${id}`, JSON.stringify(results), { EX: 3, NX: true });
 		res.json(responseSuccess("retrieved", { fromCache: false, data: results }));
 	} catch (err) {
 		next(err);
